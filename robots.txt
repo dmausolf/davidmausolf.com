@@ -21,6 +21,12 @@ Allow: /
 
 Sitemap: https://davidmausolf.com/sitemap.xml
 
+# RSS Feed
+# feed.xml: https://davidmausolf.com/feed.xml
+
+# IndexNow
+# Key: https://davidmausolf.com/4b02af8f87c44977a191a25d1891f1d6.txt
+
 # LLM Context
 # See https://llmstxt.org
 # llms.txt: https://davidmausolf.com/llms.txt

@@ -1,0 +1,16 @@
+{
+  "name": "David Mausolf",
+  "short_name": "Mausolf",
+  "description": "Essays on work, AI, and who actually produces the outcomes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F6F5F3",
+  "theme_color": "#111110",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

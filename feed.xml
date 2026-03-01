@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>David Mausolf</title>
+    <link>https://davidmausolf.com</link>
+    <description>Essays on work, AI, and who actually produces the outcomes.</description>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 28 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://davidmausolf.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Who&#x2019;s Actually Doing the Work?</title>
+      <link>https://davidmausolf.com/whos-actually-doing-the-work</link>
+      <description>Data-driven essay examining how organizations systematically overvalue visible work and undervalue the people who produce outcomes. Covers the introvert earnings gap, neurodivergent employment barriers, AI-driven compression of middle management, and the coming repricing of knowledge work.</description>
+      <dc:creator>David Mausolf</dc:creator>
+      <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://davidmausolf.com/whos-actually-doing-the-work</guid>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,851 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Who's Actually Doing the Work? — David Mausolf</title>
+  <meta name="description" content="The labor market has been structurally mispricing contribution for decades. Here's the data — and why it's changing.">
+  <meta property="og:title" content="Who's Actually Doing the Work?">
+  <meta property="og:description" content="You already know the answer. Here's the data.">
+  <meta property="og:type" content="article">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400;1,8..60,500&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #F6F5F3;
+      --text: #111110;
+      --text-mid: #4A4944;
+      --text-quiet: #7A7972;
+      --rule: #D4D2CD;
+      --rule-heavy: #111110;
+      --fig-bg: #EEEDEB;
+      --rust: #8C3A1F;
+      --slate: #3A5548;
+      --serif: 'Source Serif 4', 'Georgia', serif;
+      --mono: 'IBM Plex Mono', 'Menlo', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: 'kern' 1, 'liga' 1, 'onum' 1;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--serif);
+      line-height: 1.7;
+    }
+
+    /* ── LAYOUT ── */
+
+    .col {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── VOID ── */
+
+    .void { height: 10rem; }
+
+    /* ── MASTHEAD ── */
+
+    .masthead {
+      padding-bottom: 0.8rem;
+      margin-bottom: 4.5rem;
+      border-bottom: 2px solid var(--rule-heavy);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .site-name {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.7rem;
+      letter-spacing: 0.03em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .site-name:hover { color: var(--text-mid); }
+
+    .masthead-date {
+      font-family: var(--mono);
+      font-weight: 300;
+      font-size: 0.62rem;
+      color: var(--text-quiet);
+    }
+
+    /* ── ARTICLE HEADER ── */
+
+    .article-header {
+      margin-bottom: 2.5rem;
+      border-top: 3px solid var(--rust);
+      padding-top: 1.2rem;
+    }
+
+    .article-label {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 0.8rem;
+    }
+
+    .article-title {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 2.2rem;
+      line-height: 1.12;
+      letter-spacing: -0.015em;
+      color: var(--text);
+    }
+
+    .article-subtitle {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      margin-top: 0.6rem;
+    }
+
+    /* ── BODY TEXT ── */
+
+    .body p {
+      font-size: 0.95rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .body p strong { font-weight: 500; }
+
+    /* ── SECTION HEADINGS ── */
+
+    .section {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-top: 4rem;
+      margin-bottom: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid var(--rule-heavy);
+    }
+
+    /* ── BLOCKQUOTES: no preceding hr, just the rust bar ── */
+
+    blockquote {
+      border-left: 2px solid var(--rust);
+      padding-left: 1.3rem;
+      margin: 2.5rem 0;
+    }
+
+    blockquote p {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 0 !important;
+    }
+
+    /* ── CALLOUT ── */
+
+    .callout {
+      padding: 0 0 0 1.3rem;
+      border-left: 1px solid var(--rule);
+      margin: 1.8rem 0;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    /* ── FIGURES: faint background wash, top+bottom rules ── */
+
+    .fig {
+      background: var(--fig-bg);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 1.8rem 2rem 1.6rem;
+      margin: 2.5rem -2rem;
+    }
+
+    .fig-label {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.54rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .fig-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .fig-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+    }
+
+    .fig-half {
+      padding: 0 1.8rem;
+      text-align: center;
+    }
+
+    .fig-half:first-child {
+      padding-left: 0;
+      border-right: 1px solid var(--rule);
+    }
+
+    .fig-half:last-child {
+      padding-right: 0;
+    }
+
+    .fig-grid-3 .fig-third {
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    .fig-grid-3 .fig-third:first-child { padding-left: 0; }
+    .fig-grid-3 .fig-third:last-child { padding-right: 0; }
+    .fig-grid-3 .fig-third:not(:last-child) { border-right: 1px solid var(--rule); }
+
+    .fig-col-label {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.5rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.3rem;
+      text-align: center;
+    }
+
+    .fig-col-label.rust { color: var(--rust); }
+    .fig-col-label.slate { color: var(--slate); }
+
+    .stat {
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 2rem;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-num.rust { color: var(--rust); }
+    .stat-num.slate { color: var(--slate); }
+
+    /* Stat descriptions in SERIF, not mono */
+    .stat-text {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: 0.72rem;
+      line-height: 1.45;
+      color: var(--text-quiet);
+      margin-top: 0.2rem;
+      text-align: center;
+    }
+
+    .stat-text strong {
+      font-weight: 500;
+      color: var(--text-mid);
+    }
+
+    .fig-source {
+      font-family: var(--mono);
+      font-weight: 300;
+      font-size: 0.48rem;
+      color: var(--text-quiet);
+      margin-top: 1.4rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .fig-note {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.54rem;
+      color: var(--text-mid);
+      margin-top: 1.3rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* ── REPRICING FIGURE: centerpiece treatment ── */
+
+    .fig-hero {
+      background: var(--rule-heavy);
+      color: #E8E6E2;
+      border-top: none;
+      border-bottom: none;
+      padding: 2.8rem 2.5rem 2.2rem;
+      margin: 3rem -2rem;
+    }
+
+    .fig-hero .fig-label {
+      color: #8A8880;
+    }
+
+    .fig-hero .fig-half {
+      text-align: center;
+    }
+
+    .fig-hero .fig-half:first-child {
+      border-right: 1px solid #333;
+    }
+
+    .fig-hero .fig-col-label.rust { color: #C4623E; }
+    .fig-hero .fig-col-label.slate { color: #7ABF8E; }
+
+    .fig-hero .repr-name.rust { color: #C4623E; }
+    .fig-hero .repr-name.slate { color: #7ABF8E; }
+
+    .fig-hero .repr-desc {
+      color: #8A8880;
+    }
+
+    .fig-hero .fig-note {
+      color: #AAA89F;
+    }
+
+    /* ── REPRICING ITEMS ── */
+
+    .repr-item {
+      margin-bottom: 1.2rem;
+    }
+
+    .repr-name {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.56rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .repr-name.rust { color: var(--rust); }
+    .repr-name.slate { color: var(--slate); }
+
+    .repr-desc {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: 0.72rem;
+      line-height: 1.45;
+      color: var(--text-quiet);
+      margin-top: 0.15rem;
+      text-align: center;
+    }
+
+    /* ── SPACER (replaces most hr) ── */
+
+    .spacer {
+      height: 3rem;
+    }
+
+    .spacer-lg {
+      height: 4rem;
+    }
+
+    /* ── CLOSING ── */
+
+    .dots {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 1em;
+      color: var(--rust);
+      margin: 3.5rem 0;
+    }
+
+    .byline {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.65rem;
+      color: var(--text-mid);
+      margin-bottom: 2rem;
+    }
+
+    .end-sources {
+      font-family: var(--mono);
+      font-weight: 300;
+      font-size: 0.5rem;
+      line-height: 1.7;
+      color: var(--text-quiet);
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .download {
+      margin-top: 2.5rem;
+    }
+
+    .download a {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.62rem;
+      letter-spacing: 0.04em;
+      color: var(--text-mid);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.15rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .download a:hover {
+      color: var(--rust);
+      border-color: var(--rust);
+    }
+
+    /* ── FOOTER ── */
+
+    .site-footer {
+      margin-top: 5rem;
+      padding: 1rem 0 4rem;
+      border-top: 2px solid var(--rule-heavy);
+    }
+
+    .site-footer a {
+      font-family: var(--mono);
+      font-weight: 300;
+      font-size: 0.62rem;
+      color: var(--text-quiet);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .site-footer a:hover { color: var(--text-mid); }
+
+    /* ── LEDE ── */
+
+    .lede {
+      background: #0A0A09;
+      margin: 2.5rem -2rem 3.5rem;
+      padding: 3.5rem 2.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lede-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .lede-grid {
+      display: grid;
+      grid-template-columns: repeat(20, 1fr);
+      gap: 3px;
+      margin-bottom: 2.5rem;
+    }
+
+    .lede-dot {
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #1E1D1B;
+      transition: background 0.3s;
+    }
+
+    .lede-dot.lit {
+      background: var(--rust);
+      box-shadow: 0 0 8px rgba(140, 58, 31, 0.4);
+    }
+
+    .lede-caption {
+      text-align: center;
+    }
+
+    .lede-caption-main {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.6rem;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: #E8E6E2;
+      margin-bottom: 0.7rem;
+    }
+
+    .lede-caption-main em {
+      font-style: normal;
+      color: var(--rust);
+    }
+
+    .lede-caption-sub {
+      font-family: var(--mono);
+      font-weight: 300;
+      font-size: 0.55rem;
+      letter-spacing: 0.08em;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .lede-caption-sub strong {
+      font-weight: 500;
+      color: #888;
+    }
+
+    @media (max-width: 600px) {
+      .lede { margin-left: -1.6rem; margin-right: -1.6rem; padding: 2.5rem 1.6rem 2rem; }
+      .lede-grid { gap: 2px; }
+      .lede-caption-main { font-size: 1.25rem; }
+    }
+
+    /* ── RESPONSIVE ── */
+
+    @media (max-width: 740px) {
+      .col { padding: 0 1.6rem; }
+      .fig, .fig-hero { margin-left: -1.6rem; margin-right: -1.6rem; padding-left: 1.6rem; padding-right: 1.6rem; }
+    }
+
+    @media (max-width: 600px) {
+      html { font-size: 15.5px; }
+      .void { height: 5rem; }
+      .article-title { font-size: 1.8rem; }
+      .fig-grid, .fig-grid-3, .fig-hero .fig-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .fig-half, .fig-grid-3 .fig-third {
+        padding: 0 !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 2rem !important;
+      }
+      .fig-half:last-child, .fig-grid-3 .fig-third:last-child {
+        border-bottom: none;
+        padding-bottom: 0 !important;
+      }
+      .fig-hero .fig-half {
+        border-color: #333 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="col">
+
+  <div class="void"></div>
+
+  <header class="masthead">
+    <a href="/" class="site-name">David Mausolf</a>
+    <span class="masthead-date">February 2026</span>
+  </header>
+
+  <div class="article-header">
+    <div class="article-label">Essay</div>
+    <h1 class="article-title">Who&#x2019;s Actually<br>Doing the Work?</h1>
+    <div class="article-subtitle">You already know the answer. Here&#x2019;s the data.</div>
+  </div>
+
+  <!-- LEDE -->
+  <div class="lede">
+    <div class="lede-inner">
+      <div class="lede-grid" aria-label="300 dots representing leaders. 12 are highlighted — the 4% who are introverted.">
+        <div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot lit"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div>
+        <div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot lit"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div>
+        <div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div>
+        <div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot lit"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div>
+        <div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot lit"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div>
+        <div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot lit"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div>
+        <div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div>
+        <div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot lit"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div>
+        <div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot lit"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div>
+        <div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot lit"></div><div class="lede-dot"></div>
+        <div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot lit"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div>
+        <div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot lit"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div>
+        <div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot lit"></div><div class="lede-dot"></div><div class="lede-dot"></div>
+        <div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot lit"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div>
+        <div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div><div class="lede-dot"></div>
+      </div>
+      <div class="lede-caption">
+        <div class="lede-caption-main">Who&#x2019;s actually doing the work?<br><em>All of them. &ensp;Who was seen?</em></div>
+        <div class="lede-caption-sub"><strong>12 of 300.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <article class="body">
+
+    <h2 class="section">You&#x2019;ve Felt It</h2>
+
+    <p>The gap between what you produce and what you&#x2019;re recognized for. The meeting where someone else presented your analysis. The review where the feedback was about &#x201C;visibility&#x201D;&thinsp;&#x2014;&thinsp;not quality. The moment you realized the person who explained your work to the room was being paid more than you were to do it.</p>
+
+    <p>You&#x2019;re not imagining it. And it&#x2019;s not just you.</p>
+
+    <p>The labor market has been structurally mispricing contribution for decades. Organizations have systematically overvalued visible, legible work&thinsp;&#x2014;&thinsp;the kind that happens in meetings, in presentations, in client-facing performance&thinsp;&#x2014;&thinsp;and undervalued the less visible work that actually produces the outcomes those performances describe. The people who talk about the work get rewarded. The people who do the work get told to speak up more.</p>
+
+    <p>This essay is for the second group. The data that follows is not evidence you need to build a case for your boss. It&#x2019;s validation that the system you&#x2019;ve been navigating was never designed to see you clearly&thinsp;&#x2014;&thinsp;and an explanation of why that&#x2019;s about to change.</p>
+
+    <h2 class="section">The System That Can&#x2019;t See You</h2>
+
+    <p>When your manager says they value output over presence, they believe it. The research says otherwise.</p>
+
+    <p>A 2022 Envoy workplace survey found that 96% of executives acknowledge they are more likely to notice contributions made in-office than those completed remotely&thinsp;&#x2014;&thinsp;even when the work product is identical. A 2024 Euronews survey found remote workers are 31% less likely to be promoted and 38% less likely to receive bonuses, independent of performance. As Harvard Business Review reported, 42% of managers admit they sometimes forget about remote workers when assigning tasks&thinsp;&#x2014;&thinsp;despite those workers averaging 15% higher productivity.</p>
+
+  </article>
+
+  <!-- Figure 1 -->
+  <div class="fig">
+    <div class="fig-label">Figure 1 &#x2014; What They Believe vs. What the Data Shows</div>
+    <div class="fig-grid">
+      <div class="fig-half">
+        <div class="fig-col-label rust">What Managers Believe</div>
+        <div class="stat"><div class="stat-num rust">96%</div><div class="stat-text">of executives admit they <strong>notice in-office contributions more</strong></div></div>
+        <div class="stat"><div class="stat-num rust">64%</div><div class="stat-text">of managers believe <strong>office workers outperform</strong> remote</div></div>
+        <div class="stat"><div class="stat-num rust">42%</div><div class="stat-text">of managers <strong>forget remote workers</strong> when assigning tasks</div></div>
+      </div>
+      <div class="fig-half">
+        <div class="fig-col-label slate">What the Data Shows</div>
+        <div class="stat"><div class="stat-num slate">+15%</div><div class="stat-text"><strong>higher productivity</strong> among the workers being overlooked</div></div>
+        <div class="stat"><div class="stat-num slate">&#x2212;38%</div><div class="stat-text">less likely to receive <strong>bonuses</strong>&thinsp;&#x2014;&thinsp;despite higher output</div></div>
+        <div class="stat"><div class="stat-num slate">&#x2212;31%</div><div class="stat-text">less likely to be <strong>promoted</strong>&thinsp;&#x2014;&thinsp;independent of performance</div></div>
+      </div>
+    </div>
+    <div class="fig-source">Envoy (2022), Yarooms (2025), Harvard Business Review (2022), Euronews (2024)</div>
+  </div>
+
+  <article class="body">
+
+    <p>This isn&#x2019;t just a remote-work problem. It&#x2019;s the same dynamic playing out in every office, every day. The person who speaks in the meeting gets remembered. The person who did the work that made the meeting possible does not. Harvard Business School research by Jon Jachimowicz found that managers systematically perceive extroverted employees as more passionate&thinsp;&#x2014;&thinsp;even when introverted employees report identical levels of motivation. You express engagement through the quality of your output, through deep focus, through preparation. Your manager reads that as low energy. And the compensation follows the perception, not the production.</p>
+
+    <p>The Sutton Trust found that extroverted adults earn 25% more. Susan Cain&#x2019;s research documented something even starker: roughly half the workforce self-identifies as introverted, but 96% of leaders and managers identify as extroverts.</p>
+
+  </article>
+
+  <!-- Figure 2 — THE HERO: moved up, dramatic -->
+  <div class="fig">
+    <div class="fig-label">Figure 2 &#x2014; The Filter</div>
+    <div style="text-align: center; max-width: 380px; margin: 0 auto;">
+      <div class="stat"><div class="stat-num rust" style="font-size: 3rem;">50%</div><div class="stat-text">of the workforce self-identifies as <strong>introverted</strong></div></div>
+      <div style="font-family: var(--mono); font-size: 0.6rem; color: var(--text-quiet); margin: 1rem 0;">&#x2193;&ensp;but only&ensp;&#x2193;</div>
+      <div class="stat"><div class="stat-num slate" style="font-size: 3rem;">4%</div><div class="stat-text">of leaders and managers identify the same way</div></div>
+    </div>
+    <div class="fig-note">The other <strong style="color: var(--text);">96%</strong> of leadership is extroverted. The filter is not selecting for capability.</div>
+    <div class="fig-source">Susan Cain / Quiet Revolution</div>
+  </div>
+
+  <article class="body">
+
+    <p>That gap is not a performance difference. It&#x2019;s a selection filter that rewards behavioral style over demonstrated capability. You already knew this. Now you know the numbers.</p>
+
+    <blockquote><p>Communication skills matter. But the gap between the person who solves the problem and the person who presents the solution should not be 25%&thinsp;&#x2014;&thinsp;and certainly not the distance between doing the work and getting credit for it.</p></blockquote>
+
+    <h2 class="section">If You&#x2019;re Neurodivergent, It&#x2019;s Worse</h2>
+
+    <p>Everything above applies to quiet, introverted, heads-down workers broadly. If you&#x2019;re also neurodivergent&thinsp;&#x2014;&thinsp;ADHD, autistic, dyslexic, or any combination&thinsp;&#x2014;&thinsp;there&#x2019;s an additional layer that compounds the problem. And depending on your situation, you fall into one of two groups.</p>
+
+    <p>Neurodivergence encompasses a range of cognitive variations&thinsp;&#x2014;&thinsp;an estimated 5&#x2013;7% of the global population has ADHD, roughly 10% have dyslexia, and 1&#x2013;2% are on the autism spectrum, with significant overlap. The exact prevalence is debated, in part because diagnostic criteria vary and many adults&thinsp;&#x2014;&thinsp;particularly high-functioning ones&thinsp;&#x2014;&thinsp;are never assessed.</p>
+
+    <p><strong>The excluded.</strong> If you&#x2019;ve been screened out of jobs you were qualified for&thinsp;&#x2014;&thinsp;if the interview process felt like it was testing something other than your ability to do the work&thinsp;&#x2014;&thinsp;you were right. Among diagnosed autistic adults, unemployment estimates range from roughly 50% to as high as 85%, depending on methodology. The UK Office for National Statistics found that only 22% of autistic adults are in paid employment, compared to 96% of the general population. That gap is not about capability. It&#x2019;s about a hiring process designed around social fluency, unstructured conversation, and behavioral questions that select for neurotypical comfort. The Institute of Leadership and Management found that half of managers admit discomfort hiring neurodivergent individuals&thinsp;&#x2014;&thinsp;driven by unfamiliarity, not hostility. They worry about accommodations that the Job Accommodation Network found cost, on average, $500. Most cost nothing. The filter isn&#x2019;t asking &#x201C;can this person do the job?&#x201D; It&#x2019;s asking &#x201C;does this person make me comfortable?&#x201D;</p>
+
+    <p><strong>The hidden.</strong> If you&#x2019;re employed but masking&thinsp;&#x2014;&thinsp;if you&#x2019;ve learned to perform neurotypicality well enough that no one questions it&thinsp;&#x2014;&thinsp;then the unemployment statistics don&#x2019;t capture your experience. But you&#x2019;re paying a price the numbers miss.</p>
+
+    <p>You might be undiagnosed, with no framework for why work feels harder than it should. Or you might be diagnosed but silent about it. Multiple studies consistently find that the majority of neurodivergent professionals do not disclose at work. Fear of stigma is the primary reason. Many tell only selected colleagues, if anyone. A significant number never tell anyone at work at all.</p>
+
+    <p>This pattern holds at every seniority level&thinsp;&#x2014;&thinsp;including the very top. A handful of prominent leaders like Elon Musk and Palantir&#x2019;s Alex Karp have publicly disclosed neurodivergence, but they can afford to: they are founders, owners, or so operationally indispensable that the stigma cannot touch them. Everyone below that threshold does the math and stays silent. The absence of openly neurodivergent leaders in most organizations doesn&#x2019;t mean they aren&#x2019;t there. It means the filter works even on the people who beat it.</p>
+
+    <p>If you recognize yourself in this, here is what the research validates about your daily experience: peer-reviewed studies consistently show that masking is directly correlated with higher rates of burnout, anxiety, and depression. You are doing your job and running a second, invisible one&thinsp;&#x2014;&thinsp;appearing to process the world the way everyone around you does. The cost of that second job doesn&#x2019;t show up in any performance review. But you feel it. In the energy you don&#x2019;t have at the end of the day. In the career that plateaued not because your work declined but because you couldn&#x2019;t sustain the mask and the output simultaneously. In the gap between what you produce and what you have left over for yourself.</p>
+
+    <p>You are not underperforming. You are overperforming&thinsp;&#x2014;&thinsp;at two jobs, paid for one.</p>
+
+    <p>And when organizations actually redesigned the evaluation process to measure what you do instead of how you present&thinsp;&#x2014;&thinsp;the results confirmed what you already knew.</p>
+
+  </article>
+
+  <!-- Figure 3 -->
+  <div class="fig">
+    <div class="fig-label">Figure 3 &#x2014; Two Layers of the Same Problem</div>
+    <div class="fig-grid-3">
+      <div class="fig-third">
+        <div class="fig-col-label rust">The Excluded</div>
+        <div class="stat"><div class="stat-num rust">22%</div><div class="stat-text">of autistic adults in <strong>paid employment</strong>&thinsp;&#x2014;&thinsp;vs. 96% of general population</div></div>
+        <div class="stat"><div class="stat-num rust">50%</div><div class="stat-text">of managers admit <strong>discomfort hiring</strong> neurodivergent people</div></div>
+      </div>
+      <div class="fig-third">
+        <div class="fig-col-label rust">The Hidden</div>
+        <div class="stat"><div class="stat-num rust">Majority</div><div class="stat-text">of neurodivergent professionals <strong>don&#x2019;t disclose</strong> at work</div></div>
+        <div class="stat"><div class="stat-num rust">~$500</div><div class="stat-text">average accommodation cost&thinsp;&#x2014;&thinsp;yet <strong>most never ask</strong></div></div>
+      </div>
+      <div class="fig-third">
+        <div class="fig-col-label slate">When Redesigned</div>
+        <div class="stat"><div class="stat-num slate">+48%</div><div class="stat-text"><strong>faster</strong> than peers with 3&#x2013;10 yrs experience (JPMorgan)</div></div>
+        <div class="stat"><div class="stat-num slate">+92%</div><div class="stat-text"><strong>more productive</strong> within 6 months (JPMorgan)</div></div>
+        <div class="stat"><div class="stat-num slate">+30%</div><div class="stat-text">team productivity with <strong>ND integration</strong> (HPE)</div></div>
+        <div class="stat"><div class="stat-num slate">99%</div><div class="stat-text"><strong>retention rate</strong>&thinsp;&#x2014;&thinsp;now 150+ across 8 countries</div></div>
+      </div>
+    </div>
+    <div class="fig-source">UK Office for National Statistics, JPMorgan Chase Autism at Work, Hewlett Packard Enterprise, ILM (2020), Job Accommodation Network</div>
+  </div>
+
+  <article class="body">
+
+    <p>A necessary caveat: these results come from structured programs with small initial samples, dedicated management support, and careful job matching. JPMorgan&#x2019;s pilot started with five people. It has since grown to over 150 employees across eight countries with a 99% retention rate&thinsp;&#x2014;&thinsp;which suggests the early results weren&#x2019;t a fluke&thinsp;&#x2014;&thinsp;but they remain evidence from specific contexts, not a universal law.</p>
+
+    <p>What they prove is narrower and more important: when the evaluation filter measures output rather than social performance, a population that was either excluded or hidden consistently outperforms. This is not the &#x201C;superpowers&#x201D; argument&thinsp;&#x2014;&thinsp;that framing reduces you to a productivity metric and implies you only deserve inclusion when you outperform everyone else. The point is simpler: the current filter screens for comfort, not capability. And the cost of that filter is yours to carry.</p>
+
+    <blockquote><p>The excluded never get through the door. The hidden get through but pay a daily tax to stay inside. Both outperform when the filter changes. The problem was never you. It was the filter.</p></blockquote>
+
+    <h2 class="section">Why It&#x2019;s Changing Now</h2>
+
+    <p>AI is compressing the layers of organizational structure that sat between you and the people who evaluate your work. The coordination layer&thinsp;&#x2014;&thinsp;scheduling, status tracking, project management, workflow routing&thinsp;&#x2014;&thinsp;is automating. The translation layer&thinsp;&#x2014;&thinsp;the people who took your analysis and re-presented it to leadership&thinsp;&#x2014;&thinsp;is thinning. The distance between the person who produces the work and the person who pays for it is shrinking.</p>
+
+    <p>This is already happening. Middle managers represent roughly 11% of the workforce but accounted for one-third of all layoffs in 2023&thinsp;&#x2014;&thinsp;three times their share. A 2025 Korn Ferry survey found 41% of employees say their companies have already trimmed management layers. Gartner projects that by 2026, one in five organizations will use AI to eliminate more than half of current middle management positions. McKinsey&thinsp;&#x2014;&thinsp;which advises organizations on structure&thinsp;&#x2014;&thinsp;has itself cut 5,000 employees in five years.</p>
+
+  </article>
+
+  <!-- Figure 4 -->
+  <div class="fig">
+    <div class="fig-label">Figure 4 &#x2014; The Compression Is Underway</div>
+    <div class="fig-grid">
+      <div class="fig-half">
+        <div class="fig-col-label rust">What Already Happened</div>
+        <div class="stat"><div class="stat-num rust">3x</div><div class="stat-text">Middle managers are ~11% of the workforce but accounted for <strong>33% of all 2023 layoffs</strong></div></div>
+        <div class="stat"><div class="stat-num rust">41%</div><div class="stat-text">of employees say their company has <strong>already trimmed</strong> management layers</div></div>
+      </div>
+      <div class="fig-half">
+        <div class="fig-col-label slate">What&#x2019;s Coming</div>
+        <div class="stat"><div class="stat-num slate">78%</div><div class="stat-text">of executives <strong>expect AI to sharply reduce</strong> middle management</div></div>
+        <div class="stat"><div class="stat-num slate">1 in 5</div><div class="stat-text">organizations projected to cut <strong>50%+</strong> of mid-management by 2026</div></div>
+      </div>
+    </div>
+    <div class="fig-source">Bloomberg / Live Data Technologies (2023), Korn Ferry (2025), Pega Global Survey, Gartner (2024)</div>
+  </div>
+
+  <article class="body">
+
+    <p>Here&#x2019;s what this means for you specifically: the things that have been working against you&thinsp;&#x2014;&thinsp;the fact that you produce more than you present, that you solve problems instead of performing engagement, that your contributions get absorbed into someone else&#x2019;s narrative&thinsp;&#x2014;&thinsp;those dynamics relied on a layer of organizational structure that is compressing. When a client can interact directly with the person who solved their problem, the account manager who translated the solution becomes optional. When an executive can evaluate an analyst&#x2019;s output directly, the middle manager&#x2019;s interpretation of that output becomes redundant.</p>
+
+    <div class="callout">To be clear: this is not an argument that communication, coordination, and leadership are valueless. Organizations will always need people who can synthesize across functions, navigate ambiguity, and align teams around decisions. The point is narrower: AI reduces the distance between the people who produce value and the people who evaluate it&thinsp;&#x2014;&thinsp;and in doing so, it exposes where the intermediary layer was capturing economics disproportionate to its contribution.</div>
+
+    <p>There is a risk worth naming. AI could create a new visibility filter rather than dissolving the old one. Early adopters of AI tools may receive the same disproportionate credit that previously went to the people who were visibly present in meetings. The technology alone doesn&#x2019;t fix the system. What fixes it is organizations consciously redesigning evaluation to measure output&thinsp;&#x2014;&thinsp;exactly what JPMorgan, SAP, and Hewlett Packard did. The difference now is that the economic pressure to do so is real, and growing.</p>
+
+    <h2 class="section">What You Do vs. What Gets Rewarded</h2>
+
+    <p>If you&#x2019;ve ever felt like the things you&#x2019;re best at aren&#x2019;t the things that get compensated, it&#x2019;s because they weren&#x2019;t. Until now.</p>
+
+  </article>
+
+  <!-- Figure 5 — CENTERPIECE: dark inverted treatment -->
+  <div class="fig fig-hero">
+    <div class="fig-label">Figure 5 &#x2014; The Repricing</div>
+    <div class="fig-grid">
+      <div class="fig-half">
+        <div class="fig-col-label rust">What the Old Model Rewarded</div>
+        <div class="repr-item"><div class="repr-name rust">Translation</div><div class="repr-desc">Converting specialist output into executive-legible language. Becoming optional as AI flattens the distance between producer and evaluator.</div></div>
+        <div class="repr-item"><div class="repr-name rust">Coordination</div><div class="repr-desc">Managing workflows, timelines, and handoffs. Largely automatable&thinsp;&#x2014;&thinsp;among the first functions AI absorbs.</div></div>
+        <div class="repr-item"><div class="repr-name rust">Presence</div><div class="repr-desc">Being in the room. Performing engagement. Never was the work&thinsp;&#x2014;&thinsp;but was rewarded as though it were.</div></div>
+        <div class="repr-item"><div class="repr-name rust">Volume</div><div class="repr-desc">Producing deliverables at scale. Unit economics collapsing as AI generates output at a fraction of the cost.</div></div>
+      </div>
+      <div class="fig-half">
+        <div class="fig-col-label slate">What Actually Produces Outcomes</div>
+        <div class="repr-item"><div class="repr-name slate">Judgment</div><div class="repr-desc">Weighing incomplete information, context, and politics to make a call the data alone cannot make. A dashboard shows CAC increased 18%. It cannot tell you why.</div></div>
+        <div class="repr-item"><div class="repr-name slate">Synthesis</div><div class="repr-desc">Connecting signals across functions into a coherent thesis. Recognizing a retention gap as an onboarding problem designed without input from the team that wrote the ad.</div></div>
+        <div class="repr-item"><div class="repr-name slate">Relationships</div><div class="repr-desc">Not performance&thinsp;&#x2014;&thinsp;the relational capital required to deliver hard truths without destroying trust. Killing a bet a senior leader approved.</div></div>
+        <div class="repr-item"><div class="repr-name slate">Vision</div><div class="repr-desc">Bets on a future that does not yet exist in any dashboard. At its highest tier, this capacity doesn&#x2019;t just govern strategy&thinsp;&#x2014;&thinsp;it is strategy.</div></div>
+      </div>
+    </div>
+    <div class="fig-note">The left column is what AI compresses. The right column is what remains irreplaceable&thinsp;&#x2014;&thinsp;and what you should be valued for.</div>
+  </div>
+
+  <article class="body">
+
+    <p>The old model bundled both columns into the same roles. A single title&thinsp;&#x2014;&thinsp;account director, middle manager, project lead&thinsp;&#x2014;&thinsp;contained elements of translation and judgment, coordination and synthesis. The compensation reflected the bundle, not the components. AI unbundles them. And when the bundle breaks apart, it becomes visible that the right column was carrying the economic value while the left column was carrying the job title.</p>
+
+    <blockquote><p>The skills on the right are yours. They always were. The system just couldn&#x2019;t see them through the noise of the skills on the left.</p></blockquote>
+
+    <h2 class="section">The Honest Part</h2>
+
+    <p>This shift doesn&#x2019;t benefit everyone equally, and honesty about that matters.</p>
+
+    <p>If you&#x2019;re a senior specialist, a high-judgment operator, someone whose work was previously mediated and translated and partially credited to intermediaries&thinsp;&#x2014;&thinsp;the compression is in your favor. A greater share of the economic value flows to the people who produce the underlying work. But this is a smaller group of people, not a larger one. The correction is specific: it reaches high-output, low-visibility workers who have been undercompensated for decades. It is not a rising tide.</p>
+
+    <p>There are real people on the other side of this. Professionals in coordination, translation, and relationship-management roles whose functions are being absorbed. They don&#x2019;t deserve contempt. Many of them are doing necessary work, and the disruption deserves real policy attention&thinsp;&#x2014;&thinsp;retraining, transition support, thoughtful redesign. The argument isn&#x2019;t that they deserve displacement. It&#x2019;s that the previous pricing was wrong, and the correction, while painful, moves toward something more accurate.</p>
+
+    <p>And there&#x2019;s a harder question you should be asking: who controls the repricing? If the same leadership structures that rewarded the visible and promoted the legible are the ones redesigning organizations around AI, there&#x2019;s no guarantee the savings reach you. The margin recovered from compressing the intermediary layer can just as easily flow to shareholders and executives as to the specialists who were producing the value all along. Technology doesn&#x2019;t self-correct this. Conscious decisions do.</p>
+
+    <blockquote><p>The correction is coming regardless. The question is whether it&#x2019;s done with awareness of who was carrying the weight&thinsp;&#x2014;&thinsp;or whether the people who benefited from the mispricing get to control the repricing too.</p></blockquote>
+
+    <h2 class="section">The Backlash Is Already Being Written</h2>
+
+    <p>The repricing described in this essay will not happen quietly. And the people most affected by it&thinsp;&#x2014;&thinsp;those who built careers in the translation, coordination, and presentation layer&thinsp;&#x2014;&thinsp;are, by definition, the people most skilled at controlling narratives.</p>
+
+    <p>This matters because the backlash won&#x2019;t come from economists or policy analysts. It will come from the same communication-fluent, high-visibility professionals whose economic capture is compressing. They will use the skills that made them overcompensated in the old system to frame their displacement in the new one. And they will be very good at it.</p>
+
+    <p>The story they tell will sound like fairness. It will sound like solidarity. And it will target the wrong people.</p>
+
+    <p>Here is how it plays out:</p>
+
+    <p>A specialist&thinsp;&#x2014;&thinsp;someone who was structurally underpaid for a decade, who solved problems no one could see, who watched their analysis get re-presented by someone earning twice their salary&thinsp;&#x2014;&thinsp;finally gets compensated at something approaching the value they produce. Not because they learned to &#x201C;speak up more.&#x201D; Because the intermediary layer that was capturing their margin thinned. The system didn&#x2019;t change its values. It lost the structure that allowed it to misprice.</p>
+
+    <p>And that specialist becomes visible at exactly the wrong moment. Not as someone whose correction was overdue, but as someone who is thriving while others are losing their jobs. The framing writes itself: <em>tech-adjacent introvert profits from AI while hardworking professionals get displaced.</em> The person making that argument will be articulate, camera-ready, and sympathetic. The person they&#x2019;re targeting will struggle to explain systems-level economics in a medium optimized for emotional clarity.</p>
+
+    <p>This is not hypothetical. Every economic repricing produces a scapegoat, and the scapegoat is almost never the actual power center. It won&#x2019;t be the executives and shareholders capturing the majority of the AI surplus who take the public heat. It will be the visible-enough-to-name, different-enough-to-other specialist who went from underpaid to correctly paid&thinsp;&#x2014;&thinsp;and who can be framed as the face of a disruption they didn&#x2019;t cause.</p>
+
+    <p>If you&#x2019;re neurodivergent, the risk compounds. The same traits that made you invisible in the old system make you an easy target in the backlash: the atypical communication style, the lack of polish, the inability or unwillingness to perform relatability on camera. You cannot win a narrative war fought in the medium that undervalued you. Cable news, social media, congressional hearings&thinsp;&#x2014;&thinsp;these are performance venues. They are extroversion-optimized. The person explaining why the repricing is structurally just will lose to the person who can cry on television about losing their job.</p>
+
+    <p>And here is the part no one will say out loud: a significant share of the people positioned as sympathetic victims of AI displacement were, in the old system, the beneficiaries of the mispricing. They were not doing the work. They were presenting the work. They were capturing the credit, the compensation, and the career trajectory that belonged to the person one layer below them. Their displacement is not an injustice being done to them. It is an injustice being corrected&thinsp;&#x2014;&thinsp;one they benefited from for years without ever being asked to name it.</p>
+
+    <p>That does not mean they deserve contempt. Many were doing real work within the old structure. The disruption is genuinely painful. But the narrative that frames them as the victims and you as the beneficiary inverts the actual history. You were underpaid. They were overpaid. The correction moves toward accuracy. That framing will not survive the evening news.</p>
+
+    <blockquote><p>There is a difference between someone who loses a job and someone who loses a markup. The displacement is real either way. But the person who was paid to do the work and the person who was paid to present it are not in the same moral position&thinsp;&#x2014;&thinsp;and the backlash will treat them as though they are.</p></blockquote>
+
+    <p>This is why the timing of this essay matters. The framework has to be legible <em>before</em> the backlash narrative crystallizes. Once the story hardens&thinsp;&#x2014;&thinsp;once &#x201C;AI is enriching awkward tech people at the expense of normal workers&#x201D; becomes the populist frame&thinsp;&#x2014;&thinsp;explaining the structural mechanism looks like defending your paycheck. The person who predicts the counterargument before it arrives is much harder to frame as the villain of the story.</p>
+
+    <p>So here is the honest version of what is happening: a population that was structurally undercompensated for decades is, for the first time, being recognized at something closer to the value they actually produce. That recognition is occurring during a period of genuine economic disruption that affects a different population&thinsp;&#x2014;&thinsp;one that was structurally <em>over</em>compensated by the same system. Both things are true simultaneously. And the people with the skills to control which story gets told are not the ones whose correction is overdue. They are the ones whose markup is compressing.</p>
+
+    <p>You cannot control that narrative. But you can make sure the data is in the room before the narrative arrives. That&#x2019;s what this essay is for.</p>
+
+    <h2 class="section">This Is Your Moment</h2>
+
+    <p>If you&#x2019;ve read this far, you probably recognized yourself somewhere in the data. The person whose manager perceives them as less passionate. The introvert who earns 25% less. The neurodivergent professional running two jobs&thinsp;&#x2014;&thinsp;the work and the mask&thinsp;&#x2014;&thinsp;paid for one. The quiet producer in any industry who solved the problem and watched someone else present it.</p>
+
+    <p>The system that undervalued you was not random. It was structural, measurable, and it has been running for decades. It persisted because the people it harmed were not the people who controlled the evaluation, set the compensation, or wrote the narratives about what constitutes valuable work.</p>
+
+    <p>That structure is shifting. The filter is thinning. The layers that obscured your contribution are compressing. For the first time, the economics are moving in the direction of the people who produce the outcomes rather than the people who perform them.</p>
+
+    <p>This is not a guarantee. It&#x2019;s an opening. The window where the old system is destabilized but the new one hasn&#x2019;t hardened yet. What you do in this window matters. Not performing harder. Not finally learning to &#x201C;speak up more.&#x201D; But being visible on your own terms&thinsp;&#x2014;&thinsp;showing what you produce, not what you perform&thinsp;&#x2014;&thinsp;in a market that is, for the first time, structurally ready to see it.</p>
+
+    <div class="dots">&#x2022;&#x2022;&#x2022;</div>
+
+    <p>You&#x2019;ve been carrying the weight. You know it. The people around you&thinsp;&#x2014;&thinsp;the good ones&thinsp;&#x2014;&thinsp;know it too. The data confirms it. And the system that couldn&#x2019;t see it is running out of reasons not to look.</p>
+
+    <div class="byline">David Mausolf &#x00B7; February 2026</div>
+
+    <div class="end-sources">Sources: Envoy (2022), Euronews (2024), Harvard Business Review (2022), Yarooms (2025), Korn Ferry (2025), Gartner (2024), Bloomberg / Live Data Technologies (2023), McKinsey &amp; Company (2020, 2023, 2025), Pega Global Survey, JPMorgan Chase Autism at Work, Hewlett Packard Enterprise, Deloitte Insights, Harvard Business School &#x2014; Jachimowicz, Krautter &amp; B&#x00FC;chner, Susan Cain / Quiet Revolution, Sutton Trust, Institute of Leadership and Management (2020), UK Office for National Statistics, Job Accommodation Network</div>
+
+    <div class="download"><a href="/whos-actually-doing-the-work.pdf">&#x2193; Download PDF</a></div>
+
+  </article>
+
+  <footer class="site-footer">
+    <a href="mailto:david@davidmausolf.com">david@davidmausolf.com</a>
+  </footer>
+
+</div>
+
+
+</body>
+</html>

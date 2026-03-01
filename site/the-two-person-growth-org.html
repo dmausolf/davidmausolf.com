@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Two-Person Growth Org — David Mausolf</title>
+<!-- Social Sharing Meta Tags -->
+<meta name="description" content="Most growth organizations are staffed for a complexity that no longer exists. The future needs two kinds of leadership, not twenty roles. David Mausolf on the architecture of the compressed growth org.">
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Two-Person Growth Org">
+<meta property="og:description" content="Most growth organizations are staffed for a complexity that no longer exists. The future needs two kinds of leadership, not twenty roles.">
+<meta property="og:image" content="https://davidmausolf.com/og-two-person-growth-org.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Two-Person Growth Org — David Mausolf">
+<meta property="og:site_name" content="David Mausolf">
+<meta property="article:author" content="David Mausolf">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Two-Person Growth Org">
+<meta name="twitter:description" content="Most growth organizations are staffed for a complexity that no longer exists. The future needs two, not twenty.">
+<meta name="twitter:image" content="https://davidmausolf.com/og-two-person-growth-org.png">
+<meta name="twitter:image:alt" content="The Two-Person Growth Org — David Mausolf">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400;1,8..60,500&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --text: #111110;
+    --text-2: #4A4944;
+    --text-3: #7A7972;
+    --text-4: #aaa;
+    --bg: #F6F5F3;
+    --bg-fig: #EEEDEB;
+    --border: #D4D2CD;
+    --border-lt: #e8e6e1;
+    --accent: #c44;
+    --accent-bg: rgba(204,68,68,0.05);
+    --vendor: #5a7a6a;
+    --vendor-bg: rgba(90,122,106,0.05);
+    --boundary: #b8a88a;
+    --boundary-bg: rgba(184,168,138,0.05);
+    --rust: #8C3A1F;
+    --slate: #3A5548;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, sans-serif;
+    --mono: 'IBM Plex Mono', 'Menlo', monospace;
+    --measure: 680px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'onum' 1;
+  }
+
+  body {
+    font-family: var(--serif);
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  /* ==============================
+     ESSAY LAYOUT
+     ============================== */
+  .essay {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  .void { height: 12rem; }
+
+  .masthead {
+    padding-bottom: 0.8rem;
+    margin-bottom: 4.5rem;
+    border-bottom: 2px solid var(--text);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .site-name {
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .site-name:hover { color: var(--text-2); }
+
+  .masthead-date {
+    font-family: var(--mono);
+    font-weight: 300;
+    font-size: 0.62rem;
+    color: var(--text-3);
+  }
+
+  .article-header {
+    margin-bottom: 2.5rem;
+    border-top: 3px solid var(--rust);
+    padding-top: 1.2rem;
+  }
+
+  .essay-label {
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 0.8rem;
+  }
+
+  h1 {
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .subtitle {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-2);
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .lede {
+    background: #0A0A09;
+    margin: 2.5rem -2rem 3.5rem;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lede img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media (max-width: 600px) {
+    .lede { margin-left: -1.6rem; margin-right: -1.6rem; }
+  }
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    margin-bottom: 1.15rem;
+  }
+
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+
+  .callout {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text);
+    border-left: 3px solid var(--text);
+    padding: 0.8rem 0 0.8rem 1.5rem;
+    margin: 2.2rem 0;
+  }
+
+  .divider {
+    text-align: center;
+    margin: 3rem 0;
+    color: var(--text-3);
+    font-size: 0.9rem;
+    letter-spacing: 0.4em;
+  }
+
+  .author {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--text-2);
+    margin-top: 3rem;
+  }
+
+  .sources {
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    font-weight: 300;
+    color: var(--text-3);
+    line-height: 1.6;
+    margin-top: 3rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+
+  /* ==============================
+     FIGURE — WIDE BREAKOUT
+     ============================== */
+  .figure {
+    max-width: 1020px;
+    margin: 2.5rem auto;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% + 22rem);
+  }
+
+  .figure-label {
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 0.4rem;
+  }
+
+  .figure-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .figure-sub {
+    font-family: var(--sans);
+    font-size: 0.76rem;
+    font-weight: 300;
+    color: var(--text-2);
+    margin-bottom: 2rem;
+    line-height: 1.55;
+    max-width: 680px;
+  }
+
+  /* ==============================
+     STAT GRID (matching original essay)
+     ============================== */
+  .stat-grid {
+    background: var(--bg-fig);
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    margin: 2.5rem 0;
+  }
+
+  .stat-grid-label {
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.2rem;
+  }
+
+  .stat-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem 2rem;
+  }
+
+  .stat-number {
+    font-family: var(--sans);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--text-2);
+    line-height: 1.45;
+    margin-top: 0.25rem;
+  }
+
+  /* ==============================
+     ORG CHART STYLES
+     ============================== */
+
+  /* Executive */
+  .exec-tier {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  .exec-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .exec-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--text-3);
+    margin-bottom: 0.45rem;
+  }
+
+  .exec-title {
+    font-family: var(--sans);
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--text-2);
+  }
+
+  .exec-sub-text {
+    font-family: var(--sans);
+    font-size: 0.58rem;
+    font-weight: 300;
+    color: var(--text-3);
+    margin-top: 0.1rem;
+  }
+
+  .conn-v {
+    display: flex;
+    justify-content: center;
+    height: 2.2rem;
+  }
+  .conn-v::after {
+    content: '';
+    width: 1px;
+    height: 100%;
+    background: var(--border);
+  }
+
+  /* Leadership */
+  .leader-tier {
+    display: flex;
+    justify-content: center;
+    gap: 5.5rem;
+    position: relative;
+  }
+
+  .leader-tier::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 52%;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .leader-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 210px;
+    position: relative;
+    padding-top: 1.8rem;
+  }
+
+  .leader-node::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 1.8rem;
+    background: var(--border);
+  }
+
+  .leader-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.6rem;
+  }
+
+  .leader-inner {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--bg);
+  }
+
+  .leader-title {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.1rem;
+  }
+
+  .leader-role {
+    font-family: var(--sans);
+    font-size: 0.64rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
+  }
+
+  .leader-owns {
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.5;
+    max-width: 195px;
+  }
+
+  /* Section dividers in chart */
+  .org-section {
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+    position: relative;
+  }
+
+  .org-section-header {
+    font-family: var(--sans);
+    font-size: 0.56rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  /* Functions grid */
+  .funcs {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+  }
+
+  .func {
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-top: 2px solid var(--text);
+  }
+
+  .func.shared-border { border-top-style: dashed; }
+  .func.ops-border { border-top-color: var(--text-3); }
+
+  .func-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .func-title {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.12rem;
+    line-height: 1.25;
+  }
+
+  .func-sub {
+    font-family: var(--sans);
+    font-size: 0.56rem;
+    font-weight: 300;
+    color: var(--text-3);
+    line-height: 1.4;
+    max-width: 115px;
+  }
+
+  .func-tag {
+    font-family: var(--sans);
+    margin-top: 0.45rem;
+    font-size: 0.48rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.12rem 0.4rem;
+    border-radius: 1px;
+  }
+
+  .func-tag.t-strat { color: var(--text); background: rgba(26,26,26,0.07); }
+  .func-tag.t-shared { color: var(--text-2); background: rgba(26,26,26,0.04); }
+  .func-tag.t-ops { color: var(--text-3); background: rgba(0,0,0,0.04); }
+
+  /* Specialists */
+  .specs-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2.2rem;
+    flex-wrap: wrap;
+  }
+
+  .spec {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+  }
+
+  .spec-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--text);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .spec-title {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .spec-desc {
+    font-family: var(--sans);
+    font-size: 0.55rem;
+    font-weight: 300;
+    color: var(--text-3);
+    line-height: 1.35;
+  }
+
+  .spec-line {
+    font-family: var(--sans);
+    font-size: 0.5rem;
+    font-weight: 400;
+    color: var(--text-4);
+    margin-top: 0.12rem;
+  }
+
+  /* Vendors */
+  .vendors {
+    margin-top: 2rem;
+    padding: 1.3rem 1.4rem 1.2rem;
+    border: 1px solid var(--vendor);
+    background: var(--vendor-bg);
+    border-radius: 2px;
+  }
+
+  .vendor-header {
+    font-family: var(--sans);
+    font-size: 0.56rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--vendor);
+    text-align: center;
+    margin-bottom: 0.3rem;
+  }
+
+  .vendor-sub {
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    font-weight: 300;
+    color: var(--text-3);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .vendor-grid {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .vendor-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid rgba(90,122,106,0.3);
+    border-radius: 2px;
+    background: rgba(90,122,106,0.04);
+  }
+
+  .vendor-pip {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: 1.5px solid var(--vendor);
+    flex-shrink: 0;
+  }
+
+  .vendor-name {
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    font-weight: 500;
+    color: var(--text-2);
+  }
+
+  .vendor-note {
+    font-family: var(--sans);
+    font-size: 0.55rem;
+    font-weight: 300;
+    color: var(--text-3);
+    text-align: center;
+    margin-top: 0.8rem;
+    font-style: italic;
+  }
+
+  /* AI layer */
+  .ai-layer {
+    margin-top: 1.2rem;
+    padding: 1.1rem 1.4rem;
+    border: 1px dashed var(--accent);
+    background: var(--accent-bg);
+    border-radius: 2px;
+  }
+
+  .ai-header {
+    font-family: var(--sans);
+    font-size: 0.54rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 0.6rem;
+  }
+
+  .ai-items {
+    display: flex;
+    justify-content: center;
+    gap: 1.1rem;
+    flex-wrap: wrap;
+  }
+
+  .ai-item {
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    font-weight: 400;
+    color: var(--text-3);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .ai-pip {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.45;
+    flex-shrink: 0;
+  }
+
+  /* Boundary */
+  .boundary-box {
+    margin-top: 2rem;
+    padding: 1.3rem 1.4rem;
+    border: 1px solid var(--boundary);
+    background: var(--boundary-bg);
+    border-radius: 2px;
+  }
+
+  .boundary-header {
+    font-family: var(--sans);
+    font-size: 0.54rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--boundary);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .boundary-desc {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.6;
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto 0.8rem;
+  }
+
+  .boundary-roles {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .boundary-role {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .boundary-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1.5px solid var(--boundary);
+    flex-shrink: 0;
+  }
+
+  .boundary-text {
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: var(--boundary);
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 1.3rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .leg {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .leg-pip {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .leg-pip.lp-lead {
+    background: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .leg-pip.lp-lead::after {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--bg);
+    border-radius: 50%;
+  }
+
+  .leg-pip.lp-fte { background: var(--text); }
+  .leg-pip.lp-vendor { background: none; border: 1.5px solid var(--vendor); }
+  .leg-pip.lp-ai { background: var(--accent); opacity: 0.45; }
+  .leg-pip.lp-boundary { background: none; border: 1.5px solid var(--boundary); }
+
+  .leg-text {
+    font-family: var(--sans);
+    font-size: 0.55rem;
+    font-weight: 400;
+    color: var(--text-3);
+  }
+
+  .leg-line {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .leg-solid {
+    width: 14px;
+    height: 0;
+    border-top: 1.5px solid var(--text);
+  }
+  .leg-dashed {
+    width: 14px;
+    height: 0;
+    border-top: 1.5px dashed var(--text-3);
+  }
+
+  .chart-annotation {
+    font-family: var(--serif);
+    font-size: 0.78rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin-top: 1.8rem;
+    max-width: 620px;
+  }
+
+  /* ==============================
+     RESPONSIVE
+     ============================== */
+  @media (max-width: 1100px) {
+    .figure {
+      width: calc(100% + 8rem);
+    }
+  }
+
+  @media (max-width: 780px) {
+    .figure {
+      width: 100%;
+      left: 0;
+      transform: none;
+      padding: 0 1rem;
+      box-sizing: border-box;
+    }
+    .leader-tier { gap: 2rem; }
+    .leader-node { width: 160px; }
+    .leader-circle { width: 40px; height: 40px; }
+    .funcs { grid-template-columns: repeat(3, 1fr); }
+    .stat-items { grid-template-columns: 1fr; }
+    h1 { font-size: 2rem; }
+  }
+
+  @media (max-width: 500px) {
+    html { font-size: 16px; }
+    .figure {
+      padding: 0 1rem;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    .leader-tier {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .leader-tier::before { display: none; }
+    .leader-node::before { display: none; }
+    .leader-node { padding-top: 0; width: 100%; max-width: 240px; }
+    .leader-owns { max-width: 100%; }
+    .funcs { grid-template-columns: repeat(2, 1fr); }
+    .specs-grid { grid-template-columns: 1fr; }
+    .vendor-grid { grid-template-columns: repeat(2, 1fr); }
+    .ai-items { flex-wrap: wrap; }
+    .boundary-roles { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .legend { flex-wrap: wrap; gap: 0.6rem; }
+    .exec-sub-text { max-width: 100%; padding: 0 0.5rem; }
+    .figure-sub { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+<article class="essay">
+
+<div class="void"></div>
+
+<header class="masthead">
+  <a href="/" class="site-name">David Mausolf</a>
+  <span class="masthead-date">February 2026</span>
+</header>
+
+<div class="article-header">
+  <div class="essay-label">Essay</div>
+  <h1>The Two-Person Growth Org</h1>
+  <div class="subtitle">Your growth team has too many people. Here's what the org chart actually needs.</div>
+</div>
+
+<div class="lede">
+  <img src="hero-two-person-growth-org.png" alt="The growth org is compressing. What survives?">
+</div>
+
+<h2>The Question Everyone Is Asking</h2>
+
+<p>Every growth leader I talk to is asking the same question: <em>What does my team look like now?</em></p>
+
+<p>Not in five years. Not when AI agents are running campaigns autonomously. Right now — when the platforms have automated most of the execution layer but the org chart still reflects a world where humans did that work manually.</p>
+
+<p>The honest answer is uncomfortable. Most growth organizations are staffed for a complexity that no longer exists. The roles are real. The people in them are capable. But the work those roles were built around is migrating to machines, and the organizational structure hasn't caught up.</p>
+
+<p>I've started using an analogy that seems to land: <strong>the managing director and the architect.</strong></p>
+
+<p>A growth organization — whether it's an in-house team at a Series B company or a performance marketing function inside a public enterprise — needs exactly two kinds of leadership. Everything else is either execution that AI is absorbing, specialist work that belongs with managed partners, or coordination that the compression of layers makes unnecessary. Where brand sits relative to this structure is a question worth its own section — and we'll get there.</p>
+
+
+<h2>The Architect</h2>
+
+<p>The architect designs the decisions.</p>
+
+<p>Not the campaigns, not the creative, not the media plan — the <em>decision framework</em> that determines what gets built, what gets killed, and what gets scaled. This is the person who looks at a portfolio of growth bets across acquisition, retention, product growth, monetization, and pricing — and decides which ones represent real signal versus noise. They design the methodology. They own the strategic analytics. They make the calls that no dashboard can make for them.</p>
+
+<p>When your CAC spikes 22% in a quarter, the architect is the person who can tell you whether that's a channel maturation problem, a creative fatigue issue, a product-market fit erosion, or a deliberate competitor strategy to price you out of a segment. The data shows you <em>what</em> happened. The architect tells you <em>why</em> — and what to do about it.</p>
+
+<p>This role requires deep pattern recognition built over years of seeing what works and what doesn't across contexts. It requires the ability to synthesize across product, finance, brand, and market dynamics simultaneously. And it requires the intellectual honesty to kill a bet that's underperforming even when a senior stakeholder championed it.</p>
+
+<p>AI accelerates this person. It gives them faster access to data, broader pattern matching, and the ability to pressure-test hypotheses in hours instead of weeks. But it cannot replace the judgment. The architect is designing the blueprints. AI can render them faster, but it cannot decide what to build.</p>
+
+<p>The title on the org chart: <strong>VP Growth Strategy.</strong></p>
+
+
+<h2>The Managing Director</h2>
+
+<p>The managing director governs the ways and means.</p>
+
+<p>If the architect decides <em>what</em> to build, the MD decides <em>how it gets built and who builds it.</em> This is the operational leader — the person who manages people, vendors, agencies, budgets, timelines, and the daily reality of turning strategic bets into executed work.</p>
+
+<p>The MD owns every relationship that makes execution happen. The internal team reports to them. The agencies and specialist vendors — SEO, paid media, creative production, localization, influencer partnerships, CRO, PR — are governed by them. The budget allocation that turns a strategic thesis into funded work flows through them. And the politics — the cross-functional relationships, the executive alignment, the stakeholder communication that keeps the machine running without friction burning everything down — that's their domain.</p>
+
+<p>This is not a project management role. This is a leadership role that requires judgment about people, about organizational dynamics, and about the operational realities that determine whether a brilliant strategy actually gets executed or dies in a Slack channel.</p>
+
+<p>AI assists this person — better reporting, faster status visibility, automated coordination — but the core of the role is relational and political. You cannot automate the conversation where an MD tells a CMO that their preferred agency is underperforming and needs to be replaced. You cannot automate the judgment call about whether a team member is struggling because of skill gaps or because the role has shifted underneath them. You cannot automate trust.</p>
+
+<p>The title on the org chart: <strong>VP Growth Operations.</strong></p>
+
+
+<h2>What Sat Between Them — And What's Compressing</h2>
+
+<p>In the traditional growth org, between leadership and outcomes sat a layer of 15 to 20 people doing work that fell into roughly four categories:</p>
+
+<p><strong>Platform execution.</strong> Campaign builds, bid management, audience targeting, creative trafficking, A/B test setup, pixel implementation, feed management. This is the layer Meta, Google, and TikTok are automating most aggressively. Meta's Advantage+ suite, Google's Performance Max, TikTok's Smart+ — these aren't tools that help humans do platform work faster. They're systems designed to eliminate the need for humans to do it at all.</p>
+
+<p><strong>Reporting and analysis.</strong> Pulling data, building dashboards, creating weekly reports, slicing performance by segment. This work was never the analysis — it was the <em>assembly</em> of materials that someone else would analyze. AI handles the assembly. The interpretation — the part that actually matters — was always the architect's job. Strategic analytics belongs embedded in the strategy function, not siloed in a team that produces dashboards.</p>
+
+<p><strong>Creative production.</strong> Designing ad variations, writing copy iterations, producing landing pages, building email templates. The volume work here is collapsing. AI generates variations at a fraction of the cost and time. What remains valuable is creative <em>direction</em> — the strategic judgment about what the brand should say and why — not the production of individual assets.</p>
+
+<p><strong>Coordination.</strong> Status meetings, project management, cross-functional alignment, timeline tracking, vendor management. Some of this compresses through better tools and shorter communication chains. Some of it rolls up into the MD's function. The dedicated coordinator role — the person whose entire job was making sure the pieces connected — becomes harder to justify when the pieces are fewer and the tools to connect them are better.</p>
+
+<p>I want to be precise about something: <strong>AI agents are not running growth operations today.</strong> The breathless narrative about autonomous AI managing campaigns end-to-end is ahead of reality. What's actually happening is more mundane and more consequential — the platforms themselves are absorbing the execution layer, and the remaining human work is consolidating upward into fewer, higher-judgment roles.</p>
+
+
+<!-- =============================================
+     FIGURE 1 — PLATFORM AUTOMATION
+     ============================================= -->
+
+<div class="stat-grid" style="padding: 0; overflow: hidden;">
+  <div class="stat-grid-label" style="padding: 1.4rem 1.8rem 0.8rem;">What the Platforms Are Absorbing</div>
+  <table style="width: 100%; border-collapse: collapse; font-family: var(--sans);">
+    <thead>
+      <tr>
+        <th style="text-align: left; padding: 0.6rem 1.8rem; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.02);">Human task being replaced</th>
+        <th style="text-align: center; padding: 0.6rem 0.8rem; font-size: 0.62rem; font-weight: 700; color: var(--text); border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.02);">Meta</th>
+        <th style="text-align: center; padding: 0.6rem 0.8rem; font-size: 0.62rem; font-weight: 700; color: var(--text); border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.02);">Google</th>
+        <th style="text-align: center; padding: 0.6rem 0.8rem; font-size: 0.62rem; font-weight: 700; color: var(--text); border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.02);">TikTok</th>
+        <th style="text-align: center; padding: 0.6rem 0.8rem; font-size: 0.62rem; font-weight: 700; color: var(--text); border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.02);">AI&nbsp;Tools</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 0.55rem 1.8rem; font-size: 0.68rem; font-weight: 400; color: var(--text); border-bottom: 1px solid var(--border-lt);">Audience targeting</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--border); border-bottom: 1px solid var(--border-lt);">○</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.55rem 1.8rem; font-size: 0.68rem; font-weight: 400; color: var(--text); border-bottom: 1px solid var(--border-lt);">Bid management</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--border); border-bottom: 1px solid var(--border-lt);">○</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.55rem 1.8rem; font-size: 0.68rem; font-weight: 400; color: var(--text); border-bottom: 1px solid var(--border-lt);">Creative selection &amp; optimization</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--border); border-bottom: 1px solid var(--border-lt);">○</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.55rem 1.8rem; font-size: 0.68rem; font-weight: 400; color: var(--text); border-bottom: 1px solid var(--border-lt);">Campaign creation</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--border); border-bottom: 1px solid var(--border-lt);">○</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.55rem 1.8rem; font-size: 0.68rem; font-weight: 400; color: var(--text); border-bottom: 1px solid var(--border-lt);">Channel consolidation</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--border); border-bottom: 1px solid var(--border-lt);">○</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--border); border-bottom: 1px solid var(--border-lt);">○</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--border); border-bottom: 1px solid var(--border-lt);">○</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.55rem 1.8rem; font-size: 0.68rem; font-weight: 400; color: var(--text); border-bottom: 1px solid var(--border-lt);">Ad copy &amp; variation writing</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--accent); border-bottom: 1px solid var(--border-lt);">◐</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--accent); border-bottom: 1px solid var(--border-lt);">◐</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--accent); border-bottom: 1px solid var(--border-lt);">◐</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.55rem 1.8rem; font-size: 0.68rem; font-weight: 400; color: var(--text); border-bottom: 1px solid var(--border-lt);">Visual asset production</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--accent); border-bottom: 1px solid var(--border-lt);">◐</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--accent); border-bottom: 1px solid var(--border-lt);">◐</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--accent); border-bottom: 1px solid var(--border-lt);">◐</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.55rem 1.8rem; font-size: 0.68rem; font-weight: 400; color: var(--text); border-bottom: 1px solid var(--border-lt);">Video ad creation</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--accent); border-bottom: 1px solid var(--border-lt);">◐</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--accent); border-bottom: 1px solid var(--border-lt);">◐</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--accent); border-bottom: 1px solid var(--border-lt);">◐</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.55rem 1.8rem; font-size: 0.68rem; font-weight: 400; color: var(--text); border-bottom: 1px solid var(--border-lt);">Landing page creation</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--border); border-bottom: 1px solid var(--border-lt);">○</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--border); border-bottom: 1px solid var(--border-lt);">○</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--border); border-bottom: 1px solid var(--border-lt);">○</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; border-bottom: 1px solid var(--border-lt);">●</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.55rem 1.8rem; font-size: 0.68rem; font-weight: 400; color: var(--text); border-bottom: 1px solid var(--border-lt);">Full campaign from URL only</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--accent); border-bottom: 1px solid var(--border-lt);">◐</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--border); border-bottom: 1px solid var(--border-lt);">○</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--border); border-bottom: 1px solid var(--border-lt);">○</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--border); border-bottom: 1px solid var(--border-lt);">○</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.55rem 1.8rem; font-size: 0.68rem; font-weight: 400; color: var(--text); border-bottom: 1px solid var(--border-lt);">Per-user creative personalization</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--accent); border-bottom: 1px solid var(--border-lt);">◐</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--accent); border-bottom: 1px solid var(--border-lt);">◐</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--border); border-bottom: 1px solid var(--border-lt);">○</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem; color: var(--border); border-bottom: 1px solid var(--border-lt);">○</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.55rem 1.8rem; font-size: 0.68rem; font-weight: 400; color: var(--text);">Report assembly &amp; dashboards</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem;">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem;">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem;">●</td>
+        <td style="text-align: center; padding: 0.55rem 0.8rem; font-size: 0.85rem;">●</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="padding: 0.8rem 1.8rem 1.2rem; font-family: var(--sans); font-size: 0.58rem; font-weight: 300; color: var(--text-3); line-height: 1.7;">● = live &nbsp;&nbsp; <span style="color: var(--accent);">◐</span> = announced or rolling out &nbsp;&nbsp; ○ = not yet<br>Meta has announced full campaign creation from a URL alone by late 2026 — input your website and a budget, and the system generates the ad, selects the audience, and optimizes delivery. Google and TikTok are on similar trajectories. The half-circles are the punchline: the convergence isn't slowing down. It's accelerating into creative production, the last layer that was still human.</div>
+</div>
+
+
+<h2>The Org Chart</h2>
+
+<p>The model has four layers. The internal team — five people who own judgment. The managed partners — agencies and specialist vendors who handle execution requiring human expertise. The automated layer — platforms and AI handling repeatable tasks. And the boundary — the structural line where growth's authority ends.</p>
+
+
+<!-- =============================================
+     FIGURE 2 — THE ORG CHART (image versions)
+     ============================================= -->
+
+<div class="figure" style="text-align: center;">
+  <picture>
+    <source media="(max-width: 600px)" srcset="orgchart-mobile.png">
+    <img src="orgchart-desktop.png" alt="The Growth Org — Two leaders, six functions, three specialists, eight managed partners, one automated execution layer. The boundary at the bottom is where growth's authority ends." style="width: 100%; height: auto; border-radius: 4px;">
+  </picture>
+</div>
+
+
+<h2>Three Layers, Not One</h2>
+
+<p>The traditional growth org collapsed everything into headcount. If you needed SEO, you hired an SEO person. If you needed localization, you hired a localization manager. If you needed creative at scale, you hired designers and copywriters. Every function was an FTE.</p>
+
+<p>The new model runs on three layers. The internal team — five people whose primary output is judgment. The managed partner network — agencies and specialist vendors who execute against strategic briefs set by the architect, governed operationally by the MD. And the automated layer — platforms and AI handling the repeatable work that used to require human hands.</p>
+
+<p>This is what makes five people viable. You're not asking five people to do the work of twenty. You're recognizing that the work splits into judgment (internal), specialist execution (partners), and repeatable tasks (automated) — and staffing each layer appropriately.</p>
+
+<p>The managed partner layer is the part most people miss. SEO and AEO require deep, evolving expertise that doesn't justify a full-time hire in most growth orgs. Localization requires linguistic and cultural knowledge that a generalist team can't replicate. CRO specialists bring testing methodologies and benchmarks from across industries. Paid media agencies — even in a world of Advantage+ and Performance Max — still add value through creative strategy, platform beta access, and spend-level insights that a single in-house channel strategist can't match.</p>
+
+<p>The MD manages all of these relationships. The architect sets the briefs they work against. The strategic direction flows from the top of the org. The execution flows through partners who bring specialist depth without permanent cost.</p>
+
+
+<h2>Where Data Lives</h2>
+
+<p>Data is the question that trips up every growth org redesign. In the traditional model, analytics was a service function — a team that built dashboards and pulled reports when someone asked. In the new model, that service function doesn't exist. Report assembly is automated. The dashboards build themselves.</p>
+
+<p>What remains is strategic analytics — the interpretation of data, the design of experiments, the synthesis of signals into decisions. That work belongs embedded in the architect's domain, not siloed in a team the architect has to request reports from. The architect doesn't need someone to tell them what the data says. They need the data to be structurally available so they can determine what it <em>means</em>.</p>
+
+<p>The Growth PM carries analytical weight for product experimentation. The architect carries it for everything else. If the org scales to the point where a dedicated strategic analyst is warranted, that role reports into the strategy function — not into a standalone analytics team.</p>
+
+
+<h2>The Boundary</h2>
+
+<p>Here is the honest part of this model: it has a structural limit.</p>
+
+<p>The two-VP model governs what growth can own — acquisition, retention, monetization, creative, data. But the moment you get into product growth, you're dependent on resources that don't report to you. Engineers report to the CTO. Product managers report to the CPO. Data infrastructure reports to a Head of Data. The growth org can <em>set strategy</em> for product growth, activation, and experimentation — but it cannot <em>command the resources</em> to build what that strategy requires.</p>
+
+<p>AI compresses the execution layer but doesn't solve this coordination problem. If anything, it makes it worse — because the architect is now designing higher-leverage bets faster, which means they're <em>more</em> dependent on engineering and product to build the systems those bets require. The bottleneck shifts from "can we think fast enough" to "can we get the resources allocated."</p>
+
+<p>This is not a flaw in the model. It's a boundary worth naming. The org chart governs what growth controls. The interface with engineering, product, and data infrastructure — the prioritization, the shared roadmaps, the resource negotiation — is a different organizational design problem. One that requires someone sitting above both functions with the authority and judgment to allocate resources across them.</p>
+
+<div class="callout">The gap between what growth can design and what it can command is structural. No org chart solves it alone. The question is whether your organization has someone with the authority to bridge it.</div>
+
+
+<h2>The Brand Question</h2>
+
+<p>The model above is deliberately ambiguous at the top. There's a reason for that.</p>
+
+<p>The two VPs own growth — acquisition, retention, monetization, product growth, data. But none of that exists in a vacuum. Every growth decision touches brand. The Architect's strategic bets are shaped by positioning. The MD's creative direction has to be consistent with brand identity. The managed partners — especially creative production, PR, influencer — are executing work that carries the brand into market.</p>
+
+<p>So the question becomes: <em>who owns brand, and where does it sit relative to this structure?</em></p>
+
+<p>The reflexive answer is "the CMO." And in some organizations, that's correct. But it's worth being honest about why that answer is often wrong.</p>
+
+<p>Most CMOs built their careers in the translation and presentation layer — brand narrative, communications, positioning as a creative exercise. The growth org described in this essay is a decision governance function. It allocates capital, designs experiments, interprets performance data, and makes bets that directly affect revenue. Putting a brand narrator in charge of a capital allocation function is a reporting structure that sets both parties up to fail. The CMO doesn't have the analytical framework to govern the Architect's decisions. The Architect doesn't have the organizational patience to educate a CMO on why their intuitions about the data are wrong.</p>
+
+<p>This isn't a criticism of CMOs as a class. It's a structural observation: the skills that make someone excellent at brand strategy are not the skills required to govern a growth function, and the reporting line should reflect that.</p>
+
+<p>There are three honest configurations.</p>
+
+<p><strong>Growth reports to the CEO or COO.</strong> Brand exists as a peer function — VP Brand Marketing alongside VP Growth Strategy and VP Growth Operations, all reporting to the same executive. Growth owns performance. Brand owns positioning and awareness. The tension — creative direction, messaging, how aggressively you optimize for conversion versus protect brand equity — is arbitrated by the CEO, not by one function overriding the other. The Creative Director becomes the bridge role. This works when the CEO has enough judgment about both functions to hold the tension productively.</p>
+
+<p><strong>Growth and brand report to a CMO — but only a specific kind of CMO.</strong> A CMO who came up through growth, analytics, or P&amp;L ownership — who understands capital allocation and can evaluate the Architect's decision frameworks — can govern both functions. This person exists. They're just not the majority of people currently holding the CMO title. If your CMO can read a cohort analysis and challenge the Architect's interpretation of a retention curve, the reporting line works. If they can't, you're adding a governance layer that subtracts judgment.</p>
+
+<p><strong>Brand is embedded in the growth strategy.</strong> At companies where growth <em>is</em> the business — marketplaces, SaaS, fintech — brand isn't a separate function. It's a dimension of the Architect's decision framework. Positioning is a strategic bet. Brand voice is a creative brief. The MD governs brand execution through the same partner network that handles everything else. This works at Series B through early growth. It tends to break at scale, because the person optimizing for next quarter's CAC is structurally not the same person who should be protecting the brand's ten-year positioning.</p>
+
+<div class="callout">Most CMOs were not built to govern a decision function. The reporting line should reflect who can actually arbitrate when growth and brand pull in different directions — not who historically held the title.</div>
+
+<p>The org chart above shows CEO/CMO at the top deliberately. The structure below that node doesn't change regardless of which configuration you choose. What changes is who arbitrates the tension — and whether that person has the analytical judgment to do it without slowing down the function or letting growth erode brand equity unchecked.</p>
+
+
+<h2>The Uncomfortable Implications</h2>
+
+<p><strong>For the people in the compressing layer.</strong> This is not a reflection of your capability. The execution work you did was real, it was skilled, and it mattered. The problem is that it was learnable, repeatable, and therefore automatable. The career question is whether the years you spent in execution built judgment — the pattern recognition, the contextual awareness, the ability to make calls the data can't make for you — or whether they built proficiency at tasks the platforms are absorbing. If it's the former, you're moving up. If it's the latter, the honest conversation is overdue.</p>
+
+<p><strong>For executives evaluating their orgs.</strong> The temptation is to keep the layer and add AI on top — same team, new tools, hope for productivity gains. This is the path of least resistance and the path of greatest waste. AI doesn't make a 15-person growth team 30% more productive. It makes a 5-person growth team with the right partner network 300% more capable. The leverage is in compression, not augmentation of a structure that was built for a different era.</p>
+
+<div class="callout">AI doesn't make a 15-person growth team 30% more productive. It makes a 5-person growth team with the right partner network 300% more capable. The leverage is in compression, not augmentation.</div>
+
+<p><strong>For the architect and MD themselves.</strong> The two-VP model only works if these roles are filled by people with genuine judgment. The old org chart could absorb mediocre leadership because the layer below compensated — someone always knew the answer even if the VP didn't. The new model is unforgiving. If the architect can't actually design the decisions, there's no team below them to quietly correct the strategy. If the MD can't actually govern a network of partners and stakeholders, there's no coordinator layer to catch the balls they drop.</p>
+
+<p><strong>For the apprenticeship pipeline.</strong> This is the hardest implication and the one most people aren't talking about. The execution layer wasn't just a cost center — it was where the next generation of architects and MDs learned their craft. The junior media buyer who spent two years in Facebook Ads Manager was building the pattern recognition that would eventually make them a strategist. If you compress that layer, you compress the training ground. The two-VP org is more efficient today, but it raises a real question about where tomorrow's senior talent develops.</p>
+
+
+<h2>What This Is Not</h2>
+
+<p>This is not an argument for firing your team on Monday. It's not a prediction that AI agents will be running growth by Q3. And it's not a claim that every growth function compresses to five people at every company stage.</p>
+
+<p>Early-stage companies might need the architect and the MD to be the same person — a single growth leader with both the strategic judgment and the operational command. Large enterprises with complex, multi-brand, multi-geo growth functions will always need more humans in the system.</p>
+
+<p>The argument is structural: the layers of the growth org that existed to handle execution complexity are compressing, and the leadership functions that remain — designing decisions and governing operations — are distinct enough to deserve distinct roles, distinct talent profiles, and distinct evaluation criteria.</p>
+
+<p>The architect is not a better version of the MD. The MD is not a junior version of the architect. They are different cognitive profiles applied to different problems. Conflating them — which the old "VP of Growth" title did by default — is how organizations end up with brilliant strategists who can't manage people or excellent operators who can't see around corners.</p>
+
+
+<h2>The Question That Matters</h2>
+
+<p>If you run a growth org, here's the question worth sitting with: <em>For each person on your team, is their primary output judgment or execution?</em></p>
+
+<p>Judgment — the calls that require pattern recognition, contextual awareness, and the courage to be wrong — is getting more valuable. Execution — the implementation of known playbooks on established platforms — is getting automated.</p>
+
+<p>The people producing judgment need to be identified, retained, and compensated at a level that reflects the fact that they're now carrying the intellectual weight of what used to be a 15-person function. The people producing execution need honest conversations about whether their skills are migrating toward judgment or whether the role as they know it has a declining half-life.</p>
+
+<p>Neither conversation is easy. Both are necessary. And both become more expensive the longer you wait.</p>
+
+<div class="divider">• • •</div>
+
+<div class="author">David Mausolf · February 2026</div>
+
+<div class="sources">Sources: Meta Advantage+ Suite, Google Performance Max Documentation, TikTok Smart+ Campaigns, Bloomberg / Live Data Technologies (2023), Korn Ferry (2025), Gartner (2024), McKinsey & Company (2023, 2025)</div>
+
+</article>
+</body>
+</html>

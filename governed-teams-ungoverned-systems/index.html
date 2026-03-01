@@ -58,7 +58,23 @@
       "name": "David Mausolf"
     },
     "url": "https://davidmausolf.com/governed-teams-ungoverned-systems/",
-    "image": "https://davidmausolf.com/og-governed-teams.png",
+    "image": [
+      {
+        "@type": "ImageObject",
+        "url": "https://davidmausolf.com/og-governed-teams.png",
+        "width": 1200,
+        "height": 630,
+        "caption": "Governed Teams, Ungoverned Systems — every team hits their number but the company still misses"
+      },
+      {
+        "@type": "ImageObject",
+        "url": "https://davidmausolf.com/hero-governed-teams.png",
+        "width": 1280,
+        "height": 800,
+        "caption": "Four teams hit their KPIs yet revenue growth fell negative 4 percent — the company missed by $14M"
+      }
+    ],
+    "thumbnailUrl": "https://davidmausolf.com/og-governed-teams.png",
     "keywords": ["Palantir forward deployed engineer", "Palantir business model", "embedded consulting", "cross-functional alignment", "organizational silos", "Palantir Airbus", "interstitial problems"],
     "about": [
       {"@type": "Thing", "name": "Palantir Forward Deployed Engineers"},
@@ -710,7 +726,10 @@
 
   <!-- LEDE -->
   <div class="lede">
-    <img src="/hero-governed-teams.png" alt="Every team hit their number. The company missed by $14M.">
+    <picture>
+      <source srcset="/hero-governed-teams.webp" type="image/webp">
+      <img src="/hero-governed-teams.png" alt="Four teams all hit their KPIs — Marketing +24% leads, Sales +18% pipeline, Product +31% adoption, Finance +12% efficiency — yet company revenue growth fell negative 4 percent, missing by $14 million" width="1280" height="800">
+    </picture>
   </div>
 
   <div class="lede-bridge">One company saw this gap and put people inside it.<br>It&#x2019;s now worth $300&thinsp;billion.</div>
@@ -868,6 +887,15 @@
 
     <p><em>What the growth organization looks like when you apply this principle — and why it compresses to five people — is the subject of <a href="/the-two-person-growth-org/">The Two-Person Growth Org</a>.</em></p>
 
+    <!-- Summary figure for SEO image indexing -->
+    <figure class="lede" style="margin-top: 3.5rem;">
+      <picture>
+        <source srcset="/og-governed-teams.webp" type="image/webp">
+        <img src="/og-governed-teams.png" alt="Governed Teams Ungoverned Systems — every team hits their number but the company still misses, the most expensive problems live between teams not within them" width="1200" height="630" loading="lazy">
+      </picture>
+      <figcaption style="font-family: var(--mono); font-weight: 300; font-size: 0.55rem; color: var(--text-quiet); text-align: center; padding: 0.8rem 1rem;">Governed Teams, Ungoverned Systems — David Mausolf</figcaption>
+    </figure>
+
     <div class="dots">&#x2022;&#x2022;&#x2022;</div>
 
     <div class="byline">David Mausolf &#x00B7; February 2026</div>
@@ -883,13 +911,13 @@
     <div class="related-articles__label">Continue Reading</div>
     <div class="related-articles__grid">
       <a href="/whos-actually-doing-the-work/" class="related-card">
-        <img src="/hero-whos-doing-work.webp" alt="Who's Actually Doing the Work?" class="related-card__image">
+        <img src="/hero-whos-doing-work.webp" alt="Who's Actually Doing the Work — the gap between what you produce and what you're recognized for" class="related-card__image" width="1280" height="800" loading="lazy">
         <div class="related-card__category">Execution</div>
         <div class="related-card__title">Who&#x2019;s Actually Doing the Work?</div>
         <div class="related-card__excerpt">The gap between what you produce and what you&#x2019;re recognized for. The labor market has been structurally mispricing contribution for decades &#x2014; and AI is about to change the math.</div>
       </a>
       <a href="/the-two-person-growth-org/" class="related-card">
-        <img src="/hero-two-person-growth-org.webp" alt="The Two-Person Growth Org" class="related-card__image">
+        <img src="/hero-two-person-growth-org.webp" alt="The Two-Person Growth Org — the growth team is compressing to two roles with AI filling the space between" class="related-card__image" width="1920" height="1080" loading="lazy">
         <div class="related-card__category">Organizational Design</div>
         <div class="related-card__title">The Two-Person Growth Org</div>
         <div class="related-card__excerpt">The growth team is compressing. What used to require a dozen specialists now resolves to two roles &#x2014; an architect and a managing director &#x2014; with AI filling the space between.</div>

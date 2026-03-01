@@ -20,3 +20,8 @@ User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://davidmausolf.com/sitemap.xml
+
+# LLM Context
+# See https://llmstxt.org
+# llms.txt: https://davidmausolf.com/llms.txt
+# llms-full.txt: https://davidmausolf.com/llms-full.txt

@@ -1,0 +1,115 @@
+# David Mausolf
+
+> Growth strategist specializing in capital governance and growth marketing. Essays on labor market dynamics, AI's impact on organizational structure, and the structural mispricing of contribution in knowledge work.
+
+## Who's Actually Doing the Work?
+
+URL: https://davidmausolf.com/whos-actually-doing-the-work
+Author: David Mausolf
+Date: February 2026
+PDF: https://davidmausolf.com/whos-actually-doing-the-work.pdf
+
+Subtitle: You already know the answer. Here's the data.
+
+### You've Felt It
+
+The gap between what you produce and what you're recognized for. The meeting where someone else presented your analysis. The review where the feedback was about "visibility" -- not quality. The moment you realized the person who explained your work to the room was being paid more than you were to do it.
+
+You're not imagining it. And it's not just you.
+
+The labor market has been structurally mispricing contribution for decades. Organizations have systematically overvalued visible, legible work -- the kind that happens in meetings, in presentations, in client-facing performance -- and undervalued the less visible work that actually produces the outcomes those performances describe. The people who talk about the work get rewarded. The people who do the work get told to speak up more.
+
+This essay is for the second group. The data that follows is not evidence you need to build a case for your boss. It's validation that the system you've been navigating was never designed to see you clearly -- and an explanation of why that's about to change.
+
+### The System That Can't See You
+
+When your manager says they value output over presence, they believe it. The research says otherwise.
+
+A 2022 Envoy workplace survey found that 96% of executives acknowledge they are more likely to notice contributions made in-office than those completed remotely -- even when the work product is identical. A 2024 Euronews survey found remote workers are 31% less likely to be promoted and 38% less likely to receive bonuses, independent of performance. As Harvard Business Review reported, 42% of managers admit they sometimes forget about remote workers when assigning tasks -- despite those workers averaging 15% higher productivity.
+
+Figure 1 -- What They Believe vs. What the Data Shows:
+- What Managers Believe: 96% of executives notice in-office contributions more; 64% believe office workers outperform remote; 42% forget remote workers when assigning tasks.
+- What the Data Shows: +15% higher productivity among overlooked workers; -38% less likely to receive bonuses despite higher output; -31% less likely to be promoted independent of performance.
+Sources: Envoy (2022), Yarooms (2025), Harvard Business Review (2022), Euronews (2024)
+
+This isn't just a remote-work problem. It's the same dynamic playing out in every office, every day. The person who speaks in the meeting gets remembered. The person who did the work that made the meeting possible does not. Harvard Business School research by Jon Jachimowicz found that managers systematically perceive extroverted employees as more passionate -- even when introverted employees report identical levels of motivation.
+
+The Sutton Trust found that extroverted adults earn 25% more. Susan Cain's research documented something even starker: roughly half the workforce self-identifies as introverted, but 96% of leaders and managers identify as extroverts.
+
+Figure 2 -- The Filter:
+- 50% of the workforce self-identifies as introverted, but only 4% of leaders and managers identify the same way. The other 96% of leadership is extroverted. The filter is not selecting for capability.
+Source: Susan Cain / Quiet Revolution
+
+That gap is not a performance difference. It's a selection filter that rewards behavioral style over demonstrated capability.
+
+> Communication skills matter. But the gap between the person who solves the problem and the person who presents the solution should not be 25% -- and certainly not the distance between doing the work and getting credit for it.
+
+### If You're Neurodivergent, It's Worse
+
+Everything above applies to quiet, introverted, heads-down workers broadly. If you're also neurodivergent -- ADHD, autistic, dyslexic, or any combination -- there's an additional layer that compounds the problem. And depending on your situation, you fall into one of two groups.
+
+Neurodivergence encompasses a range of cognitive variations -- an estimated 5-7% of the global population has ADHD, roughly 10% have dyslexia, and 1-2% are on the autism spectrum, with significant overlap.
+
+The excluded: Among diagnosed autistic adults, unemployment estimates range from roughly 50% to as high as 85%. The UK Office for National Statistics found that only 22% of autistic adults are in paid employment, compared to 96% of the general population. The Institute of Leadership and Management found that half of managers admit discomfort hiring neurodivergent individuals. The Job Accommodation Network found accommodations cost, on average, $500. Most cost nothing.
+
+The hidden: If you're employed but masking -- if you've learned to perform neurotypicality well enough that no one questions it -- then the unemployment statistics don't capture your experience. Multiple studies consistently find that the majority of neurodivergent professionals do not disclose at work. Peer-reviewed studies consistently show that masking is directly correlated with higher rates of burnout, anxiety, and depression.
+
+Figure 3 -- Two Layers of the Same Problem:
+- The Excluded: 22% of autistic adults in paid employment vs. 96% general population; 50% of managers admit discomfort hiring neurodivergent people.
+- The Hidden: Majority of neurodivergent professionals don't disclose at work; ~$500 average accommodation cost yet most never ask.
+- When Redesigned: +48% faster than peers with 3-10 yrs experience (JPMorgan); +92% more productive within 6 months (JPMorgan); +30% team productivity with ND integration (HPE); 99% retention rate -- now 150+ across 8 countries.
+Sources: UK Office for National Statistics, JPMorgan Chase Autism at Work, Hewlett Packard Enterprise, ILM (2020), Job Accommodation Network
+
+When the evaluation filter measures output rather than social performance, a population that was either excluded or hidden consistently outperforms. The current filter screens for comfort, not capability.
+
+> The excluded never get through the door. The hidden get through but pay a daily tax to stay inside. Both outperform when the filter changes. The problem was never you. It was the filter.
+
+### Why It's Changing Now
+
+AI is compressing the layers of organizational structure that sat between you and the people who evaluate your work. The coordination layer is automating. The translation layer is thinning. The distance between the person who produces the work and the person who pays for it is shrinking.
+
+Middle managers represent roughly 11% of the workforce but accounted for one-third of all layoffs in 2023 -- three times their share. A 2025 Korn Ferry survey found 41% of employees say their companies have already trimmed management layers. Gartner projects that by 2026, one in five organizations will use AI to eliminate more than half of current middle management positions.
+
+Figure 4 -- The Compression Is Underway:
+- What Already Happened: 3x -- middle managers are ~11% of the workforce but 33% of 2023 layoffs; 41% of employees say their company has already trimmed management layers.
+- What's Coming: 78% of executives expect AI to sharply reduce middle management; 1 in 5 organizations projected to cut 50%+ of mid-management by 2026.
+Sources: Bloomberg / Live Data Technologies (2023), Korn Ferry (2025), Pega Global Survey, Gartner (2024)
+
+### What You Do vs. What Gets Rewarded
+
+Figure 5 -- The Repricing:
+- What the Old Model Rewarded: Translation (converting specialist output into executive-legible language), Coordination (managing workflows and handoffs), Presence (being in the room, performing engagement), Volume (producing deliverables at scale).
+- What Actually Produces Outcomes: Judgment (weighing incomplete information to make calls data alone cannot), Synthesis (connecting signals across functions into coherent theses), Relationships (relational capital to deliver hard truths without destroying trust), Vision (bets on a future that does not yet exist in any dashboard).
+
+The left column is what AI compresses. The right column is what remains irreplaceable.
+
+> The skills on the right are yours. They always were. The system just couldn't see them through the noise of the skills on the left.
+
+### The Honest Part
+
+This shift doesn't benefit everyone equally. The correction is specific: it reaches high-output, low-visibility workers who have been undercompensated for decades. It is not a rising tide.
+
+There are real people on the other side of this. Professionals in coordination, translation, and relationship-management roles whose functions are being absorbed. The argument isn't that they deserve displacement. It's that the previous pricing was wrong, and the correction moves toward something more accurate.
+
+> The correction is coming regardless. The question is whether it's done with awareness of who was carrying the weight -- or whether the people who benefited from the mispricing get to control the repricing too.
+
+### The Backlash Is Already Being Written
+
+The people most affected by the repricing -- those who built careers in the translation, coordination, and presentation layer -- are, by definition, the people most skilled at controlling narratives. The backlash will frame the correction as injustice. The person who predicts the counterargument before it arrives is much harder to frame as the villain of the story.
+
+A population that was structurally undercompensated for decades is being recognized at something closer to the value they actually produce. That recognition is occurring during genuine economic disruption. Both things are true simultaneously. And the people with the skills to control which story gets told are not the ones whose correction is overdue.
+
+### This Is Your Moment
+
+The system that undervalued you was not random. It was structural, measurable, and it has been running for decades. That structure is shifting. The filter is thinning. The layers that obscured your contribution are compressing. For the first time, the economics are moving in the direction of the people who produce the outcomes rather than the people who perform them.
+
+This is not a guarantee. It's an opening.
+
+---
+
+Sources: Envoy (2022), Euronews (2024), Harvard Business Review (2022), Yarooms (2025), Korn Ferry (2025), Gartner (2024), Bloomberg / Live Data Technologies (2023), McKinsey & Company (2020, 2023, 2025), Pega Global Survey, JPMorgan Chase Autism at Work, Hewlett Packard Enterprise, Deloitte Insights, Harvard Business School -- Jachimowicz, Krautter & Buchner, Susan Cain / Quiet Revolution, Sutton Trust, Institute of Leadership and Management (2020), UK Office for National Statistics, Job Accommodation Network
+
+## Contact
+
+- Email: david@davidmausolf.com
+- Website: https://davidmausolf.com

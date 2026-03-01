@@ -1,0 +1,8 @@
+# David Mausolf
+
+## About
+David Mausolf is a growth strategist and founder of DINOR (Decision Intelligence for Operational Results), specializing in capital governance and growth marketing. He writes about labor market dynamics, AI's impact on organizational structure, and the structural mispricing of contribution in knowledge work.
+
+## Essays
+
+- [Who's Actually Doing the Work?](https://davidmausolf.com/whos-actually-doing-the-work): Data-driven essay examining how organizations systematically overvalue visible work and undervalue the people who produce outcomes. Covers the introvert earnings gap (25% penalty), neurodivergent employment barriers (22% vs 96%), AI-driven compression of middle management (3x layoff rate), and the coming repricing of knowledge work. Sources include Harvard Business Review, McKinsey, Korn Ferry, Bloomberg, JPMorgan Chase Autism at Work, and Gartner.

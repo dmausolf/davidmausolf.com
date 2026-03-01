@@ -6,6 +6,10 @@ For the full content of all essays, see [llms-full.txt](https://davidmausolf.com
 
 ## Essays
 
+- [The Two-Person Growth Org](https://davidmausolf.com/the-two-person-growth-org): Most growth organizations are staffed for a complexity that no longer exists. The future needs two kinds of leadership, not twenty roles. On the architecture of the compressed growth org — why AI collapses the need for specialized execution roles and what survives.
+
+- [Governed Teams, Ungoverned Systems](https://davidmausolf.com/governed-teams-ungoverned-systems): Every team hits their number. The company still misses. The loss lives in a layer nobody built governance for. Inside Palantir's Forward Deployed Engineer model — how embedded operators sitting between teams create value no external advisor or off-the-shelf tool can match.
+
 - [Who's Actually Doing the Work?](https://davidmausolf.com/whos-actually-doing-the-work): Data-driven essay examining how organizations systematically overvalue visible work and undervalue the people who produce outcomes. Covers the introvert earnings gap (25% penalty), neurodivergent employment barriers (22% vs 96%), AI-driven compression of middle management (3x layoff rate), and the coming repricing of knowledge work. Sources include Harvard Business Review, McKinsey, Korn Ferry, Bloomberg, JPMorgan Chase Autism at Work, and Gartner.
 
 ## Contact

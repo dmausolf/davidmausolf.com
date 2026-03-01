@@ -1,0 +1,924 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Governed Teams, Ungoverned Systems — David Mausolf</title>
+  <meta name="description" content="Every team hits their number. The company still misses. The loss lives in a layer nobody built governance for. Inside Palantir's Forward Deployed Engineer model.">
+  <meta property="og:title" content="Governed Teams, Ungoverned Systems">
+  <meta property="og:description" content="Every team hits their number. The company still misses. The loss lives in a layer nobody built governance for.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://davidmausolf.com/governed-teams-ungoverned-systems">
+  <meta property="og:image" content="https://davidmausolf.com/og-governed-teams.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Governed Teams, Ungoverned Systems">
+  <meta name="twitter:description" content="Every team hits their number. The company still misses. The loss lives in a layer nobody built governance for.">
+  <meta name="twitter:image" content="https://davidmausolf.com/og-governed-teams.png">
+  <link rel="canonical" href="https://davidmausolf.com/governed-teams-ungoverned-systems">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="alternate" type="application/rss+xml" title="David Mausolf" href="https://davidmausolf.com/feed.xml">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#111110">
+  <meta name="referrer" content="origin-when-cross-origin">
+  <meta name="author" content="David Mausolf">
+  <meta property="og:site_name" content="David Mausolf">
+  <meta property="article:author" content="David Mausolf">
+  <meta property="article:published_time" content="2026-02-01">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Governed Teams, Ungoverned Systems",
+    "description": "Every team hits their number. The company still misses. The loss lives in a layer nobody built governance for. Inside Palantir's Forward Deployed Engineer model.",
+    "author": {
+      "@type": "Person",
+      "name": "David Mausolf",
+      "url": "https://davidmausolf.com"
+    },
+    "datePublished": "2026-02-01",
+    "publisher": {
+      "@type": "Person",
+      "name": "David Mausolf"
+    },
+    "url": "https://davidmausolf.com/governed-teams-ungoverned-systems",
+    "image": "https://davidmausolf.com/og-governed-teams.png",
+    "keywords": ["governed teams", "ungoverned systems", "Palantir FDE model", "forward deployed engineers", "embedded operators", "cross-functional governance", "organizational gaps"],
+    "about": [
+      {"@type": "Thing", "name": "Palantir Forward Deployed Engineers"},
+      {"@type": "Thing", "name": "Cross-functional governance"},
+      {"@type": "Thing", "name": "Embedded operator model"},
+      {"@type": "Thing", "name": "Organizational design"}
+    ],
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".article-title", ".article-subtitle", ".body > p:first-of-type"]
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://davidmausolf.com" },
+      { "@type": "ListItem", "position": 2, "name": "Governed Teams, Ungoverned Systems", "item": "https://davidmausolf.com/governed-teams-ungoverned-systems" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400;1,8..60,500&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #F6F5F3;
+      --text: #111110;
+      --text-mid: #4A4944;
+      --text-quiet: #7A7972;
+      --rule: #D4D2CD;
+      --rule-heavy: #111110;
+      --fig-bg: #EEEDEB;
+      --rust: #8C3A1F;
+      --slate: #3A5548;
+      --serif: 'Source Serif 4', 'Georgia', serif;
+      --mono: 'IBM Plex Mono', 'Menlo', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: 'kern' 1, 'liga' 1, 'onum' 1;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--serif);
+      line-height: 1.7;
+    }
+
+    /* ── LAYOUT ── */
+
+    .col {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── VOID ── */
+
+    .void { height: 12rem; }
+
+    /* ── MASTHEAD ── */
+
+    .masthead {
+      padding-bottom: 0.8rem;
+      margin-bottom: 4.5rem;
+      border-bottom: 2px solid var(--rule-heavy);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .site-name {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.7rem;
+      letter-spacing: 0.03em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .site-name:hover { color: var(--text-mid); }
+
+    .masthead-date {
+      font-family: var(--mono);
+      font-weight: 300;
+      font-size: 0.62rem;
+      color: var(--text-quiet);
+    }
+
+    /* ── ARTICLE HEADER ── */
+
+    .article-header {
+      margin-bottom: 2.5rem;
+      border-top: 3px solid var(--rust);
+      padding-top: 1.2rem;
+    }
+
+    .article-label {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 0.8rem;
+    }
+
+    .article-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 2.5rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      text-transform: uppercase;
+    }
+
+    .article-subtitle {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--text-mid);
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+
+    /* ── BODY TEXT ── */
+
+    .body p {
+      font-size: 0.95rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .body p strong { font-weight: 500; }
+
+    /* ── SECTION HEADINGS ── */
+
+    .section {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-top: 1.8rem;
+      margin-bottom: 1.5rem;
+      padding-top: 0;
+    }
+
+    /* ── DROP CAP ── */
+
+    .body p.drop-cap::first-letter {
+      font-family: var(--serif);
+      font-weight: 700;
+      float: left;
+      font-size: 5.2rem;
+      line-height: 0.72;
+      padding-right: 0.06em;
+      margin-top: 0.05em;
+      color: var(--text);
+    }
+
+    /* ── SECTION DIVIDERS ── */
+
+    .section-divider {
+      text-align: center;
+      margin: 3.5rem 0 3.5rem;
+      line-height: 0;
+    }
+
+    .section-divider::before {
+      content: '';
+      display: inline-block;
+      width: 40px;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .section-divider-major {
+      text-align: center;
+      margin: 4rem 0 4rem;
+      line-height: 0;
+    }
+
+    .section-divider-major::before {
+      content: '';
+      display: inline-block;
+      width: 60px;
+      height: 2px;
+      background: var(--rust);
+    }
+
+    /* ── BLOCKQUOTES ── */
+
+    blockquote {
+      border-left: 3px solid var(--rust);
+      padding: 1.5rem 1.8rem;
+      margin: 2.5rem 0;
+      background: rgba(140, 58, 31, 0.04);
+      border-radius: 0 3px 3px 0;
+    }
+
+    blockquote p {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.55;
+      color: var(--text);
+      margin-bottom: 0 !important;
+    }
+
+    /* ── CALLOUT ── */
+
+    .callout {
+      padding: 0 0 0 1.3rem;
+      border-left: 1px solid var(--rule);
+      margin: 1.8rem 0;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    /* ── LEDE ── */
+
+    .lede {
+      background: #0A0A09;
+      margin: 2.5rem -2rem 3.5rem;
+      padding: 4.5rem 2.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lede-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .lede-team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 0;
+    }
+
+    .lede-team {
+      text-align: center;
+      padding: 0 0.5rem;
+    }
+
+    .lede-team:not(:last-child) {
+      border-right: 1px solid #333;
+    }
+
+    .lede-team-name {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8A8880;
+      margin-bottom: 0.6rem;
+    }
+
+    .lede-team-num {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 3rem;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .lede-team-num.green {
+      color: #6B9E8A;
+    }
+
+    .lede-team-met {
+      font-family: var(--mono);
+      font-weight: 300;
+      font-size: 0.65rem;
+      color: #666;
+      margin-top: 0.4rem;
+      letter-spacing: 0.04em;
+    }
+
+    .lede-divider {
+      width: 60px;
+      height: 1px;
+      background: #555;
+      margin: 3rem auto;
+    }
+
+    .lede-company {
+      text-align: center;
+    }
+
+    .lede-company-label {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8A8880;
+      margin-bottom: 0.6rem;
+    }
+
+    .lede-company-num {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 5.5rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #C4623E;
+    }
+
+    .lede-caption {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .lede-caption-main {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.8rem;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      color: #E8E6E2;
+    }
+
+    .lede-caption-main em {
+      font-style: normal;
+      color: var(--rust);
+    }
+
+    .lede-bridge {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.15rem;
+      color: var(--text-mid);
+      text-align: center;
+      padding: 1.6rem 0 1.8rem;
+      letter-spacing: 0.01em;
+      border-bottom: 1px solid var(--rule);
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 600px) {
+      .lede { margin-left: -1.6rem; margin-right: -1.6rem; padding: 3rem 1.6rem 2.5rem; }
+      .lede-team-num { font-size: 2rem; }
+      .lede-team-name { font-size: 0.6rem; }
+      .lede-team-met { font-size: 0.5rem; }
+      .lede-company-num { font-size: 3.5rem; }
+      .lede-company-label { font-size: 0.6rem; }
+      .lede-caption-main { font-size: 1.35rem; }
+    }
+
+    /* ── FIGURES ── */
+
+    .fig-hero {
+      background: var(--rule-heavy);
+      color: #E8E6E2;
+      border-top: none;
+      border-bottom: none;
+      padding: 3.5rem 2.5rem 3rem;
+      margin: 3rem -2rem;
+    }
+
+    .fig-label {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #B0AEA6;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .fig-note {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.85rem;
+      color: #B0AEA6;
+      margin-top: 2.5rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* ── FDE MODEL FIGURE ── */
+
+    .fde-model {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .fde-client-block {
+      border: 1px solid #4A4A46;
+      border-radius: 3px;
+      padding: 1.8rem 1.5rem 1.4rem;
+      margin-bottom: 0;
+    }
+
+    .fde-block-label {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #C0BEB6;
+      text-align: center;
+      margin-bottom: 1.4rem;
+    }
+
+    .fde-field-team {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .fde-role {
+      border-radius: 3px;
+      padding: 1rem 0.8rem;
+      text-align: center;
+    }
+
+    .fde-role.echo {
+      background: #1E2A24;
+      border: 1px solid #2E4A38;
+    }
+
+    .fde-role.delta {
+      background: rgba(140, 58, 31, 0.12);
+      border: 1px solid rgba(140, 58, 31, 0.4);
+    }
+
+    .fde-role.ds {
+      background: #1E2228;
+      border: 1px solid #2E3A48;
+    }
+
+    .fde-role-title {
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .echo .fde-role-title { color: #6B9E8A; }
+    .delta .fde-role-title { color: #C4623E; }
+    .ds .fde-role-title { color: #7A9EB8; }
+
+    .fde-role-desc {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      color: #AAA;
+    }
+
+    .fde-embed-note {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.72rem;
+      color: #888;
+      text-align: center;
+      margin-top: 0.4rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* Feedback arrows */
+    .fde-feedback {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      padding: 1.2rem 0;
+    }
+
+    .fde-feedback-up, .fde-feedback-down {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .fde-arrow-icon {
+      font-size: 1.1rem;
+      color: #C4623E;
+    }
+
+    .fde-arrow-text {
+      font-family: var(--mono);
+      font-weight: 300;
+      font-size: 0.7rem;
+      color: #888;
+      letter-spacing: 0.02em;
+    }
+
+    /* Platform block */
+    .fde-platform-block {
+      border: 1px solid #4A4A46;
+      border-radius: 3px;
+      padding: 1.8rem 1.5rem 1.4rem;
+      text-align: center;
+    }
+
+    .fde-platform-products {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .fde-product {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #D0CEC6;
+      background: #2A2927;
+      padding: 0.4rem 0.8rem;
+      border-radius: 2px;
+    }
+
+    .fde-platform-desc {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #999;
+    }
+
+    @media (max-width: 740px) {
+      .fig-hero { margin-left: -1.6rem; margin-right: -1.6rem; padding-left: 1.6rem; padding-right: 1.6rem; }
+    }
+
+    @media (max-width: 600px) {
+      .fde-field-team { grid-template-columns: 1fr; gap: 8px; }
+      .fde-feedback { flex-direction: column; gap: 0.6rem; align-items: center; }
+      .fde-platform-products { gap: 0.5rem; }
+      .fde-product { font-size: 0.65rem; padding: 0.3rem 0.6rem; }
+    }
+
+    /* ── SPACER ── */
+
+    .spacer {
+      height: 3rem;
+    }
+
+    /* ── CLOSING ── */
+
+    .dots {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 1em;
+      color: var(--rust);
+      margin: 3.5rem 0;
+    }
+
+    .byline {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.65rem;
+      color: var(--text-mid);
+      margin-bottom: 2rem;
+    }
+
+    .end-sources {
+      font-family: var(--mono);
+      font-weight: 300;
+      font-size: 0.5rem;
+      line-height: 1.7;
+      color: var(--text-quiet);
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .download {
+      margin-top: 2.5rem;
+    }
+
+    .download a {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.62rem;
+      letter-spacing: 0.04em;
+      color: var(--text-mid);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.15rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .download a:hover {
+      color: var(--rust);
+      border-color: var(--rust);
+    }
+
+    /* ── FOOTER ── */
+
+    .site-footer {
+      margin-top: 5rem;
+      padding: 1rem 0 4rem;
+      border-top: 2px solid var(--rule-heavy);
+    }
+
+    .site-footer a {
+      font-family: var(--mono);
+      font-weight: 300;
+      font-size: 0.62rem;
+      color: var(--text-quiet);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .site-footer a:hover { color: var(--text-mid); }
+
+    /* ── RESPONSIVE ── */
+
+    @media (max-width: 740px) {
+      .col { padding: 0 1.6rem; }
+      .lede { margin-left: -1.6rem; margin-right: -1.6rem; }
+    }
+
+    @media (max-width: 600px) {
+      html { font-size: 15.5px; }
+      .void { height: 5rem; }
+      .article-title { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="col">
+
+  <div class="void"></div>
+
+  <header class="masthead">
+    <a href="/" class="site-name">David Mausolf</a>
+    <time datetime="2026-02" class="masthead-date">February 2026</time>
+  </header>
+
+  <div class="article-header">
+    <div class="article-label">Essay</div>
+    <h1 class="article-title">Governed Teams, Ungoverned Systems</h1>
+    <div class="article-subtitle">Every team hits their number. The company still misses. The loss lives in a layer nobody built governance for.</div>
+  </div>
+
+  <!-- LEDE -->
+  <div class="lede">
+    <div class="lede-inner">
+
+      <div class="lede-team-grid">
+        <div class="lede-team">
+          <div class="lede-team-name">Marketing</div>
+          <div class="lede-team-num green">+24%</div>
+          <div class="lede-team-met">leads</div>
+        </div>
+        <div class="lede-team">
+          <div class="lede-team-name">Sales</div>
+          <div class="lede-team-num green">+18%</div>
+          <div class="lede-team-met">pipeline</div>
+        </div>
+        <div class="lede-team">
+          <div class="lede-team-name">Product</div>
+          <div class="lede-team-num green">+31%</div>
+          <div class="lede-team-met">adoption</div>
+        </div>
+        <div class="lede-team">
+          <div class="lede-team-name">Finance</div>
+          <div class="lede-team-num green">+12%</div>
+          <div class="lede-team-met">efficiency</div>
+        </div>
+      </div>
+
+      <div class="lede-divider"></div>
+
+      <div class="lede-company">
+        <div class="lede-company-label">Revenue Growth</div>
+        <div class="lede-company-num">&minus;4%</div>
+      </div>
+
+      <div class="lede-caption">
+        <div class="lede-caption-main">Every team hit their number.<br><em>The company missed by $14M.</em></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lede-bridge">One company saw this gap and put people inside it.<br>It&#x2019;s now worth $300&thinsp;billion.</div>
+
+  <article class="body">
+
+    <p class="drop-cap">In Toulouse, on the final assembly line where Airbus builds the A350, a software engineer spent his days watching fuselages come together. He wasn&#x2019;t an Airbus employee. He was a Palantir Forward Deployed Engineer&#x2014;a &#x201C;Delta&#x201D; in the company&#x2019;s internal language&#x2014;embedded inside the client&#x2019;s operation, building production software on real data while standing next to the people who would use it. His peers were stationed in airgapped military facilities, on oil rigs, inside pharmaceutical clean rooms.</p>
+
+    <p>Not typical workplaces for software engineers. That was the point.</p>
+
+    <p>This is the model that built a $300&thinsp;billion company. And it has almost nothing to do with the software itself. It has everything to do with <em>where the people sit</em>.</p>
+
+    <div class="section-divider"></div>
+
+    <h2 class="section">The Problem in the Gaps</h2>
+
+    <p>Look at the numbers at the top of this page. Four teams, four green metrics, all trending up. The company still missed by $14&thinsp;million.</p>
+
+    <p>This isn&#x2019;t a hypothetical. This is the pattern Palantir&#x2019;s FDEs encounter in nearly every engagement. The reason it keeps happening isn&#x2019;t incompetence. It&#x2019;s architecture. The most expensive problems in any organization don&#x2019;t belong to any team. They exist in the interstitial space between teams&#x2014;between the way a company is structured and the way value actually flows through it. No single department owns them. No single leader has visibility into them. They persist because the organizational design itself creates the blind spots.</p>
+
+    <p>Traditional software can&#x2019;t reach these problems&#x2014;it&#x2019;s built for departments. Consultants can&#x2019;t reach them&#x2014;they&#x2019;re scoped to workstreams. The only way to see them is to sit inside the operation, with real authority, across the boundaries where value leaks out.</p>
+
+    <div class="section-divider"></div>
+
+    <h2 class="section">Inside the Machine</h2>
+
+    <p>When a Palantir team drops into a new client, they aren&#x2019;t building anything yet. They&#x2019;re mapping the operation&#x2014;tracing how data moves between systems, how decisions get made and by whom, where handoffs break down, and where resources flow versus where they actually produce returns. They sit in meetings they weren&#x2019;t invited to. They pull reports nobody reads. They follow a decision from the moment someone proposes it to the moment it either succeeds or quietly dies.</p>
+
+    <p>The goal isn&#x2019;t to understand what the client <em>says</em> their operation looks like. It&#x2019;s to understand what it <em>actually</em> looks like.</p>
+
+    <p>The team doing this work is small and deliberately structured. &#x201C;Echoes&#x201D;&#x2014;domain analysts who embed on-site to find the real high-leverage problems, the ones nobody has articulated because they live between departments. &#x201C;Deltas&#x201D;&#x2014;the engineers who rapidly build and deploy solutions on Palantir&#x2019;s platform, on real data, in production. And Deployment Strategists who bridge technology to operations and drive adoption across stakeholders. Small team. One customer. Full accountability for outcomes.</p>
+
+    <p>The critical ingredient most imitators miss is authority. Embedding without it is just observation. Palantir gave their field teams the mandate to make architectural decisions, push back on clients, redesign workflows on the fly. Internally, they described this as Auftragstaktik&#x2014;the German military doctrine where senior leaders set the objective and field teams make every other decision. It&#x2019;s anathema to most corporate cultures. But it&#x2019;s what turns presence into value.</p>
+
+    <p>Then comes the intervention. Not the kind consultants deliver&#x2014;not a deck, not a set of recommendations. Palantir&#x2019;s teams find the one broken pipeline, the one misrouted data flow, the one decision being made on bad assumptions&#x2014;and fix it fast enough to demonstrate tangible value within days. This is the &#x201C;bootcamp&#x201D;: a rapid prototyping sprint on the client&#x2019;s own data, producing working applications almost immediately. Not demo environments. Real systems on real operations.</p>
+
+    <p>The speed is strategic. Fast, visible wins earn the trust required for deeper systemic work.</p>
+
+    <p>At Airbus, the first engagement targeted a single problem: A350 production bottlenecks. The embedded team mapped how data moved between supply chain, scheduling, and manufacturing&#x2014;then built a working integration that helped increase A350 production by 33%. That one win opened the door to more than twenty adjacent use cases. Today the platform those FDEs helped build&#x2014;Skywise&#x2014;serves over 50,000 daily users and more than 100 airlines. The first engagement lasted months. The relationship has lasted a decade.</p>
+
+    <div class="section-divider-major"></div>
+
+    <h2 class="section">Why Competitors Can&#x2019;t Follow</h2>
+
+    <p>The pattern is everywhere once you see it. A company hires a top consulting firm to diagnose fragmentation across supply chain and manufacturing. Eight months and several million dollars later, the deliverable is a 200-page roadmap. Eighteen months after that, the roadmap sits in a shared drive, unexecuted. The teams that were supposed to implement the recommendations never aligned on priorities. The diagnosis was accurate. But the consultants left before anything was built, and the ungoverned layer&#x2014;the gap between the teams&#x2014;was exactly where the recommendations went to die.</p>
+
+    <p>This is the structural failure the FDE model was designed to eliminate. The model requires a company to be excellent at three things simultaneously: deploying high-caliber people into client operations, building sophisticated tools they can use in the field, and maintaining the discipline to synthesize field learnings back into a scalable system.</p>
+
+    <p>Consulting firms have the talent but don&#x2019;t embed long enough to build anything&#x2014;they diagnose and leave. SaaS companies have the platform but their people sit in their own offices, not inside the client&#x2019;s world. Agencies execute tactics but lack the authority or methodology to govern cross-functional decisions. Each model fails on a different requirement. Only the embedded operator clears all of them at once.</p>
+
+    <p>And the stickiness isn&#x2019;t switching costs. Palantir&#x2019;s contracts are sticky because their people are the ones who understand how the client&#x2019;s operation actually works. Remove them and you don&#x2019;t just lose a vendor. You lose the institutional memory of your own decision-making infrastructure.</p>
+
+    <blockquote><p>It feels like consulting in its closeness to the client, but scales like software in its product-led DNA. That hybrid is the unlock. Neither consulting nor software alone can produce it.</p></blockquote>
+
+    <p>A common critique is that the model is capital-intensive&#x2014;that individual engagements must lose money before they pay off. Palantir&#x2019;s own former CFO called applying it to small contracts &#x201C;lighting equity on fire.&#x201D; But this conflates the cost of the model with the cost of Palantir&#x2019;s specific problem domain. Deploying into airgapped military networks and classified infrastructure carries enormous integration overhead. The embedded model itself doesn&#x2019;t require it. In domains where the systems already exist and the decisions are already being made&#x2014;just being made badly&#x2014;the same approach works without the infrastructure friction.</p>
+
+    <div class="section-divider"></div>
+
+    <h2 class="section">The Compounding Machine</h2>
+
+    <p>Here&#x2019;s where the model gets dangerous for competitors.</p>
+
+    <p>Every engagement generates structured artifacts&#x2014;not narrative trip reports but systematic records: which decisions were governed, what the predicted outcome was, what the actual outcome was, and what the delta reveals about the operating environment. This information flows back to Palantir&#x2019;s product team not as anecdotes but as patterns&#x2014;recurring failure modes, common gaps, decision categories that consistently produce waste across industries.</p>
+
+    <p>The platform itself was built this way. Palantir didn&#x2019;t start as a $300&thinsp;billion platform business. It started as a services-heavy operation where FDEs <em>were</em> the entire value proposition&#x2014;small teams solving one hard problem at a time. Until 2016, there were more FDEs than software engineers. No platform moat yet. Just people sitting inside broken systems, building whatever it took.</p>
+
+    <p>The platform came <em>from</em> the field, not the other way around. Foundry&#x2019;s core elements were first built in Zurich and Houston, S&#x00E3;o Paulo and Toulouse&#x2014;FDEs hitting the same categories of problems across different clients and continents, gradually revealing which patterns were universal. Those patterns got abstracted into reusable capabilities. The bespoke work of early Deltas became the foundation for Gotham. Gotham informed Foundry. Foundry laid the groundwork for AIP, their AI platform.</p>
+
+    <p>The people made the software. The software then scaled what the people learned.</p>
+
+    <p>The COVID-19 pandemic proved what this compounding knowledge could do under pressure. When the U.S. government needed a system to coordinate vaccine distribution across fifty states, thousands of jurisdictions, and multiple manufacturers with conflicting cold-chain requirements, Palantir deployed Tiberius in six weeks. The platform integrated dozens of fragmented data sources&#x2014;CDC case data, Census demographics, hospital capacity, freezer locations, manufacturer production estimates&#x2014;into a single operating picture that federal and state officials used to allocate every dose. Over 100 organizations relied on it, including the UK&#x2019;s National Health Service.</p>
+
+    <p>Six weeks. Because hundreds of prior engagements had already solved the underlying category of problem: unifying fragmented data across organizations that don&#x2019;t share systems, vocabulary, or incentives.</p>
+
+    <p>Today the flywheel is visible in the numbers&#x2014;$4.48&thinsp;billion in 2025 revenue, Q4 growing 70% year over year, U.S. commercial revenue more than doubling. CEO Alex Karp calls it &#x201C;N of 1.&#x201D; To compete, you&#x2019;d need to simultaneously build a world-class platform, recruit engineers willing to deploy into client operations for months, develop a methodology for governing decisions across functions, and create the feedback loop that turns field experience into scalable product.</p>
+
+    <p>Starting any one of those from scratch would take years. Starting all four would take a miracle.</p>
+
+  </article>
+
+  <!-- Figure: FDE Operational Model -->
+  <div class="fig-hero">
+    <div class="fig-label">How Palantir Actually Deploys</div>
+
+    <div class="fde-model">
+
+      <!-- Client environment -->
+      <div class="fde-client-block">
+        <div class="fde-block-label">Client Environment</div>
+
+        <div class="fde-field-team">
+          <div class="fde-role echo">
+            <div class="fde-role-title">Echo</div>
+            <div class="fde-role-desc">Embedded analysts who identify the real problems. Domain insiders, not outsiders.</div>
+          </div>
+          <div class="fde-role delta">
+            <div class="fde-role-title">Delta</div>
+            <div class="fde-role-desc">Engineers who build production solutions on Palantir&#x2019;s platform. Rapidly. On real data.</div>
+          </div>
+          <div class="fde-role ds">
+            <div class="fde-role-title">DS</div>
+            <div class="fde-role-desc">Deployment strategists who bridge tech to operations and drive adoption.</div>
+          </div>
+        </div>
+
+        <div class="fde-embed-note">Small team. One customer. Full accountability for outcomes.</div>
+      </div>
+
+      <!-- Feedback arrow -->
+      <div class="fde-feedback">
+        <div class="fde-feedback-up">
+          <span class="fde-arrow-icon">&#x2191;</span>
+          <span class="fde-arrow-text">Patterns, gaps, and field knowledge feed back</span>
+        </div>
+        <div class="fde-feedback-down">
+          <span class="fde-arrow-text">New platform capabilities ship out</span>
+          <span class="fde-arrow-icon">&#x2193;</span>
+        </div>
+      </div>
+
+      <!-- Platform engineering -->
+      <div class="fde-platform-block">
+        <div class="fde-block-label">Palantir Product Development</div>
+        <div class="fde-platform-products">
+          <span class="fde-product">Gotham</span>
+          <span class="fde-product">Foundry</span>
+          <span class="fde-product">AIP</span>
+          <span class="fde-product">Apollo</span>
+        </div>
+        <div class="fde-platform-desc">&#x201C;Devs&#x201D; abstract field patterns into platform capabilities.<br>Each deployment makes the next one faster.</div>
+      </div>
+
+    </div>
+
+    <div class="fig-note">Echo finds the problem. Delta builds the solution. Patterns flow back to the platform. The field builds the product&thinsp;&#x2014;&thinsp;not the other way around.</div>
+  </div>
+
+  <article class="body">
+
+    <div class="section-divider-major"></div>
+
+    <h2 class="section">The Structural Gap That Remains</h2>
+
+    <p>Palantir proved something that extends well beyond software: in any domain where the highest-value problems don&#x2019;t belong to any single team, the embedded operator model creates value that no external advisor or off-the-shelf tool can match. The ingredients are always the same&#x2014;proximity to the real operation, authority to act on what you find, a systematic methodology that compounds over time, and neutrality across the teams you sit between.</p>
+
+    <p>Palantir applied this to data infrastructure. Their friction was enormous&#x2014;classified networks, airgapped systems, military-grade integration&#x2014;and they built through it anyway.</p>
+
+    <p>But data infrastructure is not the only domain with an ungoverned layer. Every industry where capital allocation decisions flow across team boundaries&#x2014;where marketing spend, product investment, sales strategy, and financial planning are governed in silos but succeed or fail as a system&#x2014;is sitting on the same structural gap. The teams are governed. The system between them is not.</p>
+
+    <blockquote><p>The question is no longer whether the embedded operator model works. Palantir answered that. The question is which domains are next.</p></blockquote>
+
+    <p>Growth capital&#x2014;the tens of billions spent annually on marketing, product, and sales, allocated in silos and measured in fragments&#x2014;is one of them.</p>
+
+    <div class="dots">&#x2022;&#x2022;&#x2022;</div>
+
+    <div class="byline">David Mausolf &#x00B7; February 2026</div>
+
+    <div class="end-sources">Sources: Pragmatic Engineer (2025), Silicon Valley Product Group (2025), Everest Group (2025), CNBC (2026), Palantir Technologies Investor Relations, Palantir Blog (2022), Rocketlane (2025), BusinessWire (2021, 2026), MIT Technology Review (2021), Palantir&#x2013;Airbus Partnership Overview</div>
+
+    <div class="download"><a href="/the-model-nobody-can-copy.pdf">&#x2193; Download PDF</a></div>
+
+  </article>
+
+  <footer class="site-footer">
+    <a href="mailto:david@davidmausolf.com">david@davidmausolf.com</a>
+  </footer>
+
+</div>
+
+
+</body>
+</html>

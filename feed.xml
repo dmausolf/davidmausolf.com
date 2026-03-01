@@ -8,6 +8,22 @@
     <lastBuildDate>Sat, 28 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://davidmausolf.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>The Two-Person Growth Org</title>
+      <link>https://davidmausolf.com/the-two-person-growth-org</link>
+      <description>Most growth organizations are staffed for a complexity that no longer exists. The future needs two kinds of leadership, not twenty roles. On the architecture of the compressed growth org.</description>
+      <dc:creator>David Mausolf</dc:creator>
+      <pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://davidmausolf.com/the-two-person-growth-org</guid>
+    </item>
+    <item>
+      <title>Governed Teams, Ungoverned Systems</title>
+      <link>https://davidmausolf.com/governed-teams-ungoverned-systems</link>
+      <description>Every team hits their number. The company still misses. The loss lives in a layer nobody built governance for. Inside Palantir's Forward Deployed Engineer model and why competitors can't follow.</description>
+      <dc:creator>David Mausolf</dc:creator>
+      <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://davidmausolf.com/governed-teams-ungoverned-systems</guid>
+    </item>
+    <item>
       <title>Who&#x2019;s Actually Doing the Work?</title>
       <link>https://davidmausolf.com/whos-actually-doing-the-work</link>
       <description>Data-driven essay examining how organizations systematically overvalue visible work and undervalue the people who produce outcomes. Covers the introvert earnings gap, neurodivergent employment barriers, AI-driven compression of middle management, and the coming repricing of knowledge work.</description>

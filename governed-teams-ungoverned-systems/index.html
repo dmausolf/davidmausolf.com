@@ -4,22 +4,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Governed Teams, Ungoverned Systems — David Mausolf</title>
-  <meta name="description" content="Every team hits their number. The company still misses. The loss lives in a layer nobody built governance for. Inside Palantir's Forward Deployed Engineer model.">
+  <title>Governed Teams, Ungoverned Systems — How Palantir's Embedded Model Built a $300B Company | David Mausolf</title>
+  <meta name="description" content="Every team hits their number. The company still misses. Palantir's Forward Deployed Engineer model solves the problems that live between teams — and built a $300B company doing it.">
   <meta property="og:title" content="Governed Teams, Ungoverned Systems">
-  <meta property="og:description" content="Every team hits their number. The company still misses. The loss lives in a layer nobody built governance for.">
+  <meta property="og:description" content="Every team hits their number. The company still misses by $14M. Palantir put people inside the gap. It's now worth $300 billion.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://davidmausolf.com/governed-teams-ungoverned-systems">
   <meta property="og:image" content="https://davidmausolf.com/og-governed-teams.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Governed Teams, Ungoverned Systems — David Mausolf">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@Mausolf">
   <meta name="twitter:title" content="Governed Teams, Ungoverned Systems">
-  <meta name="twitter:description" content="Every team hits their number. The company still misses. The loss lives in a layer nobody built governance for.">
+  <meta name="twitter:description" content="Every team hits their number. The company still misses. How Palantir's embedded model solves the problems between teams.">
   <meta name="twitter:image" content="https://davidmausolf.com/og-governed-teams.png">
+  <meta name="twitter:image:alt" content="Governed Teams, Ungoverned Systems — David Mausolf">
   <link rel="canonical" href="https://davidmausolf.com/governed-teams-ungoverned-systems">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="alternate" type="application/pdf" href="https://davidmausolf.com/governed-teams-ungoverned-systems.pdf" title="Download PDF">
   <link rel="alternate" type="application/rss+xml" title="David Mausolf" href="https://davidmausolf.com/feed.xml">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#111110">
@@ -28,26 +34,32 @@
   <meta property="og:site_name" content="David Mausolf">
   <meta property="article:author" content="David Mausolf">
   <meta property="article:published_time" content="2026-02-01">
+  <meta property="article:modified_time" content="2026-03-01">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Governed Teams, Ungoverned Systems",
-    "description": "Every team hits their number. The company still misses. The loss lives in a layer nobody built governance for. Inside Palantir's Forward Deployed Engineer model.",
+    "description": "Every team hits their number. The company still misses. An analysis of Palantir's Forward Deployed Engineer model and why the most expensive problems in any organization live between teams, not within them.",
+    "mainEntityOfPage": "https://davidmausolf.com/governed-teams-ungoverned-systems",
     "author": {
       "@type": "Person",
       "name": "David Mausolf",
       "url": "https://davidmausolf.com"
     },
     "datePublished": "2026-02-01",
+    "dateModified": "2026-03-01",
+    "inLanguage": "en",
+    "wordCount": 1946,
+    "timeRequired": "PT8M",
     "publisher": {
       "@type": "Person",
       "name": "David Mausolf"
     },
     "url": "https://davidmausolf.com/governed-teams-ungoverned-systems",
     "image": "https://davidmausolf.com/og-governed-teams.png",
-    "keywords": ["governed teams", "ungoverned systems", "Palantir FDE model", "forward deployed engineers", "embedded operators", "cross-functional governance", "organizational gaps"],
+    "keywords": ["Palantir forward deployed engineer", "Palantir business model", "embedded consulting", "cross-functional alignment", "organizational silos", "Palantir Airbus", "interstitial problems"],
     "about": [
       {"@type": "Thing", "name": "Palantir Forward Deployed Engineers"},
       {"@type": "Thing", "name": "Cross-functional governance"},
@@ -74,7 +86,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400;1,8..60,500&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400;1,8..60,500&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400;1,8..60,500&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400;1,8..60,500&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet"></noscript>
 
   <style>
     :root {
@@ -288,109 +302,15 @@
     .lede {
       background: #0A0A09;
       margin: 2.5rem -2rem 3.5rem;
-      padding: 4.5rem 2.5rem 4rem;
+      padding: 0;
       position: relative;
       overflow: hidden;
     }
 
-    .lede-inner {
-      max-width: 640px;
-      margin: 0 auto;
-    }
-
-    .lede-team-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      gap: 0;
-    }
-
-    .lede-team {
-      text-align: center;
-      padding: 0 0.5rem;
-    }
-
-    .lede-team:not(:last-child) {
-      border-right: 1px solid #333;
-    }
-
-    .lede-team-name {
-      font-family: var(--mono);
-      font-weight: 400;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #8A8880;
-      margin-bottom: 0.6rem;
-    }
-
-    .lede-team-num {
-      font-family: var(--serif);
-      font-weight: 600;
-      font-size: 3rem;
-      line-height: 1;
-      letter-spacing: -0.02em;
-    }
-
-    .lede-team-num.green {
-      color: #6B9E8A;
-    }
-
-    .lede-team-met {
-      font-family: var(--mono);
-      font-weight: 300;
-      font-size: 0.65rem;
-      color: #666;
-      margin-top: 0.4rem;
-      letter-spacing: 0.04em;
-    }
-
-    .lede-divider {
-      width: 60px;
-      height: 1px;
-      background: #555;
-      margin: 3rem auto;
-    }
-
-    .lede-company {
-      text-align: center;
-    }
-
-    .lede-company-label {
-      font-family: var(--mono);
-      font-weight: 400;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #8A8880;
-      margin-bottom: 0.6rem;
-    }
-
-    .lede-company-num {
-      font-family: var(--serif);
-      font-weight: 600;
-      font-size: 5.5rem;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      color: #C4623E;
-    }
-
-    .lede-caption {
-      text-align: center;
-      margin-top: 3rem;
-    }
-
-    .lede-caption-main {
-      font-family: var(--serif);
-      font-weight: 600;
-      font-size: 1.8rem;
-      line-height: 1.3;
-      letter-spacing: -0.01em;
-      color: #E8E6E2;
-    }
-
-    .lede-caption-main em {
-      font-style: normal;
-      color: var(--rust);
+    .lede img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     .lede-bridge {
@@ -408,13 +328,7 @@
     }
 
     @media (max-width: 600px) {
-      .lede { margin-left: -1.6rem; margin-right: -1.6rem; padding: 3rem 1.6rem 2.5rem; }
-      .lede-team-num { font-size: 2rem; }
-      .lede-team-name { font-size: 0.6rem; }
-      .lede-team-met { font-size: 0.5rem; }
-      .lede-company-num { font-size: 3.5rem; }
-      .lede-company-label { font-size: 0.6rem; }
-      .lede-caption-main { font-size: 1.35rem; }
+      .lede { margin-left: -1.6rem; margin-right: -1.6rem; }
     }
 
     /* ── FIGURES ── */
@@ -664,6 +578,88 @@
 
     /* ── FOOTER ── */
 
+    /* ── RELATED ARTICLES ── */
+
+    .related-articles {
+      max-width: 680px;
+      margin: 72px auto 0;
+      padding: 0 24px 80px;
+    }
+    .related-articles__divider {
+      border: none;
+      border-top: 3px solid var(--black, #1A1A1A);
+      margin-bottom: 32px;
+    }
+    .related-articles__label {
+      font-family: var(--font-mono, 'IBM Plex Mono', 'Courier New', monospace);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary, #6B6B6B);
+      margin-bottom: 28px;
+    }
+    .related-articles__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .related-card {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: opacity 0.2s ease;
+    }
+    .related-card:hover {
+      opacity: 0.75;
+    }
+    .related-card:hover .related-card__title {
+      color: var(--rust, #C45B28);
+    }
+    .related-card__image {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+    .related-card__category {
+      font-family: var(--font-mono, 'IBM Plex Mono', 'Courier New', monospace);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--rust, #C45B28);
+      margin-bottom: 8px;
+    }
+    .related-card__title {
+      font-family: var(--font-sans, 'Inter', -apple-system, sans-serif);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--black, #1A1A1A);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+      transition: color 0.2s ease;
+    }
+    .related-card__excerpt {
+      font-family: var(--font-serif, 'Source Serif 4', Georgia, serif);
+      font-size: 0.875rem;
+      line-height: 1.55;
+      color: var(--text-secondary, #6B6B6B);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    @media (max-width: 600px) {
+      .related-articles__grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .related-articles { margin-top: 56px; }
+      .related-card__title { font-size: 1rem; }
+    }
+
     .site-footer {
       margin-top: 5rem;
       padding: 1rem 0 4rem;
@@ -714,42 +710,7 @@
 
   <!-- LEDE -->
   <div class="lede">
-    <div class="lede-inner">
-
-      <div class="lede-team-grid">
-        <div class="lede-team">
-          <div class="lede-team-name">Marketing</div>
-          <div class="lede-team-num green">+24%</div>
-          <div class="lede-team-met">leads</div>
-        </div>
-        <div class="lede-team">
-          <div class="lede-team-name">Sales</div>
-          <div class="lede-team-num green">+18%</div>
-          <div class="lede-team-met">pipeline</div>
-        </div>
-        <div class="lede-team">
-          <div class="lede-team-name">Product</div>
-          <div class="lede-team-num green">+31%</div>
-          <div class="lede-team-met">adoption</div>
-        </div>
-        <div class="lede-team">
-          <div class="lede-team-name">Finance</div>
-          <div class="lede-team-num green">+12%</div>
-          <div class="lede-team-met">efficiency</div>
-        </div>
-      </div>
-
-      <div class="lede-divider"></div>
-
-      <div class="lede-company">
-        <div class="lede-company-label">Revenue Growth</div>
-        <div class="lede-company-num">&minus;4%</div>
-      </div>
-
-      <div class="lede-caption">
-        <div class="lede-caption-main">Every team hit their number.<br><em>The company missed by $14M.</em></div>
-      </div>
-    </div>
+    <img src="/hero-governed-teams.png" alt="Every team hit their number. The company missed by $14M.">
   </div>
 
   <div class="lede-bridge">One company saw this gap and put people inside it.<br>It&#x2019;s now worth $300&thinsp;billion.</div>
@@ -783,6 +744,8 @@
     <p>The team doing this work is small and deliberately structured. &#x201C;Echoes&#x201D;&#x2014;domain analysts who embed on-site to find the real high-leverage problems, the ones nobody has articulated because they live between departments. &#x201C;Deltas&#x201D;&#x2014;the engineers who rapidly build and deploy solutions on Palantir&#x2019;s platform, on real data, in production. And Deployment Strategists who bridge technology to operations and drive adoption across stakeholders. Small team. One customer. Full accountability for outcomes.</p>
 
     <p>The critical ingredient most imitators miss is authority. Embedding without it is just observation. Palantir gave their field teams the mandate to make architectural decisions, push back on clients, redesign workflows on the fly. Internally, they described this as Auftragstaktik&#x2014;the German military doctrine where senior leaders set the objective and field teams make every other decision. It&#x2019;s anathema to most corporate cultures. But it&#x2019;s what turns presence into value.</p>
+
+    <p><em>This is the inverse of the pattern most organizations run — where <a href="/whos-actually-doing-the-work/">the people doing the work are structurally invisible</a> to the people evaluating it.</em></p>
 
     <p>Then comes the intervention. Not the kind consultants deliver&#x2014;not a deck, not a set of recommendations. Palantir&#x2019;s teams find the one broken pipeline, the one misrouted data flow, the one decision being made on bad assumptions&#x2014;and fix it fast enough to demonstrate tangible value within days. This is the &#x201C;bootcamp&#x201D;: a rapid prototyping sprint on the client&#x2019;s own data, producing working applications almost immediately. Not demo environments. Real systems on real operations.</p>
 
@@ -903,15 +866,36 @@
 
     <p>Growth capital&#x2014;the tens of billions spent annually on marketing, product, and sales, allocated in silos and measured in fragments&#x2014;is one of them.</p>
 
+    <p><em>What the growth organization looks like when you apply this principle — and why it compresses to five people — is the subject of <a href="/the-two-person-growth-org/">The Two-Person Growth Org</a>.</em></p>
+
     <div class="dots">&#x2022;&#x2022;&#x2022;</div>
 
     <div class="byline">David Mausolf &#x00B7; February 2026</div>
 
     <div class="end-sources">Sources: Pragmatic Engineer (2025), Silicon Valley Product Group (2025), Everest Group (2025), CNBC (2026), Palantir Technologies Investor Relations, Palantir Blog (2022), Rocketlane (2025), BusinessWire (2021, 2026), MIT Technology Review (2021), Palantir&#x2013;Airbus Partnership Overview</div>
 
-    <div class="download"><a href="/the-model-nobody-can-copy.pdf">&#x2193; Download PDF</a></div>
+    <div class="download"><a href="/governed-teams-ungoverned-systems.pdf">&#x2193; Download PDF</a></div>
 
   </article>
+
+  <section class="related-articles">
+    <hr class="related-articles__divider">
+    <div class="related-articles__label">Continue Reading</div>
+    <div class="related-articles__grid">
+      <a href="/whos-actually-doing-the-work/" class="related-card">
+        <img src="/hero-whos-doing-work.webp" alt="Who's Actually Doing the Work?" class="related-card__image">
+        <div class="related-card__category">Execution</div>
+        <div class="related-card__title">Who&#x2019;s Actually Doing the Work?</div>
+        <div class="related-card__excerpt">The gap between what you produce and what you&#x2019;re recognized for. The labor market has been structurally mispricing contribution for decades &#x2014; and AI is about to change the math.</div>
+      </a>
+      <a href="/the-two-person-growth-org/" class="related-card">
+        <img src="/hero-two-person-growth-org.webp" alt="The Two-Person Growth Org" class="related-card__image">
+        <div class="related-card__category">Organizational Design</div>
+        <div class="related-card__title">The Two-Person Growth Org</div>
+        <div class="related-card__excerpt">The growth team is compressing. What used to require a dozen specialists now resolves to two roles &#x2014; an architect and a managing director &#x2014; with AI filling the space between.</div>
+      </a>
+    </div>
+  </section>
 
   <footer class="site-footer">
     <a href="mailto:david@davidmausolf.com">david@davidmausolf.com</a>

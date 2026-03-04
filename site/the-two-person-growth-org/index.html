@@ -76,34 +76,25 @@
     padding: 0 2rem 6rem;
   }
 
-  .void { height: 12rem; }
+  .void { height: 24px; }
 
   .masthead {
-    padding-bottom: 0.8rem;
-    margin-bottom: 4.5rem;
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 16px;
     border-bottom: 2px solid var(--text);
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
   }
 
   .site-name {
     font-family: var(--mono);
-    font-weight: 400;
-    font-size: 0.7rem;
-    letter-spacing: 0.03em;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 1px;
     color: var(--text);
     text-decoration: none;
   }
 
   .site-name:hover { color: var(--text-2); }
-
-  .masthead-date {
-    font-family: var(--mono);
-    font-weight: 300;
-    font-size: 0.62rem;
-    color: var(--text-3);
-  }
 
   .article-header {
     margin-bottom: 2.5rem;
@@ -157,6 +148,8 @@
   }
 
   @media (max-width: 600px) {
+    .void { height: 16px; }
+    .site-name { font-size: 16px; }
     .lede { margin-left: -1.6rem; margin-right: -1.6rem; }
   }
     line-height: 1.5;
@@ -865,6 +858,15 @@
     .exec-sub-text { max-width: 100%; padding: 0 0.5rem; }
     .figure-sub { max-width: 100%; }
   }
+  /* Org chart: desktop=image, mobile=native HTML */
+  .orgchart-desktop-only { display: block; }
+  .orgchart-mobile-only { display: none; }
+
+  @media (max-width: 780px) {
+    .orgchart-desktop-only { display: none; }
+    .orgchart-mobile-only { display: block; padding: 0 0.5rem; }
+  }
+
 </style>
 </head>
 <body>
@@ -874,7 +876,6 @@
 
 <header class="masthead">
   <a href="/" class="site-name">David Mausolf</a>
-  <span class="masthead-date">February 2026</span>
 </header>
 
 <div class="article-header">
@@ -1058,14 +1059,168 @@
 
 
 <!-- =============================================
-     FIGURE 2 — THE ORG CHART (image versions)
+     FIGURE 2 — THE ORG CHART
+     Desktop: static image (sharp, designed layout)
+     Mobile: native HTML (readable text at device font size)
      ============================================= -->
 
-<div class="figure" style="text-align: center;">
-  <picture>
-    <source media="(max-width: 600px)" srcset="orgchart-mobile.png">
-    <img src="orgchart-desktop.png" alt="The Growth Org — Two leaders, six functions, three specialists, eight managed partners, one automated execution layer. The boundary at the bottom is where growth's authority ends." style="width: 100%; height: auto; border-radius: 4px;">
-  </picture>
+<!-- DESKTOP ONLY: image version -->
+<div class="figure orgchart-desktop-only" style="text-align: center;">
+  <img src="orgchart-desktop.png" alt="The Growth Org — org chart showing two leaders, six functions, three specialists, eight managed partners, one automated execution layer." style="width: 100%; height: auto; border-radius: 4px;">
+</div>
+
+<!-- MOBILE ONLY: native HTML version -->
+<div class="orgchart-mobile-only">
+  <div style="text-align:center; margin-bottom:1.6rem;">
+    <div style="font-family:var(--sans); font-size:0.65rem; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-3); margin-bottom:0.4rem;">Figure 1</div>
+    <div style="font-family:var(--serif); font-size:1.3rem; font-weight:700; color:var(--text); margin-bottom:0.5rem;">The Growth Org</div>
+    <div style="font-family:var(--sans); font-size:0.82rem; font-weight:300; color:var(--text-2); line-height:1.55; padding:0 0.5rem;">Two leaders, six functions, three specialists, eight managed partners, one automated execution layer.</div>
+  </div>
+
+  <!-- CEO -->
+  <div style="text-align:center; margin-bottom:1.2rem;">
+    <div style="width:36px;height:36px;border-radius:50%;background:var(--text);margin:0 auto 0.5rem;"></div>
+    <div style="font-family:var(--sans);font-size:0.9rem;font-weight:700;color:var(--text);">CEO / CMO</div>
+    <div style="font-family:var(--sans);font-size:0.78rem;font-weight:300;color:var(--text-3);">Depends on whether brand sits above or alongside growth</div>
+  </div>
+
+  <div style="width:1px;height:24px;background:var(--border);margin:0 auto;"></div>
+
+  <!-- VP Strategy -->
+  <div style="text-align:center; margin:1rem 0;">
+    <div style="width:44px;height:44px;border-radius:50%;background:var(--text);margin:0 auto 0.5rem;display:flex;align-items:center;justify-content:center;"><div style="width:14px;height:14px;border-radius:50%;background:var(--bg);"></div></div>
+    <div style="font-family:var(--sans);font-size:0.9rem;font-weight:700;color:var(--text);">VP Growth Strategy</div>
+    <div style="font-family:var(--sans);font-size:0.78rem;font-weight:500;color:var(--accent);margin-bottom:0.25rem;">The Architect</div>
+    <div style="font-family:var(--sans);font-size:0.78rem;font-weight:300;color:var(--text-2);line-height:1.5;padding:0 1rem;">Decision frameworks, strategic bets, methodology, performance interpretation, strategic analytics</div>
+  </div>
+
+  <!-- VP Ops -->
+  <div style="text-align:center; margin:1rem 0 1.5rem;">
+    <div style="width:44px;height:44px;border-radius:50%;background:var(--text);margin:0 auto 0.5rem;display:flex;align-items:center;justify-content:center;"><div style="width:14px;height:14px;border-radius:50%;background:var(--bg);"></div></div>
+    <div style="font-family:var(--sans);font-size:0.9rem;font-weight:700;color:var(--text);">VP Growth Operations</div>
+    <div style="font-family:var(--sans);font-size:0.78rem;font-weight:500;color:var(--accent);margin-bottom:0.25rem;">The Managing Director</div>
+    <div style="font-family:var(--sans);font-size:0.78rem;font-weight:300;color:var(--text-2);line-height:1.5;padding:0 1rem;">People, vendors, agencies, budgets, cross-functional execution, organizational cadence</div>
+  </div>
+
+  <!-- Functions -->
+  <div style="border-top:1px solid var(--border);padding-top:1rem;margin-bottom:1.5rem;">
+    <div style="font-family:var(--sans);font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3);text-align:center;margin-bottom:0.8rem;">Functions — What Growth Owns</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem 0.5rem;padding:0 0.5rem;">
+      <div style="text-align:center;">
+        <div style="width:14px;height:14px;border-radius:50%;background:var(--text);margin:0 auto 0.3rem;"></div>
+        <div style="font-family:var(--sans);font-size:0.85rem;font-weight:700;color:var(--text);">Acquisition</div>
+        <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:var(--text-2);">Channel mix, paid, organic, partnerships</div>
+        <div style="display:inline-block;font-family:var(--sans);font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);border:1px solid var(--border);border-radius:3px;padding:2px 8px;margin-top:4px;">Strategy</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:14px;height:14px;border-radius:50%;background:var(--text);margin:0 auto 0.3rem;"></div>
+        <div style="font-family:var(--sans);font-size:0.85rem;font-weight:700;color:var(--text);">Retention</div>
+        <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:var(--text-2);">Lifecycle, CRM, engagement, churn</div>
+        <div style="display:inline-block;font-family:var(--sans);font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);border:1px solid var(--border);border-radius:3px;padding:2px 8px;margin-top:4px;">Strategy</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:14px;height:14px;border-radius:50%;background:var(--text);margin:0 auto 0.3rem;"></div>
+        <div style="font-family:var(--sans);font-size:0.85rem;font-weight:700;color:var(--text);">Monetization</div>
+        <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:var(--text-2);">Pricing, conversion, revenue optimization</div>
+        <div style="display:inline-block;font-family:var(--sans);font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);border:1px solid var(--border);border-radius:3px;padding:2px 8px;margin-top:4px;">Strategy</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:14px;height:14px;border-radius:50%;background:var(--text);margin:0 auto 0.3rem;"></div>
+        <div style="font-family:var(--sans);font-size:0.85rem;font-weight:700;color:var(--text);">Product Growth</div>
+        <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:var(--text-2);">Activation, onboarding, virality, experimentation</div>
+        <div style="display:inline-block;font-family:var(--sans);font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);border:1px solid var(--border);border-radius:3px;padding:2px 8px;margin-top:4px;">Shared</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:14px;height:14px;border-radius:50%;background:var(--text);margin:0 auto 0.3rem;"></div>
+        <div style="font-family:var(--sans);font-size:0.85rem;font-weight:700;color:var(--text);">Creative</div>
+        <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:var(--text-2);">Direction, brand voice, strategic narrative</div>
+        <div style="display:inline-block;font-family:var(--sans);font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);border:1px solid var(--border);border-radius:3px;padding:2px 8px;margin-top:4px;">Operations</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:14px;height:14px;border-radius:50%;background:var(--text);margin:0 auto 0.3rem;"></div>
+        <div style="font-family:var(--sans);font-size:0.85rem;font-weight:700;color:var(--text);">Data</div>
+        <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:var(--text-2);">Strategic analytics, experimentation design, insight synthesis</div>
+        <div style="display:inline-block;font-family:var(--sans);font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);border:1px solid var(--border);border-radius:3px;padding:2px 8px;margin-top:4px;">Strategy</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Internal Team -->
+  <div style="border-top:1px solid var(--border);padding-top:1rem;margin-bottom:1.5rem;">
+    <div style="font-family:var(--sans);font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3);text-align:center;margin-bottom:0.8rem;">Internal Team — Judgment Roles</div>
+    <div style="padding:0 0.5rem;">
+      <div style="display:flex;align-items:flex-start;gap:0.5rem;margin-bottom:0.8rem;">
+        <div style="width:14px;height:14px;border-radius:50%;background:var(--text);flex-shrink:0;margin-top:2px;"></div>
+        <div>
+          <div style="font-family:var(--sans);font-size:0.85rem;font-weight:700;color:var(--text);">Creative Director</div>
+          <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:var(--text-2);">Strategic tone, not volume</div>
+          <div style="font-family:var(--sans);font-size:0.7rem;font-weight:300;color:var(--text-3);">Reports → VP Ops · Direction ← VP Strategy</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:0.5rem;margin-bottom:0.8rem;">
+        <div style="width:14px;height:14px;border-radius:50%;background:var(--text);flex-shrink:0;margin-top:2px;"></div>
+        <div>
+          <div style="font-family:var(--sans);font-size:0.85rem;font-weight:700;color:var(--text);">Growth PM</div>
+          <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:var(--text-2);">Experimentation, activation</div>
+          <div style="font-family:var(--sans);font-size:0.7rem;font-weight:300;color:var(--text-3);">Reports → VP Ops · Direction ← VP Strategy</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:0.5rem;margin-bottom:0.8rem;">
+        <div style="width:14px;height:14px;border-radius:50%;background:var(--text);flex-shrink:0;margin-top:2px;"></div>
+        <div>
+          <div style="font-family:var(--sans);font-size:0.85rem;font-weight:700;color:var(--text);">Sr. Channel Strategist</div>
+          <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:var(--text-2);">Deep expertise where warranted</div>
+          <div style="font-family:var(--sans);font-size:0.7rem;font-weight:300;color:var(--text-3);">Reports → VP Ops · Direction ← VP Strategy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vendors -->
+  <div style="border:1px solid var(--vendor);border-radius:8px;padding:1rem;margin-bottom:1rem;">
+    <div style="font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--vendor);text-align:center;margin-bottom:0.3rem;">Managed Execution Partners</div>
+    <div style="font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--vendor);text-align:center;margin-bottom:0.6rem;">All Governed by VP Ops</div>
+    <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:var(--text-2);text-align:center;margin-bottom:0.8rem;line-height:1.5;">Strategic briefs set by VP Strategy. Relationships, budgets, and performance managed by VP Ops.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+      <div style="border:1px solid var(--vendor);border-radius:4px;padding:6px 10px;font-family:var(--sans);font-size:0.75rem;color:var(--vendor);text-align:center;">SEO / AEO</div>
+      <div style="border:1px solid var(--vendor);border-radius:4px;padding:6px 10px;font-family:var(--sans);font-size:0.75rem;color:var(--vendor);text-align:center;">Paid Media</div>
+      <div style="border:1px solid var(--vendor);border-radius:4px;padding:6px 10px;font-family:var(--sans);font-size:0.75rem;color:var(--vendor);text-align:center;">Creative / Production</div>
+      <div style="border:1px solid var(--vendor);border-radius:4px;padding:6px 10px;font-family:var(--sans);font-size:0.75rem;color:var(--vendor);text-align:center;">Localization</div>
+      <div style="border:1px solid var(--vendor);border-radius:4px;padding:6px 10px;font-family:var(--sans);font-size:0.75rem;color:var(--vendor);text-align:center;">Influencer / Partnerships</div>
+      <div style="border:1px solid var(--vendor);border-radius:4px;padding:6px 10px;font-family:var(--sans);font-size:0.75rem;color:var(--vendor);text-align:center;">CRO / Conversion</div>
+      <div style="border:1px solid var(--vendor);border-radius:4px;padding:6px 10px;font-family:var(--sans);font-size:0.75rem;color:var(--vendor);text-align:center;">PR / Comms</div>
+      <div style="border:1px solid var(--vendor);border-radius:4px;padding:6px 10px;font-family:var(--sans);font-size:0.75rem;color:var(--vendor);text-align:center;">Dev / Eng Contractors</div>
+    </div>
+    <div style="font-family:var(--sans);font-size:0.7rem;font-weight:300;color:var(--text-3);text-align:center;margin-top:0.6rem;">Specialist execution requiring human expertise — without the headcount.</div>
+  </div>
+
+  <!-- AI Layer -->
+  <div style="background:var(--text);border-radius:8px;padding:1rem;margin-bottom:1rem;">
+    <div style="font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#82b4a0;text-align:center;margin-bottom:0.6rem;">Automated Execution — Platforms &amp; AI</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.3rem 0.5rem;">
+      <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:#c8c8cd;">◆ Campaign management</div>
+      <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:#c8c8cd;">◆ Bid optimization</div>
+      <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:#c8c8cd;">◆ Creative iteration</div>
+      <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:#c8c8cd;">◆ Report assembly</div>
+      <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:#c8c8cd;">◆ Lifecycle triggers</div>
+      <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:#c8c8cd;">◆ A/B test execution</div>
+      <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:#c8c8cd;">◆ Trafficking &amp; QA</div>
+    </div>
+  </div>
+
+  <!-- Boundary -->
+  <div style="border:1px solid var(--boundary);border-radius:8px;padding:1rem;margin-bottom:1rem;">
+    <div style="font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--boundary);text-align:center;margin-bottom:0.6rem;">The Boundary — Where Growth's Authority Ends</div>
+    <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:var(--text-2);text-align:center;margin-bottom:0.8rem;line-height:1.5;">Growth designs strategy for product, engineering, and data infrastructure — but cannot command the resources.</div>
+    <div style="display:flex;flex-direction:column;gap:0.4rem;padding-left:0.5rem;">
+      <div style="font-family:var(--sans);font-size:0.78rem;color:var(--boundary);">○ Engineering → CTO</div>
+      <div style="font-family:var(--sans);font-size:0.78rem;color:var(--boundary);">○ Product → CPO</div>
+      <div style="font-family:var(--sans);font-size:0.78rem;color:var(--boundary);">○ Data Infra → Head of Data</div>
+    </div>
+  </div>
+
+  <!-- Caption -->
+  <div style="font-family:var(--sans);font-size:0.75rem;font-weight:300;color:var(--text-3);text-align:center;line-height:1.55;padding:0 0.5rem;">Five internal people. Eight managed partners. One automated layer. And a boundary that names the problem the org chart alone cannot solve.</div>
 </div>
 
 
@@ -1172,5 +1327,14 @@
 <div class="sources">Sources: Meta Advantage+ Suite, Google Performance Max Documentation, TikTok Smart+ Campaigns, Bloomberg / Live Data Technologies (2023), Korn Ferry (2025), Gartner (2024), McKinsey & Company (2023, 2025)</div>
 
 </article>
+<footer style="max-width: 680px; margin: 0 auto; padding: 0 2rem 4rem;">
+  <hr style="border: none; border-top: 2px solid #111110; margin: 0 0 1.5rem;">
+  <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline;">
+    <a href="mailto:david@davidmausolf.com" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 300; color: #7A7972; text-decoration: none;">david@davidmausolf.com</a>
+    <a href="https://www.linkedin.com/in/davidmausolf/" target="_blank" rel="noopener" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 300; color: #7A7972; text-decoration: none;">LinkedIn</a>
+    <a href="https://x.com/mausolf" target="_blank" rel="noopener" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 300; color: #7A7972; text-decoration: none;">X</a>
+  </div>
+  <p style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 300; color: #7A7972; margin: 8px 0 0; line-height: 1.5; opacity: 0.7;">Growth leader. Former Disney, Lyft, Expedia. Co-founder, Apex Growth.</p>
+</footer>
 </body>
 </html>

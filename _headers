@@ -23,3 +23,9 @@
 
 /*.woff2
   Cache-Control: public, max-age=31536000, immutable
+
+/psip
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/psip/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet

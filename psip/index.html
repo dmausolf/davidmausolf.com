@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The PSIP Model: A Visual Guide</title>
+<meta name="description" content="A swipeable, easy-to-read visual guide to the PSIP model of psychedelic therapy, based on the 2020 paper by Saj Razvi and Steven Elfrink.">
+<meta property="og:title" content="The PSIP Model: A Visual Guide">
+<meta property="og:description" content="What if the healing happens during the trip, not after? A card-by-card explainer.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<link rel="canonical" href="https://davidmausolf.com/psip">
+<meta property="og:url" content="https://davidmausolf.com/psip">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Libre+Franklin:wght@500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap">
+<style>
+/* Layout: a one-card-at-a-time story. Header bar, a scrolling card stage, a big-button footer. Text left, graphic right on wide screens; stacked on phones. */
+:root{
+  --paper:#F7F7F4; --ink:#151515; --ink-2:#4b4b47; --rule:#d9d9d2; --tint:#ecece6; --hl:#ffe98a; --card:#ffffff;
+  --s0:#24877a; --s1:#cf8f1f; --s2:#c23b4b; --s3:#41659a; --s4:#776b8c;
+  --prim:#cc6a22; --sec:#2c5f9c;
+  --f-display:"Newsreader", Georgia, "Times New Roman", serif;
+  --f-body:"Atkinson Hyperlegible", "Verdana", system-ui, sans-serif;
+  --f-label:"Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+  --fs:21px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#151514; --ink:#ecebe5; --ink-2:#aeada6; --rule:#363631; --tint:#232320; --hl:#5d4c0e; --card:#1d1d1b;
+  --s0:#4cb3a4; --s1:#e6ad45; --s2:#e2667a; --s3:#7d9ed0; --s4:#a597bb;
+  --prim:#e98b45; --sec:#6c9bd6; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#151514; --ink:#ecebe5; --ink-2:#aeada6; --rule:#363631; --tint:#232320; --hl:#5d4c0e; --card:#1d1d1b;
+  --s0:#4cb3a4; --s1:#e6ad45; --s2:#e2667a; --s3:#7d9ed0; --s4:#a597bb;
+  --prim:#e98b45; --sec:#6c9bd6; color-scheme:dark }
+
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:var(--fs);line-height:1.6;letter-spacing:.012em;word-spacing:.06em;-webkit-font-smoothing:antialiased}
+body.size-l{--fs:24px} body.size-xl{--fs:27px}
+.app{height:100%;display:flex;flex-direction:column}
+
+/* header */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--rule);
+  padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.brand{font-family:var(--f-label);font-weight:800;font-size:15px;letter-spacing:.02em;display:flex;align-items:baseline;gap:10px;min-width:0}
+.brand span{font-weight:500;color:var(--ink-2);white-space:nowrap}
+.tools{display:flex;gap:8px}
+.tbtn{font-family:var(--f-label);font-weight:700;font-size:15px;color:var(--ink);background:var(--tint);border:0;border-radius:6px;min-height:40px;padding:0 14px;cursor:pointer}
+.tbtn:hover{background:var(--rule)}
+:focus-visible{outline:3px solid var(--sec);outline-offset:2px}
+
+/* stage */
+.stage{flex:1;overflow-y:auto;overscroll-behavior:contain;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.card{max-width:1120px;margin:0 auto;padding-block:clamp(24px,5vh,56px) 40px;display:grid;gap:clamp(24px,4vw,56px);align-items:center}
+.card.active{animation:in .38s ease-out}
+@keyframes in{from{transform:translateX(var(--dir,24px));opacity:.35}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.card.active{animation:none}}
+@media (min-width:940px){.card.split{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}}
+.txt{min-width:0}
+.kicker{font-family:var(--f-label);font-weight:700;font-size:14px;letter-spacing:.09em;text-transform:uppercase;color:var(--k,var(--ink-2));margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:22px;height:4px;background:var(--k,var(--ink-2));border-radius:2px}
+h1,h2{font-family:var(--f-display);font-weight:600;line-height:1.1;letter-spacing:-.005em;text-wrap:balance;margin:0 0 20px}
+h2{font-size:clamp(31px,4.6vw,50px)}
+h1{font-size:clamp(38px,7vw,76px);line-height:1.04}
+.txt p{margin:0 0 .9em;max-width:31em}
+.txt p.lead{font-size:1.08em}
+.hl{background:var(--hl);border-radius:3px;padding:0 .18em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+b,strong{font-weight:700}
+.small{font-size:.8em;color:var(--ink-2)}
+figure{margin:0;min-width:0}
+figcaption{font-family:var(--f-label);font-size:14px;line-height:1.45;color:var(--ink-2);margin-top:10px;max-width:40em}
+svg{display:block;width:100%;height:auto;max-width:100%}
+svg text{font-family:var(--f-label);font-weight:600;fill:var(--ink)}
+svg .t2{fill:var(--ink-2);font-weight:500}
+svg .ax{stroke:var(--ink-2);stroke-width:1.5}
+
+/* bits */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{font-family:var(--f-label);font-size:15px;font-weight:600;padding:5px 12px;border-radius:999px;background:var(--tint);color:var(--ink)}
+.panel{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:clamp(16px,2.5vw,26px)}
+.rows{display:grid;gap:14px}
+.row-label{font-family:var(--f-label);font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px}
+.days{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.day{border-radius:8px;padding:12px 14px;font-family:var(--f-label);font-size:16px;line-height:1.35;min-width:0}
+.day b{display:block;font-size:13px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px;opacity:.85}
+.day.quiet{background:var(--tint);color:var(--ink-2)}
+.day.work{background:var(--sec);color:#fff}
+.day.work.p{background:var(--prim)}
+.day.light{border:2px dashed var(--rule);color:var(--ink-2)}
+.minds{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mind{border-radius:10px;padding:16px;border-top:6px solid var(--c);background:var(--card);border-left:1px solid var(--rule);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);min-width:0}
+.mind h3{font-family:var(--f-label);font-weight:800;font-size:18px;margin:0 0 4px;color:var(--c)}
+.mind .sub{font-family:var(--f-label);font-size:14px;color:var(--ink-2);margin:0 0 10px}
+.mind ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:.82em;line-height:1.35}
+.mind li{display:flex;gap:8px}
+.mind li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--c);margin-top:.45em}
+@media (max-width:520px){.minds{grid-template-columns:1fr}}
+.states{display:grid;gap:12px}
+.state{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:16px}
+.num{width:52px;height:52px;border-radius:50%;background:var(--c);color:#fff;font-family:var(--f-label);font-weight:800;font-size:26px;display:grid;place-items:center}
+.state h3{font-family:var(--f-label);font-weight:800;font-size:19px;margin:2px 0 4px;color:var(--c)}
+.state p{margin:0;font-size:.86em;line-height:1.45}
+.state .who{font-family:var(--f-label);font-size:14px;color:var(--ink-2);margin-top:6px}
+.spectrum{display:grid;gap:10px}
+.specbar{height:22px;border-radius:999px;background:linear-gradient(90deg,var(--sec),var(--tint) 50%,var(--s2))}
+.speclabels{display:flex;justify-content:space-between;gap:12px;font-family:var(--f-label);font-size:15px;line-height:1.35}
+.speclabels div{max-width:46%}
+.speclabels b{display:block;font-size:17px}
+.push{font-family:var(--f-label);font-weight:700;font-size:16px;color:var(--ink);display:flex;align-items:center;gap:8px;justify-content:center}
+.collide{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;font-family:var(--f-label)}
+.blob{border-radius:10px;padding:16px 12px;text-align:center;font-weight:700;font-size:17px;color:#fff;line-height:1.3}
+.vs{font-weight:800;font-size:28px;color:var(--ink-2)}
+.result{text-align:center;font-family:var(--f-label);font-weight:800;font-size:20px;margin-top:14px}
+.result span{display:block;font-weight:500;font-size:15px;color:var(--ink-2)}
+.twobox{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.twobox div{border-radius:8px;padding:12px 14px;font-family:var(--f-label);font-size:15px;line-height:1.4;background:var(--tint)}
+.twobox b{display:block;font-size:13px;letter-spacing:.07em;text-transform:uppercase;color:var(--c);margin-bottom:4px}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;font-size:.9em;line-height:1.45}
+.steps li::before{counter-increment:s;content:counter(s);width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--paper);font-family:var(--f-label);font-weight:800;font-size:17px;display:grid;place-items:center}
+.quote{font-family:var(--f-display);font-size:1.25em;line-height:1.3;border-left:5px solid var(--prim);padding-left:16px;margin:8px 0 18px;max-width:22em}
+.tbl{display:grid;gap:10px}
+.trow{display:grid;grid-template-columns:118px 1fr;gap:14px;align-items:start;padding:14px 16px;border-radius:10px;background:var(--card);border:1px solid var(--rule)}
+.trow .name{font-family:var(--f-label);font-weight:800;font-size:17px;color:var(--c)}
+.trow .name small{display:block;font-weight:500;font-size:13px;color:var(--ink-2)}
+.trow p{margin:0;font-size:.84em;line-height:1.45}
+.meter{display:flex;gap:4px;margin-top:6px}.meter i{width:16px;height:7px;border-radius:2px;background:var(--rule)}.meter i.on{background:var(--c)}
+.protocol{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.protocol div{font-family:var(--f-label);font-size:14px;font-weight:700;border-radius:8px;padding:10px 12px;background:var(--tint)}
+.protocol div.c{background:var(--s0);color:#fff}.protocol div.ps{background:var(--s3);color:#fff}
+.recap{list-style:none;padding:0;margin:0;display:grid;gap:12px;counter-reset:r}
+.recap li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:baseline;font-size:.95em;line-height:1.45;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+.recap li::before{counter-increment:r;content:counter(r);font-family:var(--f-display);font-weight:600;font-size:34px;line-height:1;color:var(--prim)}
+.cover-meta{font-family:var(--f-label);font-size:15px;color:var(--ink-2);display:grid;gap:4px;margin-top:22px}
+.cover-meta b{color:var(--ink)}
+.hint{font-family:var(--f-label);font-weight:700;font-size:15px;margin-top:22px;display:inline-flex;gap:8px;align-items:center;background:var(--tint);padding:8px 14px;border-radius:999px}
+.caution li{margin-bottom:10px}
+.caution{padding-left:1.1em;margin:0;font-size:.92em;line-height:1.45;max-width:32em}
+
+/* footer */
+.foot{border-top:1px solid var(--rule);display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;
+  padding-block:10px calc(10px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav{font-family:var(--f-label);font-weight:800;font-size:17px;min-height:52px;min-width:52px;padding:0 20px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.nav.next{background:var(--ink);color:var(--paper)}
+.nav:disabled{opacity:.3;cursor:default}
+.prog{display:flex;gap:3px;align-items:center;min-width:0}
+.prog button{flex:1;height:8px;border:0;border-radius:2px;background:var(--rule);padding:0;cursor:pointer;min-width:0}
+.prog button.done{background:var(--ink-2)} .prog button.cur{background:var(--prim);height:12px}
+.count{font-family:var(--f-label);font-weight:600;font-size:14px;color:var(--ink-2);text-align:center;margin-top:6px;font-variant-numeric:tabular-nums}
+@media (max-width:520px){.nav{padding:0 14px}.nav .w{display:none}}
+
+/* contents */
+.toc{position:fixed;inset:0;background:var(--paper);z-index:20;overflow-y:auto;
+  padding-block:calc(16px + env(safe-area-inset-top,0px)) 24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.toc-in{max-width:760px;margin:0 auto}
+.toc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.toc-head h2{font-size:30px;margin:0}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li button{width:100%;text-align:left;display:grid;grid-template-columns:40px 1fr;gap:10px;background:none;border:0;border-bottom:1px solid var(--rule);padding:14px 4px;color:var(--ink);font-family:var(--f-body);font-size:19px;line-height:1.35;cursor:pointer}
+.toc li button span{font-family:var(--f-label);font-weight:800;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.toc li button:hover{background:var(--tint)}
+.toc li button.cur span{color:var(--prim)}
+</style>
+
+</head>
+<body>
+<div class="app">
+  <header class="bar">
+    <div class="brand">The PSIP Model <span>A visual guide</span></div>
+    <div class="tools">
+      <button class="tbtn" id="sizeBtn" type="button" aria-label="Change text size">Aa +</button>
+      <button class="tbtn" id="tocBtn" type="button">All cards</button>
+    </div>
+  </header>
+
+  <main class="stage" id="stage">
+
+<!-- 1 COVER -->
+<section class="card split active" data-t="What if the healing happens during the trip?">
+  <div class="txt">
+    <p class="kicker" style="--k:var(--prim)">Psychedelic therapy</p>
+    <h1>What if the healing happens <span class="hl">during</span> the trip, not after?</h1>
+    <p class="lead">A 2020 paper proposes a new way to do psychedelic therapy. It's called PSIP.</p>
+    <p>Here is the idea, one card at a time.</p>
+    <div class="cover-meta"><div>Based on <b>“The PSIP Model”</b> by Saj Razvi &amp; Steven Elfrink</div><div>Journal of Psychedelic Psychiatry, June 2020</div></div>
+    <div class="hint">Swipe, or press → to flip</div>
+  </div>
+  <figure>
+    <svg viewBox="0 0 480 300" role="img" aria-label="A wave of feeling rising, peaking, and settling back to calm">
+      <defs><linearGradient id="wg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--prim)" stop-opacity=".35"/><stop offset="1" stop-color="var(--prim)" stop-opacity="0"/></linearGradient></defs>
+      <line x1="20" y1="240" x2="460" y2="240" class="ax"/>
+      <path d="M20 240 C110 240 140 200 180 140 C210 95 240 64 262 64 C292 64 318 140 356 196 C384 236 420 240 460 240 Z" fill="url(#wg)"/>
+      <path d="M20 240 C110 240 140 200 180 140 C210 95 240 64 262 64 C292 64 318 140 356 196 C384 236 420 240 460 240" fill="none" stroke="var(--prim)" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="262" cy="64" r="8" fill="var(--prim)"/>
+      <text x="262" y="40" text-anchor="middle" font-size="20">The feeling peaks</text>
+      <text x="40" y="272" font-size="18" class="t2">Stay with it</text>
+      <text x="440" y="272" font-size="18" text-anchor="end" class="t2">It settles on its own</text>
+    </svg>
+    <figcaption>The core idea of PSIP in one picture. The body can work through a hard feeling if you stop escaping it.</figcaption>
+  </figure>
+</section>
+
+<!-- 2 USUAL WAY -->
+<section class="card split" data-t="Today, therapists mostly stay quiet" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--sec)">The usual way</p>
+    <h2>Today, therapists mostly stay quiet.</h2>
+    <p>The patient lies down. Eyeshades on. Soft music.</p>
+    <p>Two therapists sit nearby. They talk only if the patient wants to. Most don't.</p>
+    <p>The real talking happens <span class="hl">the next day</span>. That's called <b>integration</b>.</p>
+  </div>
+  <figure class="panel">
+    <div class="rows">
+      <div><div class="row-label">The standard model</div>
+        <div class="days">
+          <div class="day quiet"><b>Day 1 · Trip</b>Quiet. No direction. Just safety.</div>
+          <div class="day work"><b>Day 2 · Talk</b>Find meaning. Gain insight.</div>
+        </div>
+      </div>
+    </div>
+    <figcaption>Most of the benefit is made in words, after the drug wears off.</figcaption>
+  </figure>
+</section>
+
+<!-- 3 PSIP FLIPS -->
+<section class="card split" data-t="PSIP moves the work into the trip" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--prim)">The big change</p>
+    <h2>PSIP moves the work into the trip itself.</h2>
+    <p>The therapist is <span class="hl">active</span> during the session.</p>
+    <p>The work runs through the <b>body</b> and the <b>relationship</b>, not just words.</p>
+    <p>If it goes well, the next day gets easy.</p>
+  </div>
+  <figure class="panel">
+    <div class="rows">
+      <div><div class="row-label">Standard</div>
+        <div class="days"><div class="day quiet"><b>Day 1</b>Quiet trip</div><div class="day work"><b>Day 2</b>Main work</div></div></div>
+      <div><div class="row-label">PSIP</div>
+        <div class="days"><div class="day work p"><b>Day 1</b>Main work: body + relationship</div><div class="day light"><b>Day 2</b>Lighter. Unfolds naturally.</div></div></div>
+    </div>
+    <figcaption>PSIP stands for Psychedelic Somatic Interactional Psychotherapy. “Somatic” means body. “Interactional” means the therapist engages.</figcaption>
+  </figure>
+</section>
+
+<!-- 4 TWO MINDS -->
+<section class="card split" data-t="Your brain runs two kinds of mind" hidden>
+  <div class="txt">
+    <p class="kicker">How the brain works</p>
+    <h2>Your brain runs two kinds of mind.</h2>
+    <p>One is <b style="color:var(--prim)">old</b>. We share it with dogs, lizards and fish.</p>
+    <p>One is <b style="color:var(--sec)">new</b>. It's what makes us human.</p>
+    <p>The paper's claim: much of who you are is stored in the <span class="hl">old one</span>.</p>
+  </div>
+  <figure>
+    <div class="minds">
+      <div class="mind" style="--c:var(--prim)"><h3>Primary mind</h3><p class="sub">Old · below awareness</p>
+        <ul><li>Body sensations</li><li>Emotions and images</li><li>No sense of time</li><li>No words</li><li>Think: a toddler, or your dog</li></ul></div>
+      <div class="mind" style="--c:var(--sec)"><h3>Secondary mind</h3><p class="sub">New · your everyday self</p>
+        <ul><li>Words and logic</li><li>Plans and goals</li><li>Sense of time</li><li>Self-reflection</li><li>Think: the moon landing</li></ul></div>
+    </div>
+  </figure>
+</section>
+
+<!-- 5 CONDUCTOR -->
+<section class="card split" data-t="One network keeps the new mind in charge" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--sec)">The conductor</p>
+    <h2>One network keeps the new mind in charge.</h2>
+    <p>It's called the <b>default mode network</b>, or <b>DMN</b>.</p>
+    <p>Think of a conductor. It keeps the orchestra tidy by quieting the wilder, older mind.</p>
+    <p>The cost: we lose touch with the body's <span class="hl">built-in repair systems</span>.</p>
+  </div>
+  <figure>
+    <svg viewBox="0 0 480 320" role="img" aria-label="The DMN sits on top and pushes down on the older mind">
+      <defs><marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="var(--sec)"/></marker></defs>
+      <rect x="90" y="16" width="300" height="76" rx="10" fill="var(--sec)"/>
+      <text x="240" y="50" text-anchor="middle" font-size="24" style="fill:#fff;font-weight:800">DMN</text>
+      <text x="240" y="76" text-anchor="middle" font-size="17" style="fill:#fff;font-weight:500">the conductor</text>
+      <g stroke="var(--sec)" stroke-width="4" marker-end="url(#ar)"><line x1="150" y1="98" x2="150" y2="172"/><line x1="240" y1="98" x2="240" y2="172"/><line x1="330" y1="98" x2="330" y2="172"/></g>
+      <text x="358" y="142" font-size="18" class="t2">quiets</text>
+      <rect x="30" y="184" width="420" height="118" rx="10" fill="var(--prim)" fill-opacity=".16" stroke="var(--prim)" stroke-width="2" stroke-dasharray="6 6"/>
+      <text x="240" y="220" text-anchor="middle" font-size="21" style="fill:var(--prim);font-weight:800">The older mind</text>
+      <text x="240" y="250" text-anchor="middle" font-size="17">body · emotion · images</text>
+      <text x="240" y="278" text-anchor="middle" font-size="17">the body's self-repair</text>
+    </svg>
+    <figcaption>The authors link an overactive DMN to rigid thinking and depression.</figcaption>
+  </figure>
+</section>
+
+<!-- 6 PSYCHEDELICS LOOSEN -->
+<section class="card split" data-t="Psychedelics loosen the conductor's grip" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--prim)">What the drug does</p>
+    <h2>Psychedelics loosen the conductor's grip.</h2>
+    <p>Classic psychedelics hit one receptor, called <b>5-HT2A</b>.</p>
+    <p>It's packed into the DMN. It's rare in the deep, old brain.</p>
+    <p>So the new mind loosens, and the <span class="hl">old mind rises</span>. Brain regions start talking to each other more.</p>
+  </div>
+  <figure>
+    <svg id="rings" viewBox="0 0 480 270" role="img" aria-label="Two rings of brain regions. On placebo, few connections cross the ring. On psilocybin, many do."></svg>
+    <figcaption>Brain regions as dots around a ring. Lines are connections. Drawn after the study the paper cites (Petri et al., 2014).</figcaption>
+  </figure>
+</section>
+
+<!-- 7 SPECTRUM -->
+<section class="card split" data-t="Too tight or too loose both cause trouble" hidden>
+  <div class="txt">
+    <p class="kicker">A spectrum</p>
+    <h2>Too tight or too loose both cause trouble.</h2>
+    <p>A mind can be over-organized. Or under-organized.</p>
+    <p>Psychedelics push a tight mind <span class="hl">toward loose</span>, for a few hours.</p>
+    <p>That's why people with a history of <b>psychosis</b> are told not to do this work.</p>
+  </div>
+  <figure class="panel">
+    <div class="spectrum">
+      <div class="specbar" aria-hidden="true"></div>
+      <div class="speclabels">
+        <div><b style="color:var(--sec)">Too organized</b>Rigid ego. Depression. Stuck.</div>
+        <div style="text-align:right"><b style="color:var(--s2)">Too loose</b>Psychosis.</div>
+      </div>
+      <div class="push">A psychedelic pushes this way →</div>
+    </div>
+  </figure>
+</section>
+
+<!-- 8 CASCADE -->
+<section class="card split" data-t="Under threat, every mammal follows the same steps" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--s2)">The body's alarm</p>
+    <h2>Under threat, every mammal follows the same five steps.</h2>
+    <p>Scientists back to Darwin have watched it. The paper calls it the <b>defense cascade</b>.</p>
+    <p>You don't choose these steps. <span class="hl">Your nervous system does.</span></p>
+    <p>Meet the zebra.</p>
+  </div>
+  <figure>
+    <svg viewBox="0 0 480 310" role="img" aria-label="Activation rises through steps 1 and 2, then collapses below calm into steps 3 and 4">
+      <rect x="30" y="20" width="440" height="130" fill="var(--s2)" fill-opacity=".06"/>
+      <rect x="30" y="150" width="440" height="140" fill="var(--s3)" fill-opacity=".07"/>
+      <text x="462" y="42" text-anchor="end" font-size="15" class="t2">REVVED UP</text>
+      <text x="462" y="284" text-anchor="end" font-size="15" class="t2">SHUT DOWN</text>
+      <line x1="30" y1="150" x2="470" y2="150" class="ax"/>
+      <text x="200" y="174" font-size="15" class="t2">more threat →</text>
+      <path d="M40 150 C80 132 100 92 128 92 C150 92 150 112 172 110 C204 106 232 50 262 46 C272 46 272 120 274 205 C276 216 292 216 330 216 L350 216 C364 216 364 262 382 262 L450 262" fill="none" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round"/>
+      <g font-size="17" style="font-weight:800">
+        <circle cx="40" cy="150" r="15" fill="var(--s0)"/><text x="40" y="156" text-anchor="middle" style="fill:#fff">0</text>
+        <circle cx="128" cy="92" r="15" fill="var(--s1)"/><text x="128" y="98" text-anchor="middle" style="fill:#fff">1</text>
+        <circle cx="262" cy="46" r="15" fill="var(--s2)"/><text x="262" y="52" text-anchor="middle" style="fill:#fff">2</text>
+        <circle cx="320" cy="216" r="15" fill="var(--s3)"/><text x="320" y="222" text-anchor="middle" style="fill:#fff">3</text>
+        <circle cx="420" cy="262" r="15" fill="var(--s4)"/><text x="420" y="268" text-anchor="middle" style="fill:#fff">4</text>
+      </g>
+      <text x="286" y="40" font-size="15" class="t2">overwhelm point</text>
+    </svg>
+    <figcaption>Steps 0, 1, 3 and 4 can last for years. Step 2 is a short burst.</figcaption>
+  </figure>
+</section>
+
+<!-- 9 STATES 0,1 -->
+<section class="card split" data-t="Steps 0 and 1: calm, then on edge" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--s1)">Steps 0 and 1</p>
+    <h2>Calm. Then on edge.</h2>
+    <p>The zebra grazes in the sun. Then the grass rustles.</p>
+    <p>A lion is out there. Not close. But the whole herd goes <span class="hl">on alert</span>.</p>
+  </div>
+  <div class="states">
+    <div class="state" style="--c:var(--s0)"><div class="num">0</div><div><h3>Calm</h3><p>Warm, easy, awake. No threat.</p></div></div>
+    <div class="state" style="--c:var(--s1)"><div class="num">1</div><div><h3>On edge</h3><p>Danger is near, but not here yet.</p><p class="who">You: walking a dark alley at night.</p>
+      <div class="chips"><span class="chip">anxiety</span><span class="chip">tight gut</span><span class="chip">restless</span><span class="chip">fast thinking</span><span class="chip">insomnia</span></div></div></div>
+  </div>
+</section>
+
+<!-- 10 STATE 2 -->
+<section class="card split" data-t="Step 2: fight or flight" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--s2)">Step 2</p>
+    <h2>Fight or flight.</h2>
+    <p>The lion charges. Every zebra sprints for its life.</p>
+    <p>For people: war, car crashes. And for <span class="hl">children</span>: neglect or abuse at home.</p>
+    <p>A child can't fight back or run. So even “small” threats can push a child here.</p>
+  </div>
+  <div class="states">
+    <div class="state" style="--c:var(--s2)"><div class="num">2</div><div><h3>Full alarm</h3><p>Maximum adrenaline. A sprint, not a marathon. It ends fast.</p>
+      <div class="chips"><span class="chip">panic</span><span class="chip">terror</span><span class="chip">rage</span><span class="chip">shaking</span><span class="chip">sweating</span><span class="chip">racing thoughts</span></div></div></div>
+  </div>
+</section>
+
+<!-- 11 STATES 3,4 -->
+<section class="card split" data-t="Steps 3 and 4: the body shuts down" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--s3)">Steps 3 and 4</p>
+    <h2>When fighting fails, the body shuts down.</h2>
+    <p>The lion catches the zebra. The zebra goes still.</p>
+    <p>The body releases its <span class="hl">own opioids</span>. Pain and feeling go numb.</p>
+    <div class="twobox">
+      <div style="--c:var(--s3)"><b>Step 3</b>A safe grandma's house exists. The child just can't get there often.</div>
+      <div style="--c:var(--s4)"><b>Step 4</b>There is no grandma's house. No way out at all.</div>
+    </div>
+  </div>
+  <div class="states">
+    <div class="state" style="--c:var(--s3)"><div class="num">3</div><div><h3>Collapse</h3><p>Hopeless, heavy, numb. Still feeling. A way out may still exist.</p>
+      <div class="chips"><span class="chip">depression</span><span class="chip">lethargy</span><span class="chip">feeling cold</span><span class="chip">hopelessness</span></div></div></div>
+    <div class="state" style="--c:var(--s4)"><div class="num">4</div><div><h3>Deep numbness</h3><p>Bigger opioid release. Blank. Unreal. Watching life from outside.</p>
+      <div class="chips"><span class="chip">blank face</span><span class="chip">floaty</span><span class="chip">body feels absent</span><span class="chip">unreality</span></div></div></div>
+  </div>
+</section>
+
+<!-- 12 LOOKS CALM -->
+<section class="card split" data-t="Step 4 looks exactly like calm" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--s4)">The trap</p>
+    <h2>From the outside, step 4 looks exactly like calm.</h2>
+    <p>Both people say “I'm fine.” Therapists often mix them up.</p>
+    <p>One can feel their body. The other <span class="hl">feels nothing</span>.</p>
+    <p>The last person to know they're numb is the person who is.</p>
+  </div>
+  <figure>
+    <svg viewBox="0 0 480 300" role="img" aria-label="Two identical figures both saying I'm fine. One is filled with sensation, the other is hollow.">
+      <defs><radialGradient id="glow"><stop offset="0" stop-color="var(--s0)" stop-opacity=".55"/><stop offset="1" stop-color="var(--s0)" stop-opacity=".12"/></radialGradient></defs>
+      <g transform="translate(120 0)">
+        <rect x="-62" y="12" width="124" height="40" rx="20" fill="var(--tint)"/><text x="0" y="39" text-anchor="middle" font-size="19">“I'm fine.”</text>
+        <circle cx="0" cy="98" r="30" fill="url(#glow)" stroke="var(--s0)" stroke-width="3"/>
+        <path d="M-58 228 C-58 160 -32 138 0 138 C32 138 58 160 58 228 Z" fill="url(#glow)" stroke="var(--s0)" stroke-width="3"/>
+        <text x="0" y="258" text-anchor="middle" font-size="19" style="fill:var(--s0);font-weight:800">Step 0</text>
+        <text x="0" y="282" text-anchor="middle" font-size="16" class="t2">real calm, feels the body</text>
+      </g>
+      <g transform="translate(360 0)">
+        <rect x="-62" y="12" width="124" height="40" rx="20" fill="var(--tint)"/><text x="0" y="39" text-anchor="middle" font-size="19">“I'm fine.”</text>
+        <circle cx="0" cy="98" r="30" fill="none" stroke="var(--s4)" stroke-width="3" stroke-dasharray="6 5"/>
+        <path d="M-58 228 C-58 160 -32 138 0 138 C32 138 58 160 58 228 Z" fill="none" stroke="var(--s4)" stroke-width="3" stroke-dasharray="6 5"/>
+        <text x="0" y="258" text-anchor="middle" font-size="19" style="fill:var(--s4);font-weight:800">Step 4</text>
+        <text x="0" y="282" text-anchor="middle" font-size="16" class="t2">numb calm, feels nothing</text>
+      </g>
+    </svg>
+    <figcaption>A study the paper cites found Vietnam veterans, shown war cues 20 years later, went as numb as an 8 mg morphine shot.</figcaption>
+  </figure>
+</section>
+
+<!-- 13 BLOCKS PSYCHEDELIC -->
+<section class="card split" data-t="Numbness can cancel out a psychedelic" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--s4)">Why it matters</p>
+    <h2>Numbness can cancel out a psychedelic.</h2>
+    <p>People with a lot of step 4 may feel <span class="hl">sober, bored or sleepy</span>, even on MDMA or psilocybin.</p>
+    <p>Some fall asleep at the peak of the session.</p>
+    <p>The body's own opioids act like a brake.</p>
+  </div>
+  <figure class="panel">
+    <div class="collide">
+      <div class="blob" style="background:var(--prim)">Psychedelic →</div>
+      <div class="vs" aria-hidden="true">×</div>
+      <div class="blob" style="background:var(--s4)">← Body's opioids</div>
+    </div>
+    <div class="result">Little or no effect<span>The paper compares it to how antipsychotic drugs block a trip.</span></div>
+  </figure>
+</section>
+
+<!-- 14 WAY BACK -->
+<section class="card split" data-t="The body knows how to come back down" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--s0)">The way back</p>
+    <h2>The body knows how to come back down.</h2>
+    <p>Wild animals that survive an attack shake it off. Their body steps back: <b>4 → 3 → 2 → 1 → 0</b>.</p>
+    <p>It's automatic. Like <span class="hl">sweating to cool down</span>, or insulin after sugar.</p>
+    <p>In people, this return often gets stuck.</p>
+  </div>
+  <figure>
+    <svg viewBox="0 0 480 300" role="img" aria-label="Green arrows lead back from step 4 to 3 to 2 to 1 to 0">
+      <defs><marker id="ag" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="var(--s0)"/></marker></defs>
+      <line x1="30" y1="150" x2="470" y2="150" class="ax"/>
+      <path d="M40 150 C80 132 100 92 128 92 C150 92 150 112 172 110 C204 106 232 50 262 46 C272 46 272 120 274 205 C276 216 292 216 330 216 L350 216 C364 216 364 262 382 262 L450 262" fill="none" stroke="var(--ink-2)" stroke-opacity=".45" stroke-width="3"/>
+      <g fill="none" stroke="var(--s0)" stroke-width="3.5" marker-end="url(#ag)">
+        <path d="M410 252 C400 222 370 206 342 206"/>
+        <path d="M306 206 C296 140 292 90 280 62"/>
+        <path d="M246 40 C210 36 170 60 144 82"/>
+        <path d="M114 84 C80 86 56 112 48 136"/>
+      </g>
+      <g font-size="17" style="font-weight:800">
+        <circle cx="40" cy="150" r="15" fill="var(--s0)"/><text x="40" y="156" text-anchor="middle" style="fill:#fff">0</text>
+        <circle cx="128" cy="92" r="15" fill="var(--s1)"/><text x="128" y="98" text-anchor="middle" style="fill:#fff">1</text>
+        <circle cx="262" cy="46" r="15" fill="var(--s2)"/><text x="262" y="52" text-anchor="middle" style="fill:#fff">2</text>
+        <circle cx="320" cy="216" r="15" fill="var(--s3)"/><text x="320" y="222" text-anchor="middle" style="fill:#fff">3</text>
+        <circle cx="420" cy="262" r="15" fill="var(--s4)"/><text x="420" y="268" text-anchor="middle" style="fill:#fff">4</text>
+      </g>
+      <text x="60" y="200" font-size="18" style="fill:var(--s0);font-weight:800">the way back</text>
+    </svg>
+    <figcaption>To get back to calm, you pass back through the earlier steps. Coming out of numbness can feel like panic again.</figcaption>
+  </figure>
+</section>
+
+<!-- 15 TWO BLOCKS -->
+<section class="card split" data-t="Two things keep people stuck" hidden>
+  <div class="txt">
+    <p class="kicker">What gets in the way</p>
+    <h2>Two things keep people stuck.</h2>
+    <p>The way back is not pleasant. It means feeling what got trapped.</p>
+  </div>
+  <div class="tbl">
+    <div class="trow" style="--c:var(--prim)"><div class="name">1. We avoid it<small>our choice</small></div><p>We distract, breathe it away, think about something else. We hate losing control.<br><b>PSIP's technique targets this.</b></p></div>
+    <div class="trow" style="--c:var(--sec)"><div class="name">2. The DMN<small>our wiring</small></div><p>The conductor keeps the body's repair system switched down.<br><b>The psychedelic targets this.</b></p></div>
+  </div>
+</section>
+
+<!-- 16 SELECTIVE INHIBITION -->
+<section class="card split" data-t="The core move: don't escape the feeling" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--prim)">Selective inhibition</p>
+    <h2>The core move: don't escape the feeling.</h2>
+    <ol class="steps">
+      <li>A memory comes up. Your gut tightens. Breath gets short. Your neck pulls.</li>
+      <li>You want to take a deep breath, or think about your vacation.</li>
+      <li>The therapist says: notice that urge. <span class="hl">Don't follow it.</span> Stay with your gut.</li>
+      <li>The feeling grows, peaks, and settles. On its own.</li>
+    </ol>
+  </div>
+  <figure>
+    <svg viewBox="0 0 480 300" role="img" aria-label="A wave rises, peaks and settles. Early on, a branch labeled escape is crossed out.">
+      <line x1="20" y1="230" x2="460" y2="230" class="ax"/>
+      <path d="M150 158 C170 190 180 214 190 260" fill="none" stroke="var(--ink-2)" stroke-width="3" stroke-dasharray="6 6"/>
+      <g stroke="var(--s2)" stroke-width="4" stroke-linecap="round"><line x1="176" y1="200" x2="200" y2="224"/><line x1="200" y1="200" x2="176" y2="224"/></g>
+      <text x="208" y="262" font-size="16" class="t2">escape: deep breath,</text>
+      <text x="208" y="282" font-size="16" class="t2">distraction</text>
+      <path d="M20 230 C90 230 120 196 150 158 C190 104 230 66 262 66 C296 66 322 140 358 190 C386 226 420 230 460 230" fill="none" stroke="var(--prim)" stroke-width="5" stroke-linecap="round"/>
+      <text x="74" y="186" font-size="18">rises</text>
+      <text x="262" y="46" text-anchor="middle" font-size="18">peaks</text>
+      <text x="390" y="200" font-size="18">settles</text>
+    </svg>
+    <figcaption>The authors call this the body's natural wave of release. It only finishes if nothing cuts it off.</figcaption>
+  </figure>
+</section>
+
+<!-- 17 TWO ROLES -->
+<section class="card split" data-t="The therapist sets up sleep, then trusts the dream" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--prim)">The therapist's two jobs</p>
+    <h2>Set up the sleep. Then trust the dream.</h2>
+    <p>Think about falling asleep. You can control the room: dark, quiet, still.</p>
+    <p>But once asleep, the dream runs itself.</p>
+    <p>PSIP works the same way. Firm about blocking the <b>escape hatches</b>. Then <span class="hl">hands-off</span> about whatever comes up.</p>
+  </div>
+  <div class="tbl">
+    <div class="trow" style="--c:var(--sec)"><div class="name">Directive<small>steers</small></div><p>“Notice the urge to escape. Let it go. Come back to the feeling.”</p></div>
+    <div class="trow" style="--c:var(--s0)"><div class="name">Non-directive<small>trusts</small></div><p>Shaking, crying, images, anger. The body leads. The therapist follows.</p></div>
+  </div>
+</section>
+
+<!-- 18 BOREDOM -->
+<section class="card split" data-t="With numbness, the blank spot is the door" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--s4)">Working with numbness</p>
+    <h2>With numbness, the blank spot is the door.</h2>
+    <p>Boredom. Flatness. Sleepiness. “Nothing is happening.”</p>
+    <p><span class="hl">That is the signal.</span> Stay with it instead of looking for something exciting.</p>
+    <p>In weekly talk therapy this can take months. On a psychedelic, minutes to a full day. Then it cracks open.</p>
+  </div>
+  <figure>
+    <svg viewBox="0 0 480 300" role="img" aria-label="A man searches under a streetlamp while his key lies in the dark">
+      <rect x="0" y="0" width="480" height="270" rx="10" fill="var(--ink)" fill-opacity=".9"/>
+      <polygon points="150,58 70,262 236,262" fill="var(--hl)" fill-opacity=".85"/>
+      <rect x="146" y="40" width="8" height="222" fill="var(--rule)"/>
+      <rect x="132" y="36" width="36" height="22" rx="4" fill="var(--rule)"/>
+      <text x="153" y="246" text-anchor="middle" font-size="16" style="fill:#151515;font-weight:800">where we search</text>
+      <g transform="translate(380 230)" stroke="var(--paper)" stroke-width="3.5" fill="none"><circle cx="0" cy="0" r="10"/><line x1="10" y1="0" x2="40" y2="0"/><line x1="32" y1="0" x2="32" y2="10"/><line x1="24" y1="0" x2="24" y2="8"/></g>
+      <text x="392" y="204" text-anchor="middle" font-size="16" style="fill:var(--paper);font-weight:800">the key</text>
+      <text x="240" y="292" text-anchor="middle" font-size="16" class="t2">“I lost it in the dark. But the light is better here.”</text>
+    </svg>
+    <figcaption>The paper retells the old streetlamp joke. The real material sits in the numb, dark places.</figcaption>
+  </figure>
+</section>
+
+<!-- 19 MEDICINES -->
+<section class="card split" data-t="Not every medicine opens numbness equally" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--s0)">Which medicine</p>
+    <h2>Not every medicine opens numbness equally.</h2>
+    <p>The authors were surprised by <span class="hl">cannabis</span>. Paired with this technique, it stopped being calming and started “excavating.”</p>
+    <p>Their Amsterdam program now preps every client with cannabis first:</p>
+    <div class="protocol"><div class="c">Day 1 · cannabis</div><div class="c">Day 1 · cannabis</div><div class="c">Day 2 · cannabis</div><div class="ps">Day 3 · psilocybin</div></div>
+  </div>
+  <div class="tbl">
+    <div class="trow" style="--c:var(--s3)"><div class="name">Psilocybin<small>also mescaline, ayahuasca</small></div><p>Can pass right over a numb person. Just water, flowers, shapes.<span class="meter"><i class="on"></i><i></i><i></i></span></p></div>
+    <div class="trow" style="--c:var(--prim)"><div class="name">MDMA</div><p>Much better at reaching numbness, with the right focus.<span class="meter"><i class="on"></i><i class="on"></i><i></i></span></p></div>
+    <div class="trow" style="--c:var(--s0)"><div class="name">Cannabis<small>with this technique</small></div><p>The strongest effect they've seen. Fast, intense, destabilizing. Needs a guide.<span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i></span></p></div>
+  </div>
+</section>
+
+<!-- 20 RELATIONSHIP -->
+<section class="card split" data-t="Wounds from people need a person to heal" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--sec)">The relationship</p>
+    <h2>Most wounds come from people. So healing needs a person.</h2>
+    <p>On a psychedelic, old relationships surface fast. You may see a <b>parent</b> in your therapist. That's called <b>transference</b>.</p>
+    <p>A PSIP therapist doesn't correct it. They <span class="hl">play the role</span>, so the body can process it.</p>
+    <p>They can also offer what was missing: warmth, attention, being seen.</p>
+  </div>
+  <figure>
+    <svg viewBox="0 0 480 290" role="img" aria-label="An old film negative of a parent laid over the therapist in the present">
+      <g transform="translate(200 0)">
+        <circle cx="0" cy="96" r="44" fill="var(--sec)" fill-opacity=".9"/>
+        <path d="M-86 260 C-86 170 -48 150 0 150 C48 150 86 170 86 260 Z" fill="var(--sec)" fill-opacity=".9"/>
+      </g>
+      <g transform="translate(270 -10)">
+        <circle cx="0" cy="96" r="44" fill="var(--ink-2)" fill-opacity=".28" stroke="var(--ink-2)" stroke-width="2.5" stroke-dasharray="7 6"/>
+        <path d="M-86 260 C-86 170 -48 150 0 150 C48 150 86 170 86 260 Z" fill="var(--ink-2)" fill-opacity=".28" stroke="var(--ink-2)" stroke-width="2.5" stroke-dasharray="7 6"/>
+      </g>
+      <text x="110" y="40" text-anchor="end" font-size="17" style="fill:var(--sec);font-weight:800">the therapist</text>
+      <text x="110" y="62" text-anchor="end" font-size="15" class="t2">present</text>
+      <text x="370" y="40" font-size="17" class="t2" style="font-weight:800">a parent</text>
+      <text x="370" y="62" font-size="15" class="t2">past, laid on top</text>
+    </svg>
+    <figcaption>The authors warn: therapists must have done their own inner work. Strong transference can lead to boundary violations.</figcaption>
+  </figure>
+</section>
+
+<!-- 21 TIERS -->
+<section class="card split" data-t="A roadmap in three tiers" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--prim)">The roadmap</p>
+    <h2>A roadmap in three tiers.</h2>
+    <p class="quote">“You have to be someone before you can be no one.”</p>
+    <p>Skipping to the mystical top, the authors argue, gives highs you can't hold onto.</p>
+    <p>PSIP mostly works on tiers 1 and 2.</p>
+  </div>
+  <figure>
+    <svg viewBox="0 0 480 360" role="img" aria-label="A pyramid: Body at the base, Fabric in the middle, Ocean at the top">
+      <polygon points="190,20 290,20 330,110 150,110" fill="var(--s3)"/>
+      <polygon points="146,120 334,120 376,220 104,220" fill="var(--s4)"/>
+      <polygon points="100,230 380,230 430,340 50,340" fill="var(--prim)"/>
+      <g style="fill:#fff">
+        <text x="240" y="62" text-anchor="middle" font-size="22" style="fill:#fff;font-weight:800">3 · OCEAN</text>
+        <text x="240" y="88" text-anchor="middle" font-size="15" style="fill:#fff;font-weight:500">mystical · ceremony</text>
+        <text x="240" y="164" text-anchor="middle" font-size="22" style="fill:#fff;font-weight:800">2 · FABRIC</text>
+        <text x="240" y="190" text-anchor="middle" font-size="15" style="fill:#fff;font-weight:500">your identity · psilocybin</text>
+        <text x="240" y="278" text-anchor="middle" font-size="24" style="fill:#fff;font-weight:800">1 · BODY</text>
+        <text x="240" y="306" text-anchor="middle" font-size="15" style="fill:#fff;font-weight:500">trauma · numbness · cannabis,</text>
+        <text x="240" y="326" text-anchor="middle" font-size="15" style="fill:#fff;font-weight:500">MDMA, ketamine</text>
+      </g>
+    </svg>
+    <figcaption>Tier 1 heals the nervous system. Tier 2 rebuilds the “I.” Tier 3 is ego dissolution, alone or in a group.</figcaption>
+  </figure>
+</section>
+
+<!-- 22 CAVEATS -->
+<section class="card split" data-t="How to read this paper" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--s2)">Read with care</p>
+    <h2>How to read this paper.</h2>
+    <p>It's a strong idea. It is <span class="hl">not proven</span> yet.</p>
+  </div>
+  <div class="panel">
+    <ul class="caution">
+      <li>It's a <b>viewpoint</b> piece, not a clinical trial. Claims come from the authors' clinical experience.</li>
+      <li>The authors <b>founded PSIP</b> and run its institute in Denver.</li>
+      <li>They call their own tier map <b>“untested.”</b></li>
+      <li>Not for people with a history of <b>psychosis</b>.</li>
+      <li>Opening up numbness can be <b>destabilizing</b>. It needs support between sessions.</li>
+      <li>Laws on psychedelics and cannabis vary by place.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 23 RECAP -->
+<section class="card split" data-t="The whole idea in five lines" hidden>
+  <div class="txt">
+    <p class="kicker" style="--k:var(--prim)">Recap</p>
+    <h2>The whole idea in five lines.</h2>
+    <p class="small">Flip back anytime with “All cards.”</p>
+  </div>
+  <ol class="recap">
+    <li>Much of who you are lives in an old, wordless, body-based mind.</li>
+    <li>Psychedelics loosen the newer mind and let the old one surface.</li>
+    <li>Many symptoms are the body stuck in alarm (anxiety, panic) or shutdown (depression, numbness).</li>
+    <li>The body can return to calm by itself, if you stop escaping the feeling.</li>
+    <li>So the therapist works actively during the trip, through the body and the relationship.</li>
+  </ol>
+</section>
+
+  </main>
+
+  <footer class="foot">
+    <button class="nav prev" id="prev" type="button" aria-label="Previous card">←<span class="w"> Back</span></button>
+    <div><div class="prog" id="prog" role="tablist" aria-label="Cards"></div><div class="count" id="count">1 / 23</div></div>
+    <button class="nav next" id="next" type="button" aria-label="Next card"><span class="w">Next </span>→</button>
+  </footer>
+</div>
+
+<div class="toc" id="toc" hidden>
+  <div class="toc-in">
+    <div class="toc-head"><h2>All cards</h2><button class="tbtn" id="tocClose" type="button">Close</button></div>
+    <ol id="tocList"></ol>
+  </div>
+</div>
+
+<script>
+(function(){
+  const cards=[...document.querySelectorAll('.card')];
+  const stage=document.getElementById('stage'), prog=document.getElementById('prog'), count=document.getElementById('count');
+  const prev=document.getElementById('prev'), next=document.getElementById('next');
+  const toc=document.getElementById('toc'), tocList=document.getElementById('tocList');
+  let i=0;
+
+  cards.forEach((c,n)=>{
+    const b=document.createElement('button'); b.type='button'; b.setAttribute('aria-label','Card '+(n+1)+': '+c.dataset.t);
+    b.addEventListener('click',()=>go(n)); prog.appendChild(b);
+    const li=document.createElement('li'), tb=document.createElement('button'); tb.type='button';
+    tb.innerHTML='<span>'+(n+1)+'</span>'; tb.appendChild(document.createTextNode(c.dataset.t));
+    tb.addEventListener('click',()=>{toc.hidden=true;go(n)}); li.appendChild(tb); tocList.appendChild(li);
+  });
+
+  function paint(){
+    [...prog.children].forEach((b,n)=>{b.className=n<i?'done':n===i?'cur':''});
+    [...tocList.querySelectorAll('button')].forEach((b,n)=>b.classList.toggle('cur',n===i));
+    count.textContent=(i+1)+' / '+cards.length;
+    prev.disabled=i===0; next.disabled=i===cards.length-1;
+  }
+  function go(n){
+    n=Math.max(0,Math.min(cards.length-1,n)); if(n===i)return;
+    const dir=n>i?'24px':'-24px';
+    cards[i].classList.remove('active'); cards[i].hidden=true;
+    i=n; const c=cards[i]; c.style.setProperty('--dir',dir); c.hidden=false;
+    void c.offsetWidth; c.classList.add('active');
+    stage.scrollTop=0; paint();
+    try{history.replaceState(null,'','#c'+(i+1))}catch(e){}
+  }
+  prev.addEventListener('click',()=>go(i-1)); next.addEventListener('click',()=>go(i+1));
+  document.addEventListener('keydown',e=>{
+    if(!toc.hidden){ if(e.key==='Escape')toc.hidden=true; return; }
+    if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();go(i+1)}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(i-1)}
+    else if(e.key==='Home')go(0); else if(e.key==='End')go(cards.length-1);
+  });
+  let sx=0,sy=0;
+  stage.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+  stage.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+    if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.4)go(i+(dx<0?1:-1))},{passive:true});
+
+  document.getElementById('tocBtn').addEventListener('click',()=>{toc.hidden=false;const c=tocList.querySelector('.cur');c&&c.focus()});
+  document.getElementById('tocClose').addEventListener('click',()=>toc.hidden=true);
+
+  const sizes=['','size-l','size-xl']; let s=0;
+  try{s=Math.max(0,sizes.indexOf(localStorage.getItem('psip-size')||''))}catch(e){}
+  function applySize(){sizes.forEach(z=>z&&document.body.classList.remove(z)); if(sizes[s])document.body.classList.add(sizes[s])}
+  applySize();
+  document.getElementById('sizeBtn').addEventListener('click',()=>{s=(s+1)%sizes.length;applySize();try{localStorage.setItem('psip-size',sizes[s])}catch(e){}});
+
+  paint();
+  const m=/^#c(\d+)$/.exec(location.hash); if(m)go(parseInt(m[1],10)-1);
+
+  // connectivity rings
+  const svg=document.getElementById('rings'), NS='http://www.w3.org/2000/svg';
+  function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+  const mods=['var(--sec)','var(--s0)','var(--prim)','var(--s4)'];
+  function ring(cx,label,cross,seed){
+    const r=rng(seed),N=32,R=86,cy=118,pts=[];
+    for(let k=0;k<N;k++){const a=k/N*Math.PI*2-Math.PI/2;pts.push([cx+R*Math.cos(a),cy+R*Math.sin(a),Math.floor(k/(N/4))])}
+    const g=document.createElementNS(NS,'g');
+    const lines=cross?120:44;
+    for(let n=0;n<lines;n++){
+      const a=Math.floor(r()*N); let b;
+      if(cross){b=Math.floor(r()*N)}else{b=(a+1+Math.floor(r()*5))%N; if(pts[b][2]!==pts[a][2])b=(a+N-1-Math.floor(r()*2))%N}
+      if(a===b)continue;
+      const p=document.createElementNS(NS,'path');
+      const mx=(pts[a][0]+pts[b][0])/2*0.55+cx*0.45, my=(pts[a][1]+pts[b][1])/2*0.55+cy*0.45;
+      p.setAttribute('d','M'+pts[a][0].toFixed(1)+' '+pts[a][1].toFixed(1)+' Q'+mx.toFixed(1)+' '+my.toFixed(1)+' '+pts[b][0].toFixed(1)+' '+pts[b][1].toFixed(1));
+      p.setAttribute('fill','none'); p.setAttribute('stroke',mods[pts[a][2]]); p.setAttribute('stroke-opacity',cross?'.4':'.65'); p.setAttribute('stroke-width','1.4');
+      g.appendChild(p);
+    }
+    pts.forEach(q=>{const c=document.createElementNS(NS,'circle');c.setAttribute('cx',q[0]);c.setAttribute('cy',q[1]);c.setAttribute('r',5);c.setAttribute('fill',mods[q[2]]);g.appendChild(c)});
+    const t=document.createElementNS(NS,'text');t.setAttribute('x',cx);t.setAttribute('y',250);t.setAttribute('text-anchor','middle');t.setAttribute('font-size','20');t.textContent=label;g.appendChild(t);
+    svg.appendChild(g);
+  }
+  ring(120,'Placebo',false,7); ring(360,'Psilocybin',true,11);
+})();
+</script>
+
+</body>
+</html>

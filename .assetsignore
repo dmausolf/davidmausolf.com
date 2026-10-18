@@ -1,0 +1,22 @@
+# Files in the repo root that must not be published.
+# wrangler.toml sets assets.directory = "./", so anything not listed
+# here is served publicly at davidmausolf.com/<path>.
+
+.git
+.github
+.claude
+.wrangler
+node_modules
+
+# Local research scratch: YouTube transcript dumps.
+chrishutchins
+dotsonamap
+thetoast
+twogirlsoneghost
+
+# Repo/config files, not site content.
+.assetsignore
+wrangler.toml
+README.md
+package.json
+package-lock.json
